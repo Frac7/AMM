@@ -8,22 +8,24 @@
 	<meta name="keywords" content="login nerdbook nerd amici social">
     </head>
     <body>
+        <nav>
+            <a href="descrizione.html">Descrizione</a>
+            <a href="profilo.html">Profilo</a>
+            <a href="bacheca.html">Bacheca</a>
+        </nav>
         <header>
             <h1>Login on NerdBook</h1>
         </header>
-        <nav>
-            <p><a href="descrizione.html">Descrizione</a>
-            <p><a href="profilo.html">Profilo</a>
-            <p><a href="bacheca.html">Bacheca</a>
-        </nav>
         <div id="dati">
-            <form>
-                <p>Username <input type="text"></p>
+            <form method="post">
+                <div>
+                    <p>Username <input type="text"></p>
+                </div>
+                <div>
+                    <p>Password <input type="password"></p>
+                </div>
+                <button type="submit">Login</button>
             </form>
-            <form>
-                <p>Password <input type="password"></p>
-            </form>
-            <button type="submit">Login</button>
         </div>
     </body>
 </html>
