@@ -35,26 +35,18 @@ a::after, a::before{
 content: ' ';
 white-space: pre;
 }
-/*img{
-    width: 267px;
-    height: 77px;
-}*/
-/* ok fino a qui*/
+img#propic{
+    width: 50px;
+    height: 50px;
+}
 li{
     list-style-type: none;
 }
-div#persone ul li:before{
-    /*sistemare le icone lista*/
-}
-div#gruppi ul li:before{
-    /*sistemare le icone lista*/
-}
-div#post{
+/* ok fino a qui*/
+div#post, div#info{
+    float: right;
     width: 500px;
     margin-right: 400px;
-    margin-left: 150px;
-    float: right;
-    display: block;
 }
     /*bacheca, post*/
 div#post div, div#persone, div#gruppi{
@@ -63,6 +55,9 @@ div#post div, div#persone, div#gruppi{
     margin-bottom: 5px;
     padding: 5px;
     background-color: blanchedalmond;
+}
+div#post div{
+    background-color: #99ccff;
 }
 div#post div label{
     font-weight: bold;
@@ -77,10 +72,10 @@ div#post div p img{
    padding-bottom: 5px;
 }
 div#barraL{
-    float: left;
-    width: 200px;
+    width: 300px;
+    margin-right: 500px;
+    margin-left: 100px;
 }
-/*inserire le immagini per gruppi e persone e allineare i titoli*/
 /*task 5*/
 form{
     padding-left: 65px;
@@ -88,13 +83,11 @@ form{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+div#info{
+    background-color: #99ccff;
+}
 div#dati{
     width: 300px;
-}
-div#info{
-    width: 500px;
-}
-div#info, div#dati{
     margin-left: auto;
     margin-right: auto;
     background-color: #99ccff;
@@ -126,16 +119,28 @@ input:focus, textArea:focus{
 h1#Ltitle, h1#Ptitle, h1#Wtitle{
     text-align: center;
 }
-h1#Ltitle:before, h1#nb:before{
-    content: url("img/logo.png");
-    margin-right: 10px;
-}
-h1#Ptitle:before{
-    content: url("img/occhiali.png");
-    margin-right: 10px;
-}
 div#dati button, div#info button{
     background-color: antiquewhite;
     width: 100%;
     margin-top: 5%;
+}
+/* Sono state inserite delle immagini decorative prive di significato semantico
+prima di alcuni titoli*/
+/* le immagini inserite come pseudo elementi sono immagini puramente decorative
+senza alcun valore semantico. le altre immagini, come ad esempio la foto del profilo,
+inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
+del social network */
+h1#Ltitle:before{
+    content: url("img/logo.png");
+    margin-right: 10px;
+}
+h1#nb:before{
+    content: url("img/occhiali.png");
+    margin-right: 10px;
+}
+div#persone ul li:before{
+    /*sistemare le icone lista*/
+}
+div#gruppi ul li:before{
+    /*sistemare le icone lista*/
 }
