@@ -1,0 +1,141 @@
+/*task 3*/
+body{
+    text-align: justify;
+    margin: 10px;
+    background-color: rgb(237, 243, 255);
+    font-family: "Helvetica", Arial, sans-serif;
+    color: #003366;
+}
+p{
+    text-align: justify;
+    margin: 5px;
+}
+h1, h2, h3{
+    text-align: left;
+    font-family: "Trebuchet MS", "Courier New", sans-serif;
+    color: #ff6600;
+}
+a:link, a:visited{
+    font-family: "Lucida Console", "Courier New", monospace;
+    color: #ff7f3f;
+    text-decoration: none;
+}
+a:link:hover{
+    font-weight: bold;
+    font-size: 20px;
+}
+/*task 4*/
+nav{
+    background-color: antiquewhite; 
+    text-align: center;
+    /*padding-top: 10px;
+    padding-bottom: 10px;*/
+}
+a::after, a::before{
+content: ' ';
+white-space: pre;
+}
+/*img{
+    width: 267px;
+    height: 77px;
+}*/
+/* ok fino a qui*/
+li{
+    list-style-type: none;
+}
+div#persone ul li:before{
+    /*sistemare le icone lista*/
+}
+div#gruppi ul li:before{
+    /*sistemare le icone lista*/
+}
+div#post{
+    width: 500px;
+    margin-right: 400px;
+    margin-left: 150px;
+    float: right;
+    display: block;
+}
+    /*bacheca, post*/
+div#post div, div#persone, div#gruppi{
+    border: 1px solid #ff7f3f;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: blanchedalmond;
+}
+div#post div label{
+    font-weight: bold;
+    color: #ff3300; 
+}
+div#post div p img{
+   width: 276px;
+   height: 77px;
+   padding-right: 112px;
+   padding-left: 112px;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+div#barraL{
+    float: left;
+    width: 200px;
+}
+/*inserire le immagini per gruppi e persone e allineare i titoli*/
+/*task 5*/
+form{
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+div#dati{
+    width: 300px;
+}
+div#info{
+    width: 500px;
+}
+div#info, div#dati{
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #99ccff;
+}
+div#info form div label{
+    text-align: left;
+    display: inline-block;
+    width: 150px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+div#info form div input, div#info form div textArea{
+    display: inline-block;
+    float: right;
+}
+textArea
+{
+    height: 21px;
+    width: 167px;
+}
+input[type="date"]{
+     height: 21px;
+     width: 168px;
+}
+input:focus, textArea:focus{
+    background: antiquewhite;
+    border-color: rgb(237, 243, 255);
+}
+h1#Ltitle, h1#Ptitle, h1#Wtitle{
+    text-align: center;
+}
+h1#Ltitle:before, h1#nb:before{
+    content: url("img/logo.png");
+    margin-right: 10px;
+}
+h1#Ptitle:before{
+    content: url("img/occhiali.png");
+    margin-right: 10px;
+}
+div#dati button, div#info button{
+    background-color: antiquewhite;
+    width: 100%;
+    margin-top: 5%;
+}
