@@ -35,21 +35,26 @@ a::after, a::before{
 content: ' ';
 white-space: pre;
 }
-img#propic{
+.propic img{
     width: 50px;
     height: 50px;
+    margin-right: 10px;
 }
 li{
     list-style-type: none;
 }
-/* ok fino a qui*/
-div#post, div#info{
+div#post, div#info{ /*contenitore bacheca e profilo*/
     float: right;
     width: 500px;
     margin-right: 400px;
 }
-    /*bacheca, post*/
-div#post div, div#persone, div#gruppi{
+/*div#barraL{
+    width: 300px;
+    margin-right: 500px;
+    margin-left: 100px;
+}*/
+    /*bacheca, post - barra laterale persone e gruppi*/
+div#persone, div#gruppi{
     border: 1px solid #ff7f3f;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -57,12 +62,18 @@ div#post div, div#persone, div#gruppi{
     background-color: blanchedalmond;
 }
 div#post div{
+    border: 1px solid #ff7f3f;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
     background-color: #99ccff;
 }
+/* utente n*/
 div#post div label{
     font-weight: bold;
     color: #ff3300; 
 }
+/* post immagini */
 div#post div p img{
    width: 276px;
    height: 77px;
@@ -71,11 +82,6 @@ div#post div p img{
    padding-top: 5px;
    padding-bottom: 5px;
 }
-div#barraL{
-    width: 300px;
-    margin-right: 500px;
-    margin-left: 100px;
-}
 /*task 5*/
 form{
     padding-left: 65px;
@@ -83,13 +89,14 @@ form{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-div#info{
-    background-color: #99ccff;
-}
 div#dati{
     width: 300px;
     margin-left: auto;
     margin-right: auto;
+    background-color: #99ccff;
+}
+/* il colore info è separato perché div post non ha sfondo*/
+div#info{
     background-color: #99ccff;
 }
 div#info form div label{
@@ -139,8 +146,10 @@ h1#nb:before{
     margin-right: 10px;
 }
 div#persone ul li:before{
-    /*sistemare le icone lista*/
+    content: url("img/mok.png");
+    margin-right: 10px;
 }
 div#gruppi ul li:before{
-    /*sistemare le icone lista*/
+    content: url("img/mg.png");
+    margin-right: 10px;
 }
