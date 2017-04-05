@@ -53,6 +53,7 @@ button{
     margin-top: 5%;
     margin-bottom: 5%;
     background-color: whitesmoke;
+    border-radius: 5px;
 }
 .logout{
     float: right;
@@ -64,14 +65,15 @@ div#post div{
     padding: 1%;
     background-color: slategray;
     margin-right: 0%;
+    border-radius: 5px;
 }
 div#info{
-    margin: 1%;
+    margin: 0.7%;
     background-color: slategray; 
-    float: right;
     text-align: left;
     width: 84%;
     margin-right: 0%;
+    border-radius: 5px;
 }
 div#info img{
     float: left;
@@ -96,7 +98,7 @@ label{
 div#info label, div#dati label{
     margin: 1%;
     text-align: left;
-    width: 30%;
+    width: 40%;
 }
 div#info label{
     display: inline-block;
@@ -114,6 +116,7 @@ div#dati{
     width: 30%;
     background-color: slategray;
     margin: auto;
+    border-radius: 5px;
 }
 div#dati input{
     width: 100%;
@@ -133,7 +136,10 @@ h1#Ltitle{
     div#post{
         width: 85%;
         float: right;
-}
+    }
+    div#info{
+            float: right;
+        }
     div#barraL{ /*sidebar*/
         width: 15%;
         margin-top: 0.7%;
@@ -141,11 +147,15 @@ h1#Ltitle{
 }
 @media only screen and (min-width: 480px) and (max-width: 1024px) /*da 480 a 1024 una sola colonna*/
 {
-    div#post{ /*contenitore bacheca e profilo*/
+    div#post{ /*contenitore bacheca*/
         width: 85%;
         margin: auto;
     }
-    div#barraL, h1#nb, h1#corrente{ /*sidebar nascosta*/
+    div#info{
+        margin: auto;
+        margin-top: 0.7%;
+    }
+    div#barraL, h1#nb, h1#corrente, div#info img{ /*sidebar nascosta*/
         display: none;
     }
 }
