@@ -54,6 +54,9 @@ button{
     margin-bottom: 5%;
     background-color: whitesmoke;
     border-radius: 5px;
+    color: rgb(77, 83, 95);
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: bold;
 }
 .logout{
     float: right;
@@ -122,6 +125,9 @@ div#dati input{
 }
 h1#Ltitle{
     text-align: center;
+}
+input, textArea{
+    border-radius: 5px;
 }
 /*task 6*/
 @media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
