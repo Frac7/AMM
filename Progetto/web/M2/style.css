@@ -106,7 +106,6 @@ div#info label{
 div#info input, div#info textArea{
     float: right;
     width: 50%;
-    margin-bottom: 0.5%;
     margin-top: 0.5%;
 }
 div#dati form, div#info form{
@@ -157,6 +156,9 @@ h1#Ltitle{
     }
     div#barraL, h1#nb, h1#corrente, div#info img{ /*sidebar nascosta*/
         display: none;
+    }
+    div#info form{
+        padding: 1%;
     }
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
