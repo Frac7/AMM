@@ -22,7 +22,7 @@ a:link, a:visited{
 a:link:hover{
     font-weight: bold;
 }
-h1#corrente, h1#nb{
+a#corrente, a#nb{
     font-weight: bold;
     font-size: 21px;
     font-family: "Consolas", monospace;
@@ -30,7 +30,7 @@ h1#corrente, h1#nb{
     margin: 0%;
     margin-left: 1%;
 }
-h1#nb{
+a#nb{
     float: left;
 }
 nav{
@@ -140,10 +140,10 @@ input, textArea{
 /*task 6*/
 @media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
 {
-    h1#nb{
+    a#nb{
         float: left;
     }
-    h1#nb, a, h1#corrente{
+    a#nb, a, a#corrente{
         display: inline-block;
     }
     div#post{
@@ -168,7 +168,7 @@ input, textArea{
         margin: auto;
         margin-top: 0.7%;
     }
-    div#barraL, h1#nb, h1#corrente, div#info img{ /*sidebar nascosta*/
+    div#barraL, a#nb, a#corrente, div#info img{ /*sidebar nascosta*/
         display: none;
     }
     div#info form{
@@ -193,6 +193,6 @@ div#gruppi ul li:before{
     content: url("img/mg.png");
     margin-right: 5%;
 }
-h1#nb:before{
+a#nb:before{
     content: url("img/logom.png");
 }
