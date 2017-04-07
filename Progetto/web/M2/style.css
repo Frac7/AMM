@@ -51,7 +51,6 @@ input:focus, textArea:focus{
 button{
     width: 100%;
     margin-top: 5%;
-    margin-bottom: 5%;
     background-color: whitesmoke;
     border-radius: 5px;
     color: rgb(77, 83, 95);
@@ -168,7 +167,9 @@ input, textArea{
     }
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
-senza alcun valore semantico. le altre immagini, come ad esempio la foto del profilo,
+senza alcun valore semantico. sono state inserite delle immagini decorative
+a fianco al titolo logina, lista di persone, lista di gruppi, titolo nella nav.
+le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */
 h1#Ltitle:before{
@@ -182,4 +183,7 @@ div#persone ul li:before{
 div#gruppi ul li:before{
     content: url("img/mg.png");
     margin-right: 5%;
+}
+h1#nb:before{
+    content: url("img/logom.png");
 }
