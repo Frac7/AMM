@@ -22,7 +22,7 @@ a:link, a:visited{
 a:link:hover{
     font-weight: bold;
 }
-a#corrente, a#nb{
+h1#corrente, a#nb{
     font-weight: bold;
     font-size: 21px;
     font-family: "Consolas", monospace;
@@ -143,7 +143,7 @@ input, textArea{
     a#nb{
         float: left;
     }
-    a#nb, a, a#corrente{
+    a#nb, a, h1#corrente{
         display: inline-block;
     }
     div#post{
@@ -168,12 +168,15 @@ input, textArea{
         margin: auto;
         margin-top: 0.7%;
     }
-    div#barraL, a#nb, a#corrente, div#info img{ /*sidebar nascosta*/
+    div#barraL, a#nb, h1#corrente, div#info img{ /*sidebar nascosta*/
         display: none;
     }
     div#info form{
         padding: 1%;
     }
+}
+.mini{
+    margin-right: 5%;
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative
@@ -184,14 +187,6 @@ del social network */
 h1#Ltitle:before{
     content: url("img/logo.png");
     margin-right: 1%;
-}
-div#persone ul li:before{
-    content: url("img/mok.png");
-    margin-right: 5%;
-}
-div#gruppi ul li:before{
-    content: url("img/mg.png");
-    margin-right: 5%;
 }
 a#nb:before{
     content: url("img/logom.png");
