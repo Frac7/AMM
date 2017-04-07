@@ -64,7 +64,7 @@ button{
 /*task 4 e 5*/
 div#post div{
     margin: 1%;
-    padding: 1%;
+    padding: 0.1%;
     background-color: slategray;
     margin-right: 0%;
     border-radius: 5px;
@@ -127,6 +127,15 @@ h1#Ltitle{
 }
 input, textArea{
     border-radius: 5px;
+}
+.utente{
+    margin-left: 1%;
+}
+.postpic{
+    width: 30%;
+    position: relative;
+    right: 35%;
+    left: 35%;
 }
 /*task 6*/
 @media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
