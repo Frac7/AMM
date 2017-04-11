@@ -22,7 +22,7 @@ a:link, a:visited{
 a:link:hover{
     font-weight: bold;
 }
-h1#corrente, a#nb{
+h1#corrente, h1#nb{
     font-weight: bold;
     font-size: 21px;
     font-family: "Consolas", monospace;
@@ -30,7 +30,7 @@ h1#corrente, a#nb{
     margin: 0%;
     margin-left: 1%;
 }
-a#nb{
+h1#nb{
     float: left;
 }
 nav{
@@ -89,7 +89,7 @@ div#persone, div#gruppi{
     margin-left: 0%;
     margin-right: 0%;
     background-color: rgb(77, 83, 95);
-    border-radius: 5%;
+    border-radius: 5px;
     padding: 5%;
 }
 label{
@@ -140,10 +140,10 @@ input, textArea{
 /*task 6*/
 @media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
 {
-    a#nb{
+    h1#nb{
         float: left;
     }
-    a#nb, a, h1#corrente{
+    h1#nb, a, h1#corrente{
         display: inline-block;
     }
     div#post{
@@ -152,27 +152,62 @@ input, textArea{
     }
     div#info{
             float: right;
+            margin-top: 1%;
         }
     div#barraL{ /*sidebar*/
         width: 15%;
         margin-top: 0.7%;
+        float: left;
     }
 }
-@media only screen and (min-width: 480px) and (max-width: 1024px) /*da 480 a 1024 una sola colonna*/
+@media only screen and (min-width: 0px) and (max-width: 1024px) /*da 0 a 480, da 480 a 1024 una sola colonna*/
 {
     div#post{ /*contenitore bacheca*/
         width: 85%;
         margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    div#post div{
+        margin: 0.5%;
+        margin-top: 1%;
+    }
+    div#barraL{
+        width: 84%;
+        margin: auto;
+        margin-top: 1%;
+        background-color: rgb(77, 83, 95);
+        border-radius: 5px;
+    }
+    div#persone, div#gruppi{
+        margin-bottom: 1%;
+        padding: 0.5%;
+        width: 30%;
+        display: inline-block;
+        background: none;
     }
     div#info{
         margin: auto;
-        margin-top: 0.7%;
+        margin-top: 1%;
+        margin-bottom: 1%;
     }
-    div#barraL, a#nb, h1#corrente, div#info img{ /*sidebar nascosta*/
+    h1#nb, h1#corrente, div#info img{ 
         display: none;
     }
     div#info form{
         padding: 1%;
+    }
+    div#gruppi{
+        position: relative;
+        right: 10%;
+        float: right;
+    }
+    div#persone{
+        position: relative;
+        left: 10%;
+    }
+    div#barraL h2{
+        text-align: center;
     }
 }
 .mini{
@@ -180,7 +215,7 @@ input, textArea{
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative
-a fianco al titolo logina, lista di persone, lista di gruppi, titolo nella nav.
+a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
 le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */
@@ -188,6 +223,6 @@ h1#Ltitle:before{
     content: url("img/logo.png");
     margin-right: 1%;
 }
-a#nb:before{
+h1#nb:before{
     content: url("img/logom.png");
 }
