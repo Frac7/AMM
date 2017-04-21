@@ -1,0 +1,228 @@
+/*task 3*/
+body{
+    background-color: rgb(37, 43, 55);
+    font-family: "Consolas", sans-serif;
+    color: seashell;
+    margin: 1%;
+}
+p{
+    text-align: justify;
+    margin: 1%;
+}
+h1, h2, h3{
+    text-align: left;
+    font-family: "Trebuchet MS", sans-serif;
+    color: #ff6600;
+}
+a:link, a:visited{
+    font-family: "Courier New", monospace;
+    color: rgb(237, 243, 255);
+    text-decoration: none;
+}
+a:link:hover{
+    font-weight: bold;
+}
+h1#corrente, h1#nb{
+    font-weight: bold;
+    font-size: 21px;
+    font-family: "Consolas", monospace;
+    color: rgb(237, 243, 255);
+    margin: 0%;
+    margin-left: 1%;
+}
+h1#nb{
+    float: left;
+}
+nav{
+    background-color: rgb(77, 83, 95);
+    text-align: center;
+    font-size: 21px;
+}
+a::after, a::before{
+    content: ' ';
+    white-space: pre;
+}
+li{
+    list-style-type: none;
+}
+input:focus, textArea:focus{
+    background-color: #ffff99;
+}
+button{
+    width: 100%;
+    margin-top: 5%;
+    background-color: whitesmoke;
+    border-radius: 5px;
+    color: rgb(77, 83, 95);
+    font-family: "Trebuchet MS", sans-serif;
+    font-weight: bold;
+}
+.logout{
+    float: right;
+    margin: 0%;
+}
+/*task 4 e 5*/
+div#post div{
+    margin: 1%;
+    padding: 0.1%;
+    background-color: slategray;
+    margin-right: 0%;
+    border-radius: 5px;
+}
+div#info{
+    margin: 0.7%;
+    background-color: slategray; 
+    text-align: left;
+    width: 84%;
+    margin-right: 0%;
+    border-radius: 5px;
+}
+div#info img{
+    float: left;
+    margin: 1%;
+    margin-top: 10%;
+    margin-left: 3.5%;
+}
+div#persone, div#gruppi{
+    margin-top: 1%;
+    margin-bottom: 5%;
+    margin-left: 0%;
+    margin-right: 0%;
+    background-color: rgb(77, 83, 95);
+    border-radius: 5px;
+    padding: 5%;
+}
+label{
+    font-weight: bold;
+    color: whitesmoke;
+    font-family: "Trebuchet MS", sans-serif;
+}
+div#info label, div#dati label{
+    margin: 1%;
+    text-align: left;
+    width: 40%;
+}
+div#info label{
+    display: inline-block;
+}
+div#info input, div#info textArea{
+    float: right;
+    width: 50%;
+    margin-top: 0.5%;
+}
+div#dati form, div#info form{
+    padding: 10%;
+}
+div#dati{
+    width: 30%;
+    background-color: slategray;
+    margin: auto;
+    border-radius: 5px;
+}
+div#dati input{
+    width: 100%;
+}
+h1#Ltitle{
+    text-align: center;
+}
+input, textArea{
+    border-radius: 5px;
+}
+.utente{
+    margin-left: 1%;
+}
+.postpic{
+    width: 30%;
+    position: relative;
+    right: 35%;
+    left: 35%;
+}
+/*task 6*/
+@media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
+{
+    h1#nb{
+        float: left;
+    }
+    h1#nb, a, h1#corrente{
+        display: inline-block;
+    }
+    div#post{
+        width: 85%;
+        float: right;
+    }
+    div#info{
+            float: right;
+            margin-top: 1%;
+        }
+    div#barraL{ /*sidebar*/
+        width: 15%;
+        margin-top: 0.7%;
+        float: left;
+    }
+}
+@media only screen and (min-width: 0px) and (max-width: 1024px) /*da 0 a 480, da 480 a 1024 una sola colonna*/
+{
+    div#post{ /*contenitore bacheca*/
+        width: 85%;
+        margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    div#post div{
+        margin: 0.5%;
+        margin-top: 1%;
+    }
+    div#barraL{
+        width: 84%;
+        margin: auto;
+        margin-top: 1%;
+        background-color: rgb(77, 83, 95);
+        border-radius: 5px;
+    }
+    div#persone, div#gruppi{
+        margin-bottom: 1%;
+        padding: 0.5%;
+        width: 30%;
+        display: inline-block;
+        background: none;
+    }
+    div#info{
+        margin: auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    h1#nb, h1#corrente, div#info img{ 
+        display: none;
+    }
+    div#info form{
+        padding: 1%;
+    }
+    div#gruppi{
+        position: relative;
+        right: 10%;
+        float: right;
+    }
+    div#persone{
+        position: relative;
+        left: 10%;
+    }
+    div#barraL h2{
+        text-align: center;
+    }
+}
+.mini{
+    margin-right: 5%;
+}
+/* le immagini inserite come pseudo elementi sono immagini puramente decorative
+senza alcun valore semantico. sono state inserite delle immagini decorative
+a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
+le altre immagini, come ad esempio la foto del profilo,
+inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
+del social network */
+h1#Ltitle:before{
+    content: url("img/logo.png");
+    margin-right: 1%;
+}
+h1#nb:before{
+    content: url("img/logom.png");
+}
