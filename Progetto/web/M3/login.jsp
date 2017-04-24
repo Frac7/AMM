@@ -1,3 +1,11 @@
+<%-- 
+    Document   : login
+    Created on : 24-apr-2017, 14.12.30
+    Author     : Asus
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,21 +20,20 @@
     <body>
         <header>
             <nav>
-                <h1 id="nb">NerdBook</h1>
-                <h1 id="corrente">Login NerdBook</h1>
-                <a href="descrizione.html">Descrizione</a>
-                <a href="profilo.html">Profilo</a>
-                <a href="bacheca.html">Bacheca</a>
+                <jsp:include page="nav.jsp" />
+                <a href="descrizione.jsp">Descrizione</a>
+                <a href="profilo.jsp">Profilo</a>
+                <a href="bacheca.jsp">Bacheca</a>
             </nav>
-            <h1 id="Ltitle">Login NerdBook</h1>
+            <h1 id="Ltitle">NerdBook</h1>
         </header>
         <div id="dati">
             <form method="post">
                 <div>
-                    <label for="user">Username</label> <input type="text" id="user">
+                    <label>Username</label> <input type="text">
                 </div>
                 <div>
-                    <label for="psw">Password</label> <input type="password" id="psw">
+                    <label>Password</label> <input type="password">
                 </div>
                 <div>
                     <button type="submit">Login</button>
@@ -35,3 +42,4 @@
         </div>
     </body>
 </html>
+

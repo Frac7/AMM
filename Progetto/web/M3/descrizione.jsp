@@ -1,3 +1,11 @@
+<%-- 
+    Document   : descrizione
+    Created on : 24-apr-2017, 14.10.24
+    Author     : Asus
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,25 +20,16 @@
     <body>
         <header>
             <nav>
-                <h1 id="nb">NerdBook</h1>
-                <h1 id="corrente">About NerdBook</h1>
-                <a href="login.html">Login</a>
+                <jsp:include page="nav.jsp" />
+                <a href="login.jsp">Login</a>
             </nav>
             <h1>NerdBook</h1>
         </header>
         <div id="sommario">
             <ul>
                 <li><a href="#intro">Che cos'è NerdBook?</a></li>
-                <li>
-                    <ul>
-                        <li><a href="#azioni">Che cosa posso fare con NerdBook?</a></li>
-                        <li>
-                            <ul>
-                                <li><a href="#contenuti">Che cosa e come posso condividere i miei contenuti?</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+                <li><a href="#azioni">Che cosa posso fare con NerdBook?</a></li>
+                <li><a href="#contenuti">Che cosa e come posso condividere i miei contenuti?</a></li>
             </ul>
         </div>
         <div id="intro">
