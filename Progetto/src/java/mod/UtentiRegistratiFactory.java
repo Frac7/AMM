@@ -27,35 +27,42 @@ public class UtentiRegistratiFactory {
     {
         //dati fittizzi
         UtentiRegistrati utente1 = new UtentiRegistrati();
-        utente1.setCognome("");
+        utente1.setCognome("Cognome");
         utente1.setId(1);
         utente1.setNome("Utente 1");
-        utente1.setDataNascita("00/00/0000");
+        utente1.setDataNascita("24/04/2017");
         utente1.setPassword("password1");
         utente1.setTipUtente(UtentiRegistrati.uType.USER);
-        utente1.setUrlProPic("");
+        utente1.setUrlProPic("img/ok.png");
         
         UtentiRegistrati utente2 = new UtentiRegistrati();
-        utente2.setCognome("");
+        utente2.setCognome("Cognome");
         utente2.setId(2);
         utente2.setNome("Utente 2");
-        utente2.setDataNascita("00/00/0000");
+        utente2.setDataNascita("24/04/2017");
         utente2.setPassword("password2");
         utente2.setTipUtente(UtentiRegistrati.uType.USER);
-        utente2.setUrlProPic("");
+        utente2.setUrlProPic("img/ok.png");
         
         UtentiRegistrati utente3 = new UtentiRegistrati();
-        utente3.setCognome("");
+        utente3.setCognome("Cognome");
         utente3.setId(3);
         utente3.setNome("Utente 3");
-        utente3.setDataNascita("00/00/0000");
+        utente3.setDataNascita("24/04/2017");
         utente3.setPassword("password3");
         utente3.setTipUtente(UtentiRegistrati.uType.USER);
-        utente3.setUrlProPic("");
+        utente3.setUrlProPic("img/ok.png");
+        
+        UtentiRegistrati incompleto = new UtentiRegistrati();
+        incompleto.setId(4);
+        incompleto.setNome("incompleto");
+        incompleto.setPassword("password");
+        incompleto.setCognome(null);
         //aggiunta utenti alla lista
         utenti.add(utente1);
         utenti.add(utente2);
         utenti.add(utente3);
+        utenti.add(incompleto);
     }
     public UtentiRegistrati getUserById(int id)
     {
@@ -67,16 +74,11 @@ public class UtentiRegistratiFactory {
         return null;
         //confrontare l'id dell'utente con quello del parametro
     }
-    public List getUserByName(String n)
+    public UtentiRegistrati getUserByName(String n)
     {
-        //lista per restituzione valore
-        List<UtentiRegistrati> l = new ArrayList<UtentiRegistrati>();
-        //sintassi for da vedere
-        //scorrere la lista di utenti
         for(UtentiRegistrati u : this.utenti)
             if(u.getNome().equals(n))
-                l.add(u);
-        return l;
-        //confrontare l'id dell'utente con quello del parametro
+                return u;
+        return null;
     }
 }

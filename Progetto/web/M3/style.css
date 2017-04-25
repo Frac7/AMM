@@ -46,7 +46,7 @@ li{
     list-style-type: none;
 }
 input:focus, textArea:focus{
-    background-color: #ffff99;
+    background-color: lightgoldenrodyellow;
 }
 button{
     width: 100%;
@@ -127,6 +127,9 @@ h1#Ltitle{
 }
 input, textArea{
     border-radius: 5px;
+    font-family: "Consolas", monospace;
+    font-weight: bold;
+    color: rgb(37, 43, 55);
 }
 .utente{
     margin-left: 1%;
@@ -152,7 +155,7 @@ input, textArea{
     }
     div#info{
             float: right;
-            margin-top: 1%;
+            margin-top: 0.9%;
         }
     div#barraL{ /*sidebar*/
         width: 15%;
@@ -219,7 +222,7 @@ a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
 le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */
-h1#Ltitle:before{
+h1#Ltitle:before, h1#Dtitle:before{
     content: url("img/logo.png");
     margin-right: 1%;
 }

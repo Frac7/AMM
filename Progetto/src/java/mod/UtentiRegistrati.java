@@ -12,6 +12,20 @@ package mod;
 public class UtentiRegistrati {
 
     /**
+     * @return the fraseBio
+     */
+    public String getFraseBio() {
+        return fraseBio;
+    }
+
+    /**
+     * @param fraseBio the fraseBio to set
+     */
+    public void setFraseBio(String fraseBio) {
+        this.fraseBio = fraseBio;
+    }
+
+    /**
      * @return the id
      */
     public int getId() {
@@ -121,6 +135,7 @@ public class UtentiRegistrati {
     private String dataNascita;
     private String password;
     private uType tipUtente; //utente o amministratore
+    private String fraseBio;
     //costruttore
     public UtentiRegistrati()
     {
@@ -131,6 +146,7 @@ public class UtentiRegistrati {
         dataNascita = "";
         password = "";
         tipUtente = uType.USER;
+        fraseBio = "";
     }
     public boolean equals_u(Object u) {
         if (u instanceof UtentiRegistrati)
