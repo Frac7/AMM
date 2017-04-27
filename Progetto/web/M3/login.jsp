@@ -20,13 +20,13 @@
         <header>
             <nav>
                 <a href="descrizione.html">Descrizione</a>
-                <a href="profilo.jsp">Profilo</a>
-                <a href="bacheca.jsp">Bacheca</a>
+                <a href="profilo.html">Profilo</a>
+                <a href="bacheca.html">Bacheca</a>
             </nav>
-            <h1 id="Ltitle">NerdBook</h1>
+            <h1 id="Ltitle">Login NerdBook</h1>
         </header>
         <div id="dati">
-            <form action="" method="post">
+            <form action="" method="get">
                 <div>
                     <label for="username">Username</label> <input type="text" name="user" id="username">
                 </div>

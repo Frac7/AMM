@@ -20,6 +20,8 @@
     <body>
         <header>
             <nav>
+                <c:set var="t" value="Profilo" scope="request"></c:set>
+                <c:set var="c" value="profilo" scope="request"></c:set>
                 <jsp:include page="nav.jsp"/>
                 <a href='descrizione.html'>Descrizione</a>
                 <a href='login.html'>Login</a>
@@ -30,7 +32,7 @@
             <div>
                 <img src="img/ok.png" alt="utente" id="utente">
             </div>
-            <form>
+            <form action="" method="get">
                 <div>
                     <label for="nome">Nome</label> <input type='text' name="nome" id="nome">
                 </div>
@@ -53,7 +55,7 @@
                     <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword">
                 </div>
                 <div>
-                    <button type="submit">Aggiorna</button>
+                    <button type="submit" value="profilo">Aggiorna</button>
                 </div>
             </form>
         </div>

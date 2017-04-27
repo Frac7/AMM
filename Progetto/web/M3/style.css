@@ -22,16 +22,19 @@ a:link, a:visited{
 a:link:hover{
     font-weight: bold;
 }
-h1#corrente, h1#nb{
+h1#nb{
     font-weight: bold;
     font-size: 21px;
     font-family: "Consolas", monospace;
     color: rgb(237, 243, 255);
     margin: 0%;
     margin-left: 1%;
+    float: left
 }
-h1#nb{
-    float: left;
+a.logout{
+    font-weight: bold;
+    font-family: "Consolas", monospace;
+    color: rgb(237, 243, 255);
 }
 nav{
     background-color: rgb(77, 83, 95);
@@ -80,8 +83,6 @@ div#info{
 div#info img{
     float: left;
     margin: 1%;
-    margin-top: 10%;
-    margin-left: 3.5%;
 }
 div#persone, div#gruppi{
     margin-top: 1%;
@@ -110,7 +111,13 @@ div#info input, div#info textArea{
     width: 50%;
     margin-top: 0.5%;
 }
-div#dati form, div#info form{
+div#info form{
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+div#dati form{
     padding: 10%;
 }
 div#dati{
@@ -143,10 +150,7 @@ input, textArea{
 /*task 6*/
 @media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
 {
-    h1#nb{
-        float: left;
-    }
-    h1#nb, a, h1#corrente{
+    h1#nb, a{
         display: inline-block;
     }
     div#post{
@@ -162,9 +166,34 @@ input, textArea{
         margin-top: 0.7%;
         float: left;
     }
+    div#insPost{
+        width: 100%;
+        border-radius: 5px;
+        background-color: rgb(77, 83, 95);
+        margin-top: 0.7%;
+    }
+    div#insPost > form{
+        padding-right: 30%;
+        padding-left: 30%;
+        padding-bottom: 0.5%;
+    }
+    div.tipou{
+        float: right;
+        display: inline-block;
+        width: 70%;
+    }
+    div.tipoi{
+        display: inline-block;
+    }
 }
 @media only screen and (min-width: 0px) and (max-width: 1024px) /*da 0 a 480, da 480 a 1024 una sola colonna*/
 {
+    .logout{
+        display: none;
+    }
+    div#insPost > form{
+        padding: 5%;
+    }
     div#post{ /*contenitore bacheca*/
         width: 85%;
         margin: auto;
@@ -175,7 +204,7 @@ input, textArea{
         margin: 0.5%;
         margin-top: 1%;
     }
-    div#barraL{
+    div#barraL, div#insPost{
         width: 84%;
         margin: auto;
         margin-top: 1%;
@@ -194,7 +223,7 @@ input, textArea{
         margin-top: 1%;
         margin-bottom: 1%;
     }
-    h1#nb, h1#corrente, div#info img{ 
+    h1#nb, div#info img{ 
         display: none;
     }
     div#info form{
@@ -215,6 +244,16 @@ input, textArea{
 }
 .mini{
     margin-right: 5%;
+}
+div#insPost div{
+    margin: 1%;
+}
+div#insPost input[type="url"], div#insPost textArea{
+    width: 100%;
+}
+input[type="file"]{
+    background-color: white;
+    color: rgb(77, 83, 95);
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative

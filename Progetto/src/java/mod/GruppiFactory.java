@@ -29,17 +29,17 @@ public class GruppiFactory {
         Gruppi gruppo1 = new Gruppi();
         gruppo1.setNome("Gruppo 1");
         gruppo1.setDescrizione("");
-        //gruppo1.setFounder(utente1);
+        gruppo1.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
         gruppo1.setId(1);
         Gruppi gruppo2 = new Gruppi();
         gruppo2.setNome("Gruppo 2");
         gruppo2.setDescrizione("");
-        //gruppo1.setFounder(utente1);
+        gruppo2.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
         gruppo2.setId(2);
         Gruppi gruppo3 = new Gruppi();
         gruppo3.setNome("Gruppo 3");
         gruppo3.setDescrizione("");
-        //gruppo1.setFounder(utente1);
+        gruppo1.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
         gruppo3.setId(3);
         //aggiunta utenti alla lista
         gruppi.add(gruppo1);
@@ -51,8 +51,10 @@ public class GruppiFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Gruppi g : this.gruppi)
+        {
             if(g.getId() == id)
                 return g;
+        }
         return null;
         //confrontare l'id dell'utente con quello del parametro
     }
@@ -63,8 +65,10 @@ public class GruppiFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Gruppi g : this.gruppi)
+        {
             if(g.getNome().equals(n))
                 l.add(g);
+        }
         return l;
         //confrontare l'id dell'utente con quello del parametro
     }

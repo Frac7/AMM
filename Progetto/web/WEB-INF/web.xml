@@ -5,16 +5,25 @@
         <servlet-class>mod.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>profilo</servlet-name>
-        <servlet-class>mod.profilo</servlet-class>
+        <servlet-name>Profilo</servlet-name>
+        <servlet-class>mod.Profilo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Bacheca</servlet-name>
+        <servlet-class>mod.Bacheca</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/M3/login.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>profilo</servlet-name>
+        <servlet-name>Profilo</servlet-name>
         <url-pattern>/M3/profilo.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bacheca</servlet-name>
+        <url-pattern>/M3/bacheca.html</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

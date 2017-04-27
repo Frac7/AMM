@@ -69,16 +69,24 @@ public class UtentiRegistratiFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(UtentiRegistrati u : this.utenti)
+        {
             if(u.getId() == id)
                 return u;
+        }
         return null;
         //confrontare l'id dell'utente con quello del parametro
     }
     public UtentiRegistrati getUserByName(String n)
     {
         for(UtentiRegistrati u : this.utenti)
+        {
             if(u.getNome().equals(n))
                 return u;
+        }
         return null;
+    }
+    public List getUserList()
+    {
+        return utenti;
     }
 }

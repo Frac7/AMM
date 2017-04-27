@@ -148,7 +148,8 @@ public class UtentiRegistrati {
         tipUtente = uType.USER;
         fraseBio = "";
     }
-    public boolean equals_u(Object u) {
+    @Override
+    public boolean equals(Object u) {
         if (u instanceof UtentiRegistrati)
             if (this.getId() == ((UtentiRegistrati)u).getId()) return true;
         return false;

@@ -22,15 +22,15 @@
             <nav>
                 <a href="login.html">Login</a>
             </nav>
-            <h1 id="Dtitle">NerdBook</h1>
+            <h1 id="Dtitle">About NerdBook</h1>
         </header>
         <div id="sommario">
             <ul>
-                <li><a href="#intro">Che cos'è NerdBook?</a></li>
+                <li><a href="descrizione.html#intro">Che cos'è NerdBook?</a></li>
                 <li><ul>
-                    <li><a href="#azioni">Che cosa posso fare con NerdBook?</a></li>
+                    <li><a href="descrizione.html#azioni">Che cosa posso fare con NerdBook?</a></li>
                     <li><ul>
-                        <li><a href="#contenuti">Che cosa e come posso condividere?</a></li>
+                        <li><a href="descrizione.html#contenuti">Che cosa e come posso condividere?</a></li>
                         </ul>
                     </ul>
             </ul>

@@ -5,10 +5,16 @@
  */
 package mod;
 
+import java.util.List;
+import java.util.Arrays;
+import mod.Post;
+import mod.PostFactory;
+import mod.UtentiRegistrati;
+import mod.UtentiRegistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,7 +24,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Asus
  */
-public class Login extends HttpServlet {
+public class Bacheca extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,41 +39,49 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String utente = request.getParameter("user");
-        String password = request.getParameter("password");
-        if(utente == null || password == null)
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-        if(utente != null)
+        Object r = session.getAttribute("in");
+        if(r != null)
         {
-            UtentiRegistrati u = UtentiRegistratiFactory.getInstance().getUserByName(utente);
-            if(u != null)
-            {
-                if(u.getNome().equals(utente) && u.getPassword().equals(password))
-                {
-                    session.setAttribute("in",true);
-                    session.setAttribute("user",u); //utente loggato
-                    session.setAttribute("x",u); //utente del quale visualizzo la bacheca (dopo login si visualizza la bacheca dell'utente loggato)
-                    if(u.getNome() == null || u.getUrlProPic() == null || u.getCognome() == null || u.getFraseBio() == null)
-                        request.getRequestDispatcher("profilo.html").forward(request, response);
-                    else
-                    {
-                        List<Post> p = PostFactory.getInstance().getPostByUser(u);
-                        session.setAttribute("post", p);
-                        request.getRequestDispatcher("bacheca.html").forward(request, response);
-                    }
-                }
-                else
-                {
-                    session.setAttribute("in",false);
-                    request.getRequestDispatcher("errore.jsp").forward(request, response);
-                }
-            }
+            boolean flag = (boolean)r;
+            if(!flag)
+                request.getRequestDispatcher("negato.jsp").forward(request, response);
             else
             {
-                session.setAttribute("in",false);
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
+                List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
+                session.setAttribute("utenti", l);
+                r = session.getAttribute("user"); //utente loggato
+                String z = ((UtentiRegistrati)r).getNome();
+                Object s = request.getParameter("visualizza_bacheca"); //utente del quale si vuole visualizzare la bacheca
+                UtentiRegistrati u;
+                /*Object v = session.getAttribute("logout");
+                if(v != null)
+                {
+                    int logout = (int)v;
+                    if(logout == 1)
+                    {
+                        session.setAttribute("in", false);
+                        session.invalidate();
+                    }
+                 non funge, da rivedere 
+                }*/
+                if(s != null)
+                {
+                    String t = s.toString();
+                    u = UtentiRegistratiFactory.getInstance().getUserByName(t);
+                } //voglio vedere la bacheca di un altro utente
+                else
+                {
+                    u = (UtentiRegistrati)r;
+                } //voglio vedere la mia bacheca
+                request.setAttribute("x", u); //mi serve nel jsp per decidere chi è l'autore dei post
+                List<Post> p = PostFactory.getInstance().getPostByUser(u);
+                if(p != null)
+                    session.setAttribute("post", p);
+                request.getRequestDispatcher("bacheca.jsp").forward(request, response);
             }
         }
+        else
+            request.getRequestDispatcher("negato.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

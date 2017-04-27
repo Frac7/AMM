@@ -20,41 +20,63 @@
     <body>
         <header>
             <nav>
+                <c:set var="t" value="Bacheca" scope="request"></c:set>
+                <c:set var="c" value="bacheca" scope="request"></c:set>
                 <jsp:include page="nav.jsp"/>
                 <a href="descrizione.html">Descrizione</a>
                 <a href="login.html">Login</a>
             </nav>
         </header>
+        <div id="insPost">
+            <form action="Bacheca" method="get">
+                <div>
+                    <h2>Nuovo post su questa bacheca</h2>
+                </div>
+                <div>
+                    <label for="stato">Testo:</label><textarea name="stato" rows="2" cols="3" id="stato"></textarea>
+                </div>
+                <div>
+                    <label for="link">Allegato:</label><input type="url" name="link" id="link">
+                </div>
+                <div>
+                    <div class="tipoi">
+                        <input type="radio" name="tipo" id="immagine"><label for="immagine">Immagine</label>
+                    </div>
+                    <div class="tipou">
+                        <input type="radio" name="tipo" id="url"><label for="url">Link</label>
+                    </div>
+                </div>
+                    <div>
+                    <input type="file" name="file" id="file">
+                </div>
+                <button type="submit">Crea post</button>
+            </form>
+        </div>
                 <jsp:include page="side.jsp"/>
         <div id="post">
+            <c:forEach var="el_post" items="${post}">
             <div>
                 <div>
-                    <img src="" alt="Utente" class="utente">
-                    <label></label>
+                    <img src="${x.urlProPic}" alt="Utente" class="utente" id="utente">
+                    <label for="utente">${x.nome}</label>
                 </div>
+                <c:if test="${el_post.tipologia == 'TEXT'}">
                 <div>
-                    <p></p>
+                    <p>${el_post.contenuto}</p>
                 </div>
+                </c:if>
+                <c:if test="${el_post.tipologia == 'IMAGE'}">
+                <div>
+                    <img alt="Immagine" src="${el_post.contenuto}" class="postpic">
+                </div>
+                </c:if>
+                <c:if test="${el_post.tipologia == 'URL'}">
+                <div>
+                    <a alt="URL" href="${el_post.contenuto}">${el_post.contenuto}</a>
+                </div>
+                </c:if>
             </div>
-            <div>
-                <div>
-                    <img src="" alt="Utente" class="utente">
-                    <label></label>
-                </div>
-                <div>
-                    <p></p>
-                    <div><img src="" alt="" class="postpic"></div>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <img src="" alt="Utente" class="utente">
-                    <label></label>
-                </div>
-                <div>
-                    <p><a href="" ></a></p>
-                </div>
-            </div>
+            </c:forEach>
         </div>
     </body>
 </html>

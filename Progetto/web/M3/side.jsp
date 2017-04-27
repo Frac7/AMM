@@ -10,20 +10,20 @@
                 <div id="persone">
                     <h2>Persone</h2>
                     <div>
-                        <ul>
-                            <li><img src="img/mok.png" alt="Utente" class="mini"></li>
-                            <li><img src="img/mok.png" alt="Utente" class="mini"></li>
-                            <li><img src="img/mok.png" alt="Utente" class="mini"></li>
-                        </ul>
+                        
+                           <c:forEach var="el_utenti" items="${utenti}">
+                            <li><img src="${el_utenti.urlProPic}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.nome}">${el_utenti.nome}</a></li>
+                            </c:forEach>
+                        
                     </div>
                 </div>
                 <div id="gruppi">
                     <h2>Gruppi</h2>
                     <div>
                         <ul>
-                            <li><img src="img/mg.png" alt="Gruppo" class="mini"></li>
-                            <li><img src="img/mg.png" alt="Gruppo" class="mini"></li>
-                            <li><img src="img/mg.png" alt="Gruppo" class="mini"></li>
+                            <%--<c:forEach var="el_gruppi" items="${gruppi}">
+                            <li><img src="${el_gruppi.urlProPic}" alt="Utente" class="mini">${el_gruppi.nome}</li>
+                            </c:forEach>--%>
                         </ul>
                     </div>
                 </div>

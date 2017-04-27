@@ -20,6 +20,31 @@
                 <a href="login.html" class="logout">Logout</a>
             </nav>
         </header>
+        <div id="insPost">
+            <form action="Bacheca" method="post">
+                <div>
+                    <h2>Nuovo post su questa bacheca</h2>
+                </div>
+                <div>
+                    <label for="stato">Testo:</label><textarea name="stato" rows="2" cols="3" id="stato"></textarea>
+                </div>
+                <div>
+                    <label for="link">Allegato:</label><input type="url" name="link" id="link">
+                </div>
+                <div>
+                    <div class="tipoi">
+                        <input type="radio" name="tipo" id="immagine"><label for="immagine">Immagine</label>
+                    </div>
+                    <div class="tipou">
+                        <input type="radio" name="tipo" id="url"><label for="url">Link</label>
+                    </div>
+                </div>
+                    <div>
+                    <input type="file" name="file" id="file">
+                </div>
+                <button type="submit">Crea post</button>
+            </form>
+        </div>
         <div id='barraL'>
                 <div id="persone">
                     <h2>Persone</h2>

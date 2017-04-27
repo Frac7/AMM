@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package mod;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -28,23 +29,25 @@ public class PostFactory {
         //dati fittizzi
         //aggiungere id content ecc
         Post post1 = new Post();
-        //post1.setAutore();
-        post1.setContenuto("");
+        post1.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
+        post1.setContenuto("Cisco: \"It looks like the Vacuum.\"\n" +
+"                   Jesse: \"Uh, what's the Vacumm?\"\n" +
+"                   Cisco: \"No Fringe on Earth-2. Noted.\"");
         post1.setTipologia(Post.pType.TEXT);
         post1.setId(1);
         post1.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
         Post post2 = new Post();
-        //post1.setAutore();
-        post2.setContenuto("");
+        post2.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
+        post2.setContenuto("img/o.jpg");
         post2.setTipologia(Post.pType.IMAGE);
         post2.setId(2);
         post2.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
         Post post3 = new Post();
-        //post1.setAutore();
-        post1.setContenuto("");
-        post1.setTipologia(Post.pType.URL);
-        post1.setId(3);
-        post1.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
+        post3.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
+        post3.setContenuto("https://www.masseffect.com/it-it/andromeda-initiative");
+        post3.setTipologia(Post.pType.URL);
+        post3.setId(3);
+        post3.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
         //aggiunta utenti alla lista
         post.add(post1);
         post.add(post2);
@@ -55,8 +58,10 @@ public class PostFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Post p : this.post)
+        {
             if(p.getId() == id)
                 return p;
+        }
         return null;
         //confrontare l'id dell'utente con quello del parametro
     }
@@ -66,9 +71,9 @@ public class PostFactory {
         //lista di appoggio per restituzione post
         //sintassi for da vedere
         //scorrere la lista di utenti
-        for(Post p : this.post)
-            if(p.getAutore().equals_u(u))
-                l.add(p);
+        for(Post elemento:post)
+            if(elemento.getAutore().equals(u))
+                l.add(elemento);
         return l;
         //confrontare l'id dell'utente con quello del parametro
     }
@@ -79,8 +84,10 @@ public class PostFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Post p : this.post)
-            if(p.getGruppo().equals_g(g))
+        {
+            if((p.getGruppo()).equals(g))
                 l.add(p);
+        }
         return l;
         //confrontare l'id dell'utente con quello del parametro
     }

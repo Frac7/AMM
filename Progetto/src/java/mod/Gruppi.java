@@ -71,6 +71,7 @@ public class Gruppi {
     private String descrizione; //??
     private UtentiRegistrati founder;
     private int id;
+    private String urlProPic;
     //costruttore
     public Gruppi()
     {
@@ -78,10 +79,26 @@ public class Gruppi {
         descrizione = "";
         founder = null;
         id = 0;
+        urlProPic = "";
     }
-    public boolean equals_g(Object g) {
+    @Override
+    public boolean equals(Object g) {
         if (g instanceof Gruppi)
             if (this.getId() == ((Gruppi)g).getId()) return true;
         return false;
+    }
+
+    /**
+     * @return the urlProPic
+     */
+    public String getUrlProPic() {
+        return urlProPic;
+    }
+
+    /**
+     * @param urlProPic the urlProPic to set
+     */
+    public void setUrlProPic(String urlProPic) {
+        this.urlProPic = urlProPic;
     }
 }
