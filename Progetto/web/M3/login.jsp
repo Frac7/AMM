@@ -27,6 +27,11 @@
         </header>
         <div id="dati">
             <form action="" method="get">
+                <c:if test="${errore == true}">
+                <div>
+                     <h1>Errore autenticazione</h1>
+                </div>
+                </c:if>
                 <div>
                     <label for="username">Username</label> <input type="text" name="user" id="username">
                 </div>

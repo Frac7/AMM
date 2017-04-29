@@ -9,7 +9,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Profilo NerdBook</title>
+        <c:if test="${negato == false}">
+            <title>Profilo NerdBook</title>
+        </c:if>
+        <c:if test="${negato == true}">
+            <title>Accesso negato</title>
+        </c:if>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Francesca Cella">
@@ -18,6 +23,7 @@
         <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
     <body>
+        <c:if test="${negato == false}">
         <header>
             <nav>
                 <c:set var="t" value="Profilo" scope="request"></c:set>
@@ -28,9 +34,65 @@
             </nav>
         </header>
         <jsp:include page="side.jsp"/>
+            <c:if test="${erroredati == false}">
+                <div>
+                    <h1>Conferma inserimento dati NerdBook</h1>
+                    <p>Dati inseriti correttamente!</p>
+                </div>
+            <div>
+                <table>
+                <tr>
+                    <td>
+                        <p>Nome</p>
+                    </td>
+                    <td>
+                        <p><c:out value="${utente.getNome()}"/></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Cognome</p>
+                    </td>
+                    <td>
+                        <p><c:out value="${utente.getCognome()}"/></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Data di nascita</p>
+                    </td>
+                    <td>
+                        <p><c:out value="${utente.getDataNascita()}"/></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>URL immagine del profilo</p>
+                    </td>
+                    <td>
+                        <p><c:out value="${utente.getUrlProPic()}"/></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Frase di presentazione</p>
+                    </td>
+                    <td>
+                        <p><c:out value="${utente.getFraseBio()}"/></p>
+                    </td>
+                </tr>
+            </table>
+            </div>
+            </c:if>
+        <c:if test="${erroredati == true}">
+            <div>
+                    <h1>Errore nell'inserimento dei dati</h1>
+                <p>Le due password inserite non corrispondono.</p>
+            </div>
+        </c:if>
         <div id="info">
             <div>
-                <img src="img/ok.png" alt="utente" id="utente">
+                <img src="${user.getUrlProPic()}" alt="utente" id="utente">
             </div>
             <form action="" method="get">
                 <div>
@@ -59,5 +121,11 @@
                 </div>
             </form>
         </div>
+        </c:if>
+        <c:if test="${negato == true}">
+            <h1>Accesso negato</h1>
+            <p>Non si disponde delle autorizzazioni necessarie per accedere alla
+                pagina.</p>
+        </c:if>
     </body>
 </html>

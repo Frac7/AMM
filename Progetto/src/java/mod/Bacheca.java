@@ -44,9 +44,13 @@ public class Bacheca extends HttpServlet {
         {
             boolean flag = (boolean)r;
             if(!flag)
-                request.getRequestDispatcher("negato.jsp").forward(request, response);
+            {
+                request.setAttribute("negato",true);
+                request.getRequestDispatcher("bacheca.jsp").forward(request, response);
+            }
             else
             {
+                request.setAttribute("negato",false);
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
                 session.setAttribute("utenti", l);
                 r = session.getAttribute("user"); //utente loggato
@@ -81,7 +85,10 @@ public class Bacheca extends HttpServlet {
             }
         }
         else
-            request.getRequestDispatcher("negato.jsp").forward(request, response);
+        {
+            request.setAttribute("negato",true);
+            request.getRequestDispatcher("profilo.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

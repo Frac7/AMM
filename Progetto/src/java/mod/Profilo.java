@@ -37,14 +37,21 @@ public class Profilo extends HttpServlet {
         {
             boolean flag = (boolean)r;
             if(!flag)
-                request.getRequestDispatcher("negato.jsp").forward(request, response);
+            {
+                request.setAttribute("negato",true);
+                request.getRequestDispatcher("profilo.jsp").forward(request, response);
+            }
             else
             {
+                request.setAttribute("negato",false);
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }
         }
         else
-            request.getRequestDispatcher("negato.jsp").forward(request, response);
+        {
+            request.setAttribute("negato",true);
+            request.getRequestDispatcher("profilo.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

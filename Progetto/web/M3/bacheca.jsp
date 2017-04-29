@@ -9,7 +9,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Bacheca NerdBook</title>
+        <c:if test="${negato == false}">
+            <title>Bacheca NerdBook  ${x.getNome()}</title>
+        </c:if>
+        <c:if test="${negato == true}">
+            <title>Accesso negato</title>
+        </c:if>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Francesca Cella">
@@ -18,6 +23,7 @@
         <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
     <body>
+        <c:if test="${negato == false}">
         <header>
             <nav>
                 <c:set var="t" value="Bacheca" scope="request"></c:set>
@@ -78,6 +84,12 @@
             </div>
             </c:forEach>
         </div>
+        </c:if>
+        <c:if test="${negato == true}">
+            <h1>Accesso negato</h1>
+            <p>Non si disponde delle autorizzazioni necessarie per accedere alla
+                pagina.</p>
+        </c:if>
     </body>
 </html>
 

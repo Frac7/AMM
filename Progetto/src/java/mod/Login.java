@@ -58,14 +58,16 @@ public class Login extends HttpServlet {
                 }
                 else
                 {
+                    request.setAttribute("errore", true);
                     session.setAttribute("in",false);
-                    request.getRequestDispatcher("errore.jsp").forward(request, response);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
                 }
             }
             else
             {
+                request.setAttribute("errore", true);
                 session.setAttribute("in",false);
-                request.getRequestDispatcher("errore.jsp").forward(request, response);
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         }
     }
