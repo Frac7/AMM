@@ -22,6 +22,7 @@
             <nav>
                 <a href="login.html">Login</a>
             </nav>
+            <img id="nb" alt="Logo" src="img/logo.png">
             <h1 id="Dtitle">About NerdBook</h1>
         </header>
         <div id="sommario">

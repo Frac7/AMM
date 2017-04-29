@@ -29,98 +29,63 @@
                 <c:set var="t" value="Profilo" scope="request"></c:set>
                 <c:set var="c" value="profilo" scope="request"></c:set>
                 <jsp:include page="nav.jsp"/>
-                <a href='descrizione.html'>Descrizione</a>
-                <a href='login.html'>Login</a>
             </nav>
         </header>
         <jsp:include page="side.jsp"/>
-            <c:if test="${erroredati == false}">
-                <div>
-                    <h1>Conferma inserimento dati NerdBook</h1>
-                    <p>Dati inseriti correttamente!</p>
-                </div>
+        <c:if test = "${erroredati == false}">
+        <div id="conferma">
             <div>
-                <table>
-                <tr>
-                    <td>
-                        <p>Nome</p>
-                    </td>
-                    <td>
-                        <p><c:out value="${utente.getNome()}"/></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Cognome</p>
-                    </td>
-                    <td>
-                        <p><c:out value="${utente.getCognome()}"/></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Data di nascita</p>
-                    </td>
-                    <td>
-                        <p><c:out value="${utente.getDataNascita()}"/></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>URL immagine del profilo</p>
-                    </td>
-                    <td>
-                        <p><c:out value="${utente.getUrlProPic()}"/></p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Frase di presentazione</p>
-                    </td>
-                    <td>
-                        <p><c:out value="${utente.getFraseBio()}"/></p>
-                    </td>
-                </tr>
-            </table>
+                <h2>Conferma inserimento dati NerdBook</h2>
+                <p>Dati inseriti correttamente!</p>
             </div>
-            </c:if>
-        <c:if test="${erroredati == true}">
             <div>
-                    <h1>Errore nell'inserimento dei dati</h1>
-                <p>Le due password inserite non corrispondono.</p>
+                <p class="dati"><strong>Nome:</strong> ${user.getNome()}</p>
+                <p class="dati"><strong>Cognome:</strong> ${user.getCognome()}</p>
+                <p class="dati"><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
+                <p class="dati"><strong>URL immagine del profilo:</strong> ${user.getUrlProPic()}<img id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
+                <p class="dati"><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
+            </div>
+        </div>
+        </c:if>
+        <c:if test="${erroredati == true}">
+            <div id="conferma">
+                <div><h2>Errore nell'inserimento dei dati</h2>
+                <p>Le due password inserite non corrispondono.</p></div>
             </div>
         </c:if>
+        <c:if test="${erroredati == null}">
         <div id="info">
             <div>
                 <img src="${user.getUrlProPic()}" alt="utente" id="utente">
             </div>
             <form action="" method="get">
                 <div>
-                    <label for="nome">Nome</label> <input type='text' name="nome" id="nome">
+                    <label for="nome">Nome</label> <input type='text' name="nome" id="nome" placeholder="Nome">
                 </div>
                 <div>
-                    <label for="cognome">Cognome</label><input type='text' name="cognome" id="cognome">
+                    <label for="cognome">Cognome</label><input type='text' name="cognome" id="cognome" placeholder="Cognome">
                 </div>
                 <div>
-                    <label for="foto">URL immagine del profilo</label> <input type='url' name="foto" id="foto">
+                    <label for="foto">URL immagine del profilo</label> <input type='url' name="foto" id="foto" placeholder="Foto profilo">
                 </div>
                 <div>
-                    <label for="stato">Frase di presentazione</label> <textarea name="stato" rows="1" id="stato"></textarea>
+                    <label for="stato">Frase di presentazione</label> <textarea name="stato" rows="1" id="stato" placeholder="A cosa stai pensando?"></textarea>
                 </div>
                 <div>
-                    <label for="compleanno">Data di nascita</label> <input type='date' name="compleanno" id="compleanno">
+                    <label for="compleanno">Data di nascita</label> <input type='date' name="compleanno" id="compleanno" placeholder="Data di nascita">
                 </div>
                 <div>
-                    <label for="password">Password</label> <input type='password' name="password" id ="password">
+                    <label for="password">Password</label> <input type='password' name="password" id ="password" placeholder="Inserire la nuova password">
                 </div>
                 <div>
-                    <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword">
+                    <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword" placeholder="Conferma la nuova password">
                 </div>
                 <div>
                     <button type="submit" value="profilo">Aggiorna</button>
                 </div>
             </form>
         </div>
+        </c:if>
         </c:if>
         <c:if test="${negato == true}">
             <h1>Accesso negato</h1>

@@ -12,6 +12,20 @@ package mod;
 public class Post {
 
     /**
+     * @return the destinatario
+     */
+    public UtentiRegistrati getDestinatario() {
+        return destinatario;
+    }
+
+    /**
+     * @param destinatario the destinatario to set
+     */
+    public void setDestinatario(UtentiRegistrati destinatario) {
+        this.destinatario = destinatario;
+    }
+
+    /**
      * @return the gruppo
      */
     public Gruppi getGruppo() {
@@ -91,6 +105,7 @@ public class Post {
     private pType tipologia;
     private int id;
     private Gruppi gruppo;
+    private UtentiRegistrati destinatario;
     //costruttore
     public Post()
     {
@@ -99,5 +114,6 @@ public class Post {
         tipologia = pType.TEXT;
         id = 0;
         gruppo = null;
+        destinatario = null;
     }
 }

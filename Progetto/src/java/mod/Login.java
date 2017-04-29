@@ -33,6 +33,11 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        if(request.getParameter("logout") != null)
+        {
+            if(request.getParameter("logout").equals("1"))
+                session.invalidate();
+        }
         String utente = request.getParameter("user");
         String password = request.getParameter("password");
         if(utente == null || password == null)
@@ -48,12 +53,12 @@ public class Login extends HttpServlet {
                     session.setAttribute("user",u); //utente loggato
                     session.setAttribute("x",u); //utente del quale visualizzo la bacheca (dopo login si visualizza la bacheca dell'utente loggato)
                     if(u.getNome() == null || u.getUrlProPic() == null || u.getCognome() == null || u.getFraseBio() == null)
-                        request.getRequestDispatcher("profilo.html").forward(request, response);
+                        response.sendRedirect("profilo.html");
                     else
                     {
                         List<Post> p = PostFactory.getInstance().getPostByUser(u);
                         session.setAttribute("post", p);
-                        request.getRequestDispatcher("bacheca.html").forward(request, response);
+                        response.sendRedirect("bacheca.html");
                     }
                 }
                 else

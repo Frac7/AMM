@@ -6,15 +6,9 @@
 package mod;
 
 import java.util.List;
-import java.util.Arrays;
-import mod.Post;
-import mod.PostFactory;
-import mod.UtentiRegistrati;
-import mod.UtentiRegistratiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,20 +48,8 @@ public class Bacheca extends HttpServlet {
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
                 session.setAttribute("utenti", l);
                 r = session.getAttribute("user"); //utente loggato
-                String z = ((UtentiRegistrati)r).getNome();
                 Object s = request.getParameter("visualizza_bacheca"); //utente del quale si vuole visualizzare la bacheca
                 UtentiRegistrati u;
-                /*Object v = session.getAttribute("logout");
-                if(v != null)
-                {
-                    int logout = (int)v;
-                    if(logout == 1)
-                    {
-                        session.setAttribute("in", false);
-                        session.invalidate();
-                    }
-                 non funge, da rivedere 
-                }*/
                 if(s != null)
                 {
                     String t = s.toString();
@@ -80,7 +62,122 @@ public class Bacheca extends HttpServlet {
                 request.setAttribute("x", u); //mi serve nel jsp per decidere chi è l'autore dei post
                 List<Post> p = PostFactory.getInstance().getPostByUser(u);
                 if(p != null)
-                    session.setAttribute("post", p);
+                    request.setAttribute("post", p);
+
+                if(request.getParameter("stato") != null || request.getParameter("tipo") != null || request.getParameter("allegato") != null)
+                {
+                    String testo = request.getParameter("stato");
+                    String allegato = request.getParameter("link");
+                    String radio = request.getParameter("tipo");
+                    Post.pType tipo = null;
+                    if(radio != null)
+                    {
+                        if(radio.equals("imm"))
+                        {
+                            /*//se selezione immagine o url non devo scrivere testo
+                            if(testo != null)
+                            {
+                                if(!(testo.equals("")))
+                                    request.setAttribute("erroretipo", true);
+                            }*/
+                            //se seleziono immagine o url devo scrivere allegato
+                            if(allegato != null)
+                            {
+                                if (!(allegato.equals("")))
+                                {
+                                    request.setAttribute("multimedia",1);
+                                    tipo = Post.pType.IMAGE;
+                                    request.setAttribute("erroretipo", false);
+                                    request.setAttribute("inspost", true);
+                                }
+                                else
+                                    request.setAttribute("erroretipo", true);
+                                    
+                            }
+                            else
+                            {
+                                request.setAttribute("erroretipo", true);
+                            }
+                        }
+                        else if(radio.equals("url"))
+                        {
+                            /*//se selezione immagine o url non devo scrivere testo
+                            if(testo != null)
+                            {
+                                if(!testo.equals(""))
+                                    request.setAttribute("erroretipo", true);
+                            }*/
+                            //se seleziono immagine o url devo scrivere allegato
+                            if(allegato != null)
+                            {
+                                if (!(allegato.equals("")))
+                                {
+                                    request.setAttribute("multimedia", 2);
+                                    tipo = Post.pType.URL;
+                                    request.setAttribute("erroretipo", false);
+                                    request.setAttribute("inspost", true);
+                                }
+                                else
+                                    request.setAttribute("erroretipo", true);
+                                    
+                            }
+                            else
+                            {
+                                request.setAttribute("erroretipo", true);
+                            }
+                        }
+                    }
+                    //se seleziono testo non devo selezionare altro
+                    else if(testo != null)
+                    {
+                        
+                        /*if(allegato != null)
+                        {
+                            if(!(allegato.equals("")))
+                                request.setAttribute("erroretipo", true);
+                            else
+                            {
+                                request.setAttribute("inspost", true);
+                                request.setAttribute("erroretipo", false);
+                                tipo = Post.pType.TEXT;
+                            }
+                        }
+                        else*/
+                        if(!testo.equals(""))
+                        {
+                            request.setAttribute("inspost", true);
+                            request.setAttribute("erroretipo", false);
+                            tipo = Post.pType.TEXT;
+                        }
+                    }
+                    //se ho cercato di inserire dati
+                    if(request.getAttribute("erroretipo") != null)
+                        //e se ci sono riuscita
+                    {
+                        if(!(boolean)request.getAttribute("erroretipo"))
+                        {
+                            request.setAttribute("inspost", true);
+                            //crea nuovo post
+                            Post n = new Post();
+                            n.setAutore((UtentiRegistrati)session.getAttribute("user"));
+                            if(s != null)
+                                n.setDestinatario(UtentiRegistratiFactory.getInstance().getUserByName(s.toString()));
+                            else
+                                n.setDestinatario((UtentiRegistrati)session.getAttribute("user"));
+                            n.setTipologia(tipo);
+                            if(tipo == Post.pType.TEXT)
+                                n.setContenuto(request.getParameter("stato"));
+                            else if(tipo == Post.pType.URL || tipo == Post.pType.IMAGE)
+                                n.setContenuto(request.getParameter("allegato"));
+                            request.setAttribute("n",n);
+                        }
+                    }
+                }
+                if(request.getParameter("conferma") != null)
+                {
+                    if((request.getParameter("conferma").equals("true")))
+                        request.setAttribute("conferma", true);
+                }
                 request.getRequestDispatcher("bacheca.jsp").forward(request, response);
             }
         }

@@ -23,20 +23,22 @@
                 <a href="profilo.html">Profilo</a>
                 <a href="bacheca.html">Bacheca</a>
             </nav>
+            <img id="bn" alt="Logo" src="img/logo.png">
             <h1 id="Ltitle">Login NerdBook</h1>
         </header>
         <div id="dati">
             <form action="" method="get">
                 <c:if test="${errore == true}">
-                <div>
-                     <h1>Errore autenticazione</h1>
+                <div id="errati">
+                     <h2>Errore autenticazione</h2>
+                     <p>Username o password errati.</p>
                 </div>
                 </c:if>
                 <div>
-                    <label for="username">Username</label> <input type="text" name="user" id="username">
+                    <label for="username">Username</label> <input type="text" name="user" id="username" placeholder="Inserire il nome utente">
                 </div>
                 <div>
-                    <label for="password">Password</label> <input type="password" name="password" id="password">
+                    <label for="password">Password</label> <input type="password" name="password" id="password" placeholder="Inserire la password">
                 </div>
                 <div>
                     <button type="submit" value="login">Login</button>

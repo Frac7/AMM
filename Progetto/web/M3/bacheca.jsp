@@ -29,56 +29,87 @@
                 <c:set var="t" value="Bacheca" scope="request"></c:set>
                 <c:set var="c" value="bacheca" scope="request"></c:set>
                 <jsp:include page="nav.jsp"/>
-                <a href="descrizione.html">Descrizione</a>
-                <a href="login.html">Login</a>
             </nav>
         </header>
         <div id="insPost">
-            <form action="Bacheca" method="get">
+            <form action="bacheca.html?visualizza_bacheca=${x.getNome()}" method="get">
                 <div>
-                    <h2>Nuovo post su questa bacheca</h2>
+                    <h1>Nuovo post su questa bacheca</h1>
+                </div>
+                <c:if test="${erroretipo == true}">
+                    <div id="errati">
+                        <h1>Errore inserimento post</h1>
+                        <p>È stato scelto un tipo di post che prevede esclusivamente l'allegato e la sua tipologia.</p>
+                    </div>
+                </c:if>
+                <c:if test="${inspost == true}">
+                    <h2>Riepilogo Post</h2>
+                    <p><strong>Autore:</strong> ${(n.getAutore()).getNome()}</p>
+                    <p><strong>Destinatario:</strong> ${(n.getDestinatario()).getNome()}</p>
+                    <p><strong>Messaggio:</strong> 
+                        <c:if test="${multimedia == 1}">
+                            <img alt="Post" src="${n.getContenuto()}">
+                        </c:if>
+                        <c:if test="${multimedia == 2}">
+                            <a href="${n.getContenuto()}">Link</a>
+                        </c:if> 
+                        <c:if test="${multimedia != 2 && multimedia != 1}">
+                            ${n.getContenuto()}
+                        </c:if> 
+                    </p>
+                    <div>
+                        <input type="hidden" name = "visualizza_bacheca" value="${x.getNome()}"/>
+                    </div>
+                    <button class = "post" type ='submit' name="conferma" value=true>Confermare</button>
+                    <button class = "post" type ="submit" name="conferma" value=false>Annullare</button>
+                </c:if>
+                <c:if test="${conferma == true}">
+                    <h2>Hai scritto sulla bacheca di ${x.getNome()}</h2>
+                </c:if>
+                <c:if test="${inspost != true}">
+                <div>
+                    <label for="stato">Testo:</label><textarea name="stato" rows="2" cols="3" id="stato" placeholder="Inserire il testo del post"></textarea>
                 </div>
                 <div>
-                    <label for="stato">Testo:</label><textarea name="stato" rows="2" cols="3" id="stato"></textarea>
-                </div>
-                <div>
-                    <label for="link">Allegato:</label><input type="url" name="link" id="link">
+                    <label for="link">Allegato:</label><input type="url" name="link" id="link" placeholder="Inserire il link dell'allegato">
                 </div>
                 <div>
                     <div class="tipoi">
-                        <input type="radio" name="tipo" id="immagine"><label for="immagine">Immagine</label>
+                        <input type="radio" name="tipo" value="imm" id="immagine"><label for="immagine">Immagine</label>
                     </div>
                     <div class="tipou">
-                        <input type="radio" name="tipo" id="url"><label for="url">Link</label>
+                        <input type="radio" name="tipo" value="url" id="url"><label for="url">Link</label>
                     </div>
                 </div>
-                    <div>
-                    <input type="file" name="file" id="file">
+                <div>
+                   <input type="hidden" name = "visualizza_bacheca" value="${x.getNome()}"/>
                 </div>
-                <button type="submit">Crea post</button>
+                <button class="post" type="submit">Crea post</button>
+                <button class="post" type="reset">Pulisci campi</button>
             </form>
+                </c:if>
         </div>
                 <jsp:include page="side.jsp"/>
         <div id="post">
             <c:forEach var="el_post" items="${post}">
             <div>
                 <div>
-                    <img src="${x.urlProPic}" alt="Utente" class="utente" id="utente">
-                    <label for="utente">${x.nome}</label>
+                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
+                    <label for="utente">${x.getNome()}</label>
                 </div>
-                <c:if test="${el_post.tipologia == 'TEXT'}">
+                <c:if test="${el_post.getTipologia() == 'TEXT'}">
                 <div>
-                    <p>${el_post.contenuto}</p>
-                </div>
-                </c:if>
-                <c:if test="${el_post.tipologia == 'IMAGE'}">
-                <div>
-                    <img alt="Immagine" src="${el_post.contenuto}" class="postpic">
+                    <p>${el_post.getContenuto()}</p>
                 </div>
                 </c:if>
-                <c:if test="${el_post.tipologia == 'URL'}">
+                <c:if test="${el_post.getTipologia() == 'IMAGE'}">
                 <div>
-                    <a alt="URL" href="${el_post.contenuto}">${el_post.contenuto}</a>
+                    <img alt="Immagine" src="${el_post.getContenuto()}" class="postpic">
+                </div>
+                </c:if>
+                <c:if test="${el_post.getTipologia() == 'URL'}">
+                <div>
+                    <a alt="URL" href="${el_post.getContenuto()}">${el_post.getContenuto()}</a>
                 </div>
                 </c:if>
             </div>

@@ -8,17 +8,17 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id='barraL'>
                 <div id="persone">
-                    <h2>Persone</h2>
+                    <h1>Persone</h1>
                     <div>
                         
                            <c:forEach var="el_utenti" items="${utenti}">
-                            <li><img src="${el_utenti.urlProPic}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.nome}">${el_utenti.nome}</a></li>
+                            <li><img src="${el_utenti.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.getNome()}">${el_utenti.getNome()}</a></li>
                             </c:forEach>
                         
                     </div>
                 </div>
                 <div id="gruppi">
-                    <h2>Gruppi</h2>
+                    <h1>Gruppi</h1>
                     <div>
                         <ul>
                             <%--<c:forEach var="el_gruppi" items="${gruppi}">

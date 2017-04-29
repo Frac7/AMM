@@ -16,7 +16,7 @@ h1, h2, h3{
 }
 a:link, a:visited{
     font-family: "Courier New", monospace;
-    color: rgb(237, 243, 255);
+    color: white;
     text-decoration: none;
 }
 a:link:hover{
@@ -63,6 +63,9 @@ button{
 .logout{
     float: right;
     margin: 0%;
+}
+img.logout{
+    width: 25px;
 }
 /*task 4 e 5*/
 div#post div{
@@ -122,7 +125,7 @@ div#dati form{
 }
 div#dati{
     width: 35%;
-    background-color: slategray;
+    background-color: rgb(77, 83, 95);
     margin: auto;
     border-radius: 5px;
 }
@@ -185,9 +188,44 @@ input, textArea{
     div.tipoi{
         display: inline-block;
     }
+    div#conferma{
+        float: right;
+    }
+
+}
+.post{
+    width: 49%;
+    display: inline-block;
+}
+div#conferma{
+    margin-top: 0.9%;
+    width: 84%;
+    background-color: rgb(77, 83, 95);
+    border-radius: 5px;
+}
+div#conferma p.dati, div#conferma div{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+strong{
+    font-family: "Trebuchet MS", sans-serif;
+}
+img#profilo{
+    display: block;
+    margin-top: 1%;
+}
+div#conferma div{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+div#errati{
+    padding-bottom: 5%;
 }
 @media only screen and (min-width: 0px) and (max-width: 1024px) /*da 0 a 480, da 480 a 1024 una sola colonna*/
 {
+    div#conferma{
+        margin: auto;
+    }
     .logout{
         display: none;
     }
@@ -208,6 +246,7 @@ input, textArea{
         width: 84%;
         margin: auto;
         margin-top: 1%;
+        margin-bottom: 1%;
         background-color: rgb(77, 83, 95);
         border-radius: 5px;
     }
@@ -244,6 +283,7 @@ input, textArea{
 }
 .mini{
     margin-right: 5%;
+    width: 25px;
 }
 div#insPost div{
     margin: 1%;
@@ -251,9 +291,18 @@ div#insPost div{
 div#insPost input[type="url"], div#insPost textArea{
     width: 100%;
 }
-input[type="file"]{
+/*input[type="file"]{
     background-color: white;
     color: rgb(77, 83, 95);
+}*/
+img#nb, h1#Dtitle{
+    display: inline-block;
+}
+img#bn, h1#Ltitle{
+    display: inline-block;
+    position: relative;
+    left: 42%;
+    right: 42%;
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative
@@ -261,10 +310,6 @@ a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
 le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */
-h1#Ltitle:before, h1#Dtitle:before{
-    content: url("img/logo.png");
-    margin-right: 1%;
-}
 h1#nb:before{
     content: url("img/logom.png");
 }
