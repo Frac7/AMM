@@ -98,6 +98,7 @@ public class PostFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Post elemento:post)
+            if(elemento.getGruppo() == null)
                 if(elemento.getAutore().equals(u))
                     l.add(elemento);
         return l;

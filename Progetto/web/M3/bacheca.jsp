@@ -116,43 +116,42 @@
             </div>
             </c:if>
             <c:if test="${f != true}">
-            <div>
-                <div>
+            <div class="gr">
+                <div class="gr">
                     <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="gruppo">
                     <label for="gruppo">Descrizione</label>
                 </div>
-                <div>
+                <div class="gr">
                     <p>${x.getDescrizione()}</p>
                 </div>
             </div>
             </c:if>
             <c:forEach var="el_post" items="${post}">
-            <div <c:if test="${f != true}">class="gr"</c:if>>
-                <div <c:if test="${f != true}">class="gr"</c:if>>
+            <div>
+                <div>
                     <c:if test="${f == true}">
                         <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
                     </c:if>
                     <c:if test="${f != true}">
                         <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
                     </c:if>
-                    <label for="utente" <c:if test="${el_post.getGruppo() != null && f == true}">class="gr"</c:if>>
+                    <label for="utente">
                         <c:if test="${f == true}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
                         <c:if test="${f != true}">${el_post.getAutore().getNome()} ${x.getNome()}</c:if>
-                        <c:if test="${el_post.getGruppo() != null && f == true}">(${el_post.getGruppo().getNome()})</c:if><%--nome gruppo bacheca utente--%>
                     </label>
                 </div>
                 <c:if test="${el_post.getTipologia() == 'TEXT'}">
-                <div<c:if test="${f != true}">class="gr"</c:if>>
+                <div>
                     <p>${el_post.getContenuto()}</p>
                 </div>
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'IMAGE'}">
-                <div <c:if test="${f != true}">class="gr"</c:if>>
+                <div>
                     <img alt="Immagine" src="${el_post.getContenuto()}" class="postpic">
                 </div>
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'URL'}">
-                <div <c:if test="${f != true}">class="gr"</c:if>>
+                <div>
                     <a alt="URL" href="${el_post.getContenuto()}">${el_post.getContenuto()}</a>
                 </div>
                 </c:if>

@@ -155,6 +155,14 @@ public class Bacheca extends HttpServlet {
                             tipo = Post.pType.TEXT;
                         }
                     }
+                    if(!allegato.equals(""))
+                    {
+                        if(tipo == null || !testo.equals(""))
+                        {
+                            request.setAttribute("erroretipo", true);
+                            request.setAttribute("inspost", false);
+                        }                        
+                    }
                     //se sono stati inseriti dati
                     if(request.getAttribute("erroretipo") != null)
                         //e se l'inserimento è andato a buon fine
