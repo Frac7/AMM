@@ -34,6 +34,7 @@ public class UtentiRegistratiFactory {
         utente1.setPassword("password1");
         utente1.setTipUtente(UtentiRegistrati.uType.USER);
         utente1.setUrlProPic("img/ok.png");
+        utente1.setFraseBio("Il tempo è estremamente fragile come struttura, qualsiasi deviazione, per quanto piccola può provocare un cataclisma");
         
         UtentiRegistrati utente2 = new UtentiRegistrati();
         utente2.setCognome("Cognome");
@@ -43,6 +44,7 @@ public class UtentiRegistratiFactory {
         utente2.setPassword("password2");
         utente2.setTipUtente(UtentiRegistrati.uType.USER);
         utente2.setUrlProPic("img/ok.png");
+        utente2.setFraseBio("Peter, mi sbagliavo, non è troppo tardi! Puoi salvare entrambi i mondi, possiamo ricominciare daccapo. Stavolta dovrai semplicemente compiere una scelta diversa, e se qualcosa andasse storto, Olivia sarebbe la nostra ancora di salvezza...");
         
         UtentiRegistrati utente3 = new UtentiRegistrati();
         utente3.setCognome("Cognome");
@@ -52,6 +54,7 @@ public class UtentiRegistratiFactory {
         utente3.setPassword("password3");
         utente3.setTipUtente(UtentiRegistrati.uType.USER);
         utente3.setUrlProPic("img/ok.png");
+        utente3.setFraseBio("Sono il comandante Shepard e questo è il mio negozio preferito sulla Cittadella");
         
         UtentiRegistrati incompleto = new UtentiRegistrati();
         incompleto.setId(4);

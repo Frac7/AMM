@@ -71,9 +71,18 @@ img.logout{
 div#post div{
     margin: 1%;
     padding: 0.1%;
-    background-color: slategray;
     margin-right: 0%;
     border-radius: 5px;
+}
+div#post div.gr{
+    background-color: gainsboro;
+    color: rgb(77, 83, 95);
+}
+div#post div.gr label{
+    color: rgb(77, 83, 95);
+}
+div#post div{
+    background-color: #888888;
 }
 div#info{
     margin: 0.7%;
@@ -291,10 +300,6 @@ div#insPost div{
 div#insPost input[type="url"], div#insPost textArea{
     width: 100%;
 }
-/*input[type="file"]{
-    background-color: white;
-    color: rgb(77, 83, 95);
-}*/
 img#nb, h1#Dtitle{
     display: inline-block;
 }

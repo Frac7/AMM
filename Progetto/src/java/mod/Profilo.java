@@ -32,29 +32,37 @@ public class Profilo extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //sessione
         HttpSession session = request.getSession();
+        //capire se l'utente è loggato
         Object r = session.getAttribute("in");
         if(r != null)
         {
+            //l'utente è loggato? in = true
             boolean flag = (boolean)r;
             if(!flag)
             {
+                //accesso negato se l'utente non è loggato
                 request.setAttribute("negato",true);
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }
             else
             {
+                //accesso consenti, raccolta della lista degli utenti e dei gruppi presenti nel sistema
                 request.setAttribute("negato",false);
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
                 session.setAttribute("utenti", l);
+                List<Gruppi> g = GruppiFactory.getInstance().getGroupList();
+                session.setAttribute("gruppi", g);
                 UtentiRegistrati u = (UtentiRegistrati)session.getAttribute("user");
-                String nome = request.getParameter("nome");
+                String nome = request.getParameter("nome"); //richiesta parametri per eventuale modifica profilo
                 String cognome = request.getParameter("cognome");
                 String stato = request.getParameter("stato");
                 String compleanno = request.getParameter("compleanno");
                 String foto = request.getParameter("foto");
                 String password = request.getParameter("password");
                 String cpassword = request.getParameter("cpassword");
+                //modifica dei dati
                 if(nome != null)
                 {
                     if(!nome.equals(""))
@@ -107,17 +115,18 @@ public class Profilo extends HttpServlet {
                                 request.setAttribute("erroredati", false);
                             }
                         }
-                        else
+                        else //le password non corrispondono
                             request.setAttribute("erroredati", true);
                     }
                 }
-                else if (cpassword != null)
+                else if (cpassword != null) //le psw non corrispondono
                     request.setAttribute("erroredati", true);
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }
         }
         else
         {
+            //accesso negato
             request.setAttribute("negato",true);
             request.getRequestDispatcher("profilo.jsp").forward(request, response);
         }

@@ -32,30 +32,44 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        //creare/cercare la sessione
         HttpSession session = request.getSession();
+        //se si è premuto su logout - parametro get quindi visibile su url
         if(request.getParameter("logout") != null)
         {
+            //invalidare la sessione
             if(request.getParameter("logout").equals("1"))
                 session.invalidate();
         }
+        //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");
+        //se i parametri non sono sulla url (campi vuoti)
         if(utente == null || password == null)
+            //mostrare di nuovo la pagina di login
             request.getRequestDispatcher("login.jsp").forward(request, response);
+        //se è stato inserito qualcosa (utente)
         if(utente != null)
         {
+            //ricavare l'utente tramite corrispondenza per nome - poi per id
             UtentiRegistrati u = UtentiRegistratiFactory.getInstance().getUserByName(utente);
+            //se l'utente esiste
             if(u != null)
             {
+                //controllare che psw e username corrispondano
                 if(u.getNome().equals(utente) && u.getPassword().equals(password))
                 {
+                    //utente loggato
                     session.setAttribute("in",true);
-                    session.setAttribute("user",u); //utente loggato
+                    session.setAttribute("user",u); //chi è utente loggato
                     session.setAttribute("x",u); //utente del quale visualizzo la bacheca (dopo login si visualizza la bacheca dell'utente loggato)
+                    //se mancano dati
                     if(u.getNome() == null || u.getUrlProPic() == null || u.getCognome() == null || u.getFraseBio() == null)
+                        //si visualizza il profilo
                         response.sendRedirect("profilo.html");
                     else
                     {
+                        //altrimenti la bacheca con relativa lista post
                         List<Post> p = PostFactory.getInstance().getPostByUser(u);
                         session.setAttribute("post", p);
                         response.sendRedirect("bacheca.html");
@@ -63,6 +77,7 @@ public class Login extends HttpServlet {
                 }
                 else
                 {
+                    //errore
                     request.setAttribute("errore", true);
                     session.setAttribute("in",false);
                     request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -70,6 +85,7 @@ public class Login extends HttpServlet {
             }
             else
             {
+                //errore anche se non si inserisce nulla
                 request.setAttribute("errore", true);
                 session.setAttribute("in",false);
                 request.getRequestDispatcher("login.jsp").forward(request, response);

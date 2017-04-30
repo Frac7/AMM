@@ -28,19 +28,24 @@ public class GruppiFactory {
         //dati fittizzi
         Gruppi gruppo1 = new Gruppi();
         gruppo1.setNome("Gruppo 1");
-        gruppo1.setDescrizione("");
+        gruppo1.setDescrizione("The Flash");
         gruppo1.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
         gruppo1.setId(1);
+        gruppo1.setUrlProPic("img/g.png");
+        
         Gruppi gruppo2 = new Gruppi();
         gruppo2.setNome("Gruppo 2");
-        gruppo2.setDescrizione("");
+        gruppo2.setDescrizione("Fringe");
         gruppo2.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
         gruppo2.setId(2);
+        gruppo2.setUrlProPic("img/g.png");
+        
         Gruppi gruppo3 = new Gruppi();
         gruppo3.setNome("Gruppo 3");
-        gruppo3.setDescrizione("");
-        gruppo1.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
+        gruppo3.setDescrizione("ME saga");
+        gruppo3.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
         gruppo3.setId(3);
+        gruppo3.setUrlProPic("img/g.png");
         //aggiunta utenti alla lista
         gruppi.add(gruppo1);
         gruppi.add(gruppo2);
@@ -58,19 +63,18 @@ public class GruppiFactory {
         return null;
         //confrontare l'id dell'utente con quello del parametro
     }
-    public List getGroupByName(String n)
+    public Gruppi getGroupByName(String n)
     {
-        //lista per restituzione valore
-        List<Gruppi> l = new ArrayList<Gruppi>();
-        //sintassi for da vedere
-        //scorrere la lista di utenti
         for(Gruppi g : this.gruppi)
         {
             if(g.getNome().equals(n))
-                l.add(g);
+                return g;
         }
-        return l;
-        //confrontare l'id dell'utente con quello del parametro
+        return null;
+    }
+    public List getGroupList()
+    {
+        return gruppi;
     }
 }
 

@@ -150,6 +150,7 @@ public class UtentiRegistrati {
     }
     @Override
     public boolean equals(Object u) {
+        if(u == null) return false;
         if (u instanceof UtentiRegistrati)
             if (this.getId() == ((UtentiRegistrati)u).getId()) return true;
         return false;

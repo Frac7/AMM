@@ -83,6 +83,7 @@ public class Gruppi {
     }
     @Override
     public boolean equals(Object g) {
+        if(g == null) return false;
         if (g instanceof Gruppi)
             if (this.getId() == ((Gruppi)g).getId()) return true;
         return false;
