@@ -51,10 +51,10 @@
                     </p>
                     <p><strong>Messaggio:</strong> 
                         <c:if test="${multimedia == 1}">
-                            <img alt="Post" src="${n.getContenuto()}">
+                            <img class = "postpic" alt="Post" src="${n.getContenuto()}">
                         </c:if>
                         <c:if test="${multimedia == 2}">
-                            <a href="${n.getContenuto()}">Link</a>
+                            <a href="${n.getContenuto()}">${n.getContenuto()}</a>
                         </c:if> 
                         <c:if test="${multimedia != 2 && multimedia != 1}">
                             ${n.getContenuto()}
@@ -104,7 +104,7 @@
         </div>
                 <jsp:include page="side.jsp"/>
         <div id="post">
-            <c:if test="${f == true}">
+            <c:if test="${f == true && x.getFraseBio() != null}">
             <div class="gr">
                 <div class="gr">
                     <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">

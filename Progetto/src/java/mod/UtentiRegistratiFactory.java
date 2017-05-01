@@ -34,7 +34,7 @@ public class UtentiRegistratiFactory {
         utente1.setPassword("password1");
         utente1.setTipUtente(UtentiRegistrati.uType.USER);
         utente1.setUrlProPic("img/ok.png");
-        utente1.setFraseBio("Il tempo è estremamente fragile come struttura, qualsiasi deviazione, per quanto piccola può provocare un cataclisma");
+        utente1.setFraseBio("Il tempo è estremamente fragile come struttura, qualsiasi deviazione, per quanto piccola può provocare un cataclisma.");
         
         UtentiRegistrati utente2 = new UtentiRegistrati();
         utente2.setCognome("Cognome");
@@ -54,7 +54,7 @@ public class UtentiRegistratiFactory {
         utente3.setPassword("password3");
         utente3.setTipUtente(UtentiRegistrati.uType.USER);
         utente3.setUrlProPic("img/ok.png");
-        utente3.setFraseBio("Sono il comandante Shepard e questo è il mio negozio preferito sulla Cittadella");
+        utente3.setFraseBio("Sono il comandante Shepard e questo è il mio negozio preferito sulla Cittadella.");
         
         UtentiRegistrati incompleto = new UtentiRegistrati();
         incompleto.setId(4);

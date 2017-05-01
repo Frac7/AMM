@@ -60,7 +60,7 @@ public class PostFactory {
         
         Post post5 = new Post();
         post5.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
-        post5.setContenuto("Chiamano questi eventi \"Lo schema\", come se qualcuno faccia esperimenti usando il mondo come laboratorio! Adesso ha visto! Adesso sa!");
+        post5.setContenuto("Chiamano questi eventi \"Lo schema\", come se qualcuno facesse esperimenti usando il mondo come laboratorio! Adesso ha visto! Adesso sa!");
         post5.setTipologia(Post.pType.TEXT);
         post5.setId(5);
         post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post non si trova sulla bacheca di un gruppo

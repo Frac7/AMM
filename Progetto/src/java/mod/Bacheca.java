@@ -183,7 +183,7 @@ public class Bacheca extends HttpServlet {
                             if(tipo == Post.pType.TEXT)
                                 n.setContenuto(request.getParameter("stato"));
                             else if(tipo == Post.pType.URL || tipo == Post.pType.IMAGE)
-                                n.setContenuto(request.getParameter("allegato"));
+                                n.setContenuto(request.getParameter("link"));
                             request.setAttribute("n",n);
                         }
                     }

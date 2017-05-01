@@ -146,7 +146,7 @@ public class UtentiRegistrati {
         dataNascita = "";
         password = "";
         tipUtente = uType.USER;
-        fraseBio = "";
+        fraseBio = null;
     }
     @Override
     public boolean equals(Object u) {

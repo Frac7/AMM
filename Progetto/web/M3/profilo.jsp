@@ -78,7 +78,7 @@
                     <label for="password">Password</label> <input type='password' name="password" id ="password" placeholder="Inserire la nuova password">
                 </div>
                 <div>
-                    <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword" placeholder="Conferma la nuova password">
+                    <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword" placeholder="Confermare la nuova password">
                 </div>
                 <div>
                     <button type="submit" value="profilo">Aggiorna</button>
