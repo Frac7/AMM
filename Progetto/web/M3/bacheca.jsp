@@ -107,7 +107,7 @@
             <c:if test="${f == true && x.getFraseBio() != null}">
             <div class="gr">
                 <div class="gr">
-                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
+                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
                     <label for="utente">Frase personale</label>
                 </div>
                 <div class="gr">
@@ -118,7 +118,7 @@
             <c:if test="${f != true}">
             <div class="gr">
                 <div class="gr">
-                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="gruppo">
+                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo">
                     <label for="gruppo">Descrizione</label>
                 </div>
                 <div class="gr">
@@ -130,10 +130,10 @@
             <div>
                 <div>
                     <c:if test="${f == true}">
-                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
+                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic">
                     </c:if>
                     <c:if test="${f != true}">
-                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" id="utente">
+                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
                     </c:if>
                     <label for="utente">
                         <c:if test="${f == true}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>

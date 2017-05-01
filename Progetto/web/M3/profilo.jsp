@@ -42,7 +42,7 @@
                 <p class="dati"><strong>Nome:</strong> ${user.getNome()}</p>
                 <p class="dati"><strong>Cognome:</strong> ${user.getCognome()}</p>
                 <p class="dati"><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
-                <p class="dati"><strong>URL immagine del profilo:</strong> ${user.getUrlProPic()}<img id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
+                <p class="dati"><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="proPic,utente" id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
                 <p class="dati"><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
             </div>
         </div>

@@ -152,6 +152,10 @@ input, textArea{
 }
 .utente{
     margin-left: 1%;
+    width: 50px;
+}
+.proPic{
+    width: 50px;
 }
 .postpic{
     width: 30%;
@@ -222,6 +226,7 @@ strong{
 img#profilo{
     display: block;
     margin-top: 1%;
+    width: 50px;
 }
 div#conferma div{
     padding-top: 1%;
