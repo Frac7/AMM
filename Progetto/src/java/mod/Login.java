@@ -32,15 +32,18 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        //creare/cercare la sessione
-        HttpSession session = request.getSession();
         //se si è premuto su logout - parametro get quindi visibile su url
         if(request.getParameter("logout") != null)
         {
+            HttpSession session = request.getSession(false);
             //invalidare la sessione
             if(request.getParameter("logout").equals("1"))
+            {
                 session.invalidate();
+            }
         }
+        //creare/cercare la sessione
+        HttpSession session = request.getSession();
         //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");

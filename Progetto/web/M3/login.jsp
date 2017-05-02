@@ -27,7 +27,7 @@
             <h1 id="Ltitle">Login NerdBook</h1>
         </header>
         <div id="dati">
-            <form action="" method="get">
+            <form action="" method="post">
                 <c:if test="${errore == true}">
                 <div id="errati">
                      <h2>Errore autenticazione</h2>
