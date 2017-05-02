@@ -31,7 +31,9 @@
                 <jsp:include page="nav.jsp"/>
             </nav>
         </header>
-        <div id="insPost">
+                <jsp:include page="side.jsp"/>
+        <div id="post">
+            <div id="insPost">
             <form action="bacheca.html?visualizza_bacheca=${x.getNome()}" method="get">
                 <div>
                     <h1>Nuovo post su questa bacheca</h1>
@@ -102,8 +104,6 @@
             </form>
                 </c:if>
         </div>
-                <jsp:include page="side.jsp"/>
-        <div id="post">
             <c:if test="${f == true && x.getFraseBio() != null}">
             <div class="gr">
                 <div class="gr">

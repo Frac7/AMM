@@ -90,6 +90,9 @@ public class Bacheca extends HttpServlet {
                     request.setAttribute("f",true);
                     u = (UtentiRegistrati)in;
                     request.setAttribute("x", u);
+                    List<Post> p = PostFactory.getInstance().getPostByUser(u);
+                    if(p != null)
+                        request.setAttribute("post", p);
                 }
                 //se nella qs è presente almeno uno di questi elementi significa che si sta cercando di inviare un post
                 if(request.getParameter("stato") != null || request.getParameter("tipo") != null || request.getParameter("allegato") != null)

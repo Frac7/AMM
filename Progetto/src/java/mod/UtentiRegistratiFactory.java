@@ -58,9 +58,12 @@ public class UtentiRegistratiFactory {
         
         UtentiRegistrati incompleto = new UtentiRegistrati();
         incompleto.setId(4);
-        incompleto.setNome("incompleto");
+        incompleto.setNome("Incompleto");
         incompleto.setPassword("password");
         incompleto.setCognome(null);
+        incompleto.setTipUtente(UtentiRegistrati.uType.USER);
+        incompleto.setUrlProPic("img/ok.png");
+        incompleto.setFraseBio("Ehilà! Sto utilizzando NerdBook.");
         //aggiunta utenti alla lista
         utenti.add(utente1);
         utenti.add(utente2);

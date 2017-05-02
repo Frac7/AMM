@@ -23,20 +23,15 @@ a:link:hover{
     font-weight: bold;
 }
 h1#nb{
-    font-weight: bold;
-    font-size: 21px;
     font-family: "Consolas", monospace;
-    color: rgb(237, 243, 255);
+    font-size: 21px;
     margin: 0%;
     margin-left: 1%;
-    float: left
-}
-a.logout{
-    font-weight: bold;
-    font-family: "Consolas", monospace;
-    color: rgb(237, 243, 255);
+    float: left;
+    color: gainsboro;
 }
 nav{
+    font-family: monospace;
     background-color: rgb(77, 83, 95);
     text-align: center;
     font-size: 21px;
@@ -74,15 +69,19 @@ div#post div{
     margin-right: 0%;
     border-radius: 5px;
 }
-div#post div.gr{
+div#post div{
     background-color: gainsboro;
     color: rgb(77, 83, 95);
 }
-div#post div.gr label{
+div#post div label, div#post div a{
     color: rgb(77, 83, 95);
 }
-div#post div{
+div#post div.gr, div#post div.gr label{
     background-color: #888888;
+    color: seashell;
+}
+div#post div#insPost label, div#post div#insPost p, div#post div#insPost a{
+    color: seashell;
 }
 div#info{
     margin: 0.7%;
@@ -163,8 +162,11 @@ input, textArea{
     right: 35%;
     left: 35%;
 }
+div#post div#insPost, div#post div#insPost div{
+    background-color: rgb(77, 83, 95);
+}
 /*task 6*/
-@media only screen and (min-width: 1024px) /* da 1024 in poi: layout a due colonne*/
+@media only screen and (min-width: 1024.1px) /* da 1024 in poi: layout a due colonne*/
 {
     h1#nb, a{
         display: inline-block;
@@ -183,9 +185,7 @@ input, textArea{
         float: left;
     }
     div#insPost{
-        width: 100%;
         border-radius: 5px;
-        background-color: rgb(77, 83, 95);
         margin-top: 0.7%;
     }
     div#insPost > form{
@@ -256,8 +256,10 @@ div#errati{
         margin: 0.5%;
         margin-top: 1%;
     }
-    div#barraL, div#insPost{
+    div#barraL{
         width: 84%;
+    }
+    div#barraL, div#insPost{
         margin: auto;
         margin-top: 1%;
         margin-bottom: 1%;
@@ -313,6 +315,9 @@ img#bn, h1#Ltitle{
     position: relative;
     left: 42%;
     right: 42%;
+}
+div#barraL a, div#post a{
+    font-family: "Trebuchet MS", sans-serif;
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative

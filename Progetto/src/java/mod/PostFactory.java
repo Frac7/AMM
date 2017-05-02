@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package mod;
-import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -56,28 +55,36 @@ public class PostFactory {
         post4.setContenuto("Corri Barry, corri!");
         post4.setTipologia(Post.pType.TEXT);
         post4.setId(4);
-        post4.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 1")); //il post non si trova sulla bacheca di un gruppo
+        post4.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 1")); //il post si trova sulla bacheca di un gruppo
         
         Post post5 = new Post();
         post5.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
         post5.setContenuto("Chiamano questi eventi \"Lo schema\", come se qualcuno facesse esperimenti usando il mondo come laboratorio! Adesso ha visto! Adesso sa!");
         post5.setTipologia(Post.pType.TEXT);
         post5.setId(5);
-        post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post non si trova sulla bacheca di un gruppo
+        post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post si trova sulla bacheca di un gruppo
         
         Post post6 = new Post();
         post6.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
         post6.setContenuto("Benvenuti al Presidium, posso essere la vostra guida?");
         post6.setTipologia(Post.pType.TEXT);
         post6.setId(6);
-        post6.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 3")); //il post non si trova sulla bacheca di un gruppo
-        //aggiunta utenti alla lista
+        post6.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 3")); //il post si trova sulla bacheca di un gruppo
+        
+        Post post7 = new Post();
+        post7.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
+        post7.setContenuto("Hey, ciao!");
+        post7.setTipologia(Post.pType.TEXT);
+        post7.setId(7);
+        post7.setGruppo(null); //il post si trova sulla bacheca di un gruppo
+        //aggiunta post alla lista
         post.add(post1);
         post.add(post2);
         post.add(post3);
         post.add(post4);
         post.add(post5);
         post.add(post6);
+        post.add(post7);
     }
     public Post getPostById(int id)
     {
