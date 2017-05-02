@@ -66,7 +66,7 @@
                     <label for="cognome">Cognome</label><input type='text' name="cognome" id="cognome" value="${user.getCognome()}">
                 </div>
                 <div>
-                    <label for="foto">URL immagine del profilo</label> <input type='url' name="foto" id="foto" value="${user.getUrlProPic()}">
+                    <label for="foto">URL immagine del profilo</label> <input type='url' name="foto" id="foto" placeholder="Immagine del profilo">
                 </div>
                 <div>
                     <label for="stato">Frase di presentazione</label> <textarea name="stato" rows="1" id="stato" placeholder="A cosa stai pensando?"></textarea>
