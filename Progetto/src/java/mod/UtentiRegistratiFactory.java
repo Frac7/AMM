@@ -64,11 +64,22 @@ public class UtentiRegistratiFactory {
         incompleto.setTipUtente(UtentiRegistrati.uType.USER);
         incompleto.setUrlProPic("img/ok.png");
         incompleto.setFraseBio("Ehilà! Sto utilizzando NerdBook.");
+        
+        UtentiRegistrati vuoto = new UtentiRegistrati();
+        vuoto.setId(5);
+        vuoto.setNome("Vuoto");
+        vuoto.setPassword("password");
+        vuoto.setCognome(null);
+        vuoto.setTipUtente(UtentiRegistrati.uType.USER);
+        vuoto.setUrlProPic("img/ok.png");
+        vuoto.setFraseBio(null);
+        
         //aggiunta utenti alla lista
         utenti.add(utente1);
         utenti.add(utente2);
         utenti.add(utente3);
         utenti.add(incompleto);
+        utenti.add(vuoto);
     }
     public UtentiRegistrati getUserById(int id)
     {

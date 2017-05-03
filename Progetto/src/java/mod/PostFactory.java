@@ -35,6 +35,7 @@ public class PostFactory {
         post1.setTipologia(Post.pType.TEXT);
         post1.setId(1);
         post1.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
+        post1.setDestinatario(null);
         
         Post post2 = new Post();
         post2.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
@@ -42,6 +43,7 @@ public class PostFactory {
         post2.setTipologia(Post.pType.IMAGE);
         post2.setId(2);
         post2.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
+        post2.setDestinatario(null);
         
         Post post3 = new Post();
         post3.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
@@ -49,6 +51,7 @@ public class PostFactory {
         post3.setTipologia(Post.pType.URL);
         post3.setId(3);
         post3.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
+        post3.setDestinatario(null);
         
         Post post4 = new Post();
         post4.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
@@ -56,6 +59,7 @@ public class PostFactory {
         post4.setTipologia(Post.pType.TEXT);
         post4.setId(4);
         post4.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 1")); //il post si trova sulla bacheca di un gruppo
+        post4.setDestinatario(null);
         
         Post post5 = new Post();
         post5.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
@@ -63,6 +67,7 @@ public class PostFactory {
         post5.setTipologia(Post.pType.TEXT);
         post5.setId(5);
         post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post si trova sulla bacheca di un gruppo
+        post5.setDestinatario(null);
         
         Post post6 = new Post();
         post6.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
@@ -70,6 +75,7 @@ public class PostFactory {
         post6.setTipologia(Post.pType.TEXT);
         post6.setId(6);
         post6.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 3")); //il post si trova sulla bacheca di un gruppo
+        post6.setDestinatario(null);
         
         Post post7 = new Post();
         post7.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
@@ -77,6 +83,16 @@ public class PostFactory {
         post7.setTipologia(Post.pType.TEXT);
         post7.setId(7);
         post7.setGruppo(null); //il post si trova sulla bacheca di un gruppo
+        post7.setDestinatario(null);
+        
+        Post post8 = new Post();
+        post8.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
+        post8.setContenuto("Benvenuto!");
+        post8.setTipologia(Post.pType.TEXT);
+        post8.setId(8);
+        post8.setGruppo(null); //il post si trova sulla bacheca di un gruppo
+        post8.setDestinatario(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
+        
         //aggiunta post alla lista
         post.add(post1);
         post.add(post2);
@@ -85,6 +101,7 @@ public class PostFactory {
         post.add(post5);
         post.add(post6);
         post.add(post7);
+        post.add(post8);
     }
     public Post getPostById(int id)
     {
@@ -105,8 +122,23 @@ public class PostFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Post elemento:post)
-            if(elemento.getGruppo() == null)
+            if(elemento.getGruppo() == null && elemento.getDestinatario() == null)
                 if(elemento.getAutore().equals(u))
+                    l.add(elemento);
+        return l;
+        //confrontare l'id dell'utente con quello del parametro
+    }
+    public List getPostByDest(UtentiRegistrati u)
+    {
+        List<Post> l = getPostByUser(u);
+        if(l == null)
+            l = new ArrayList<Post>();
+        //lista di appoggio per restituzione post
+        //sintassi for da vedere
+        //scorrere la lista di utenti
+        for(Post elemento:post)
+            if(elemento.getDestinatario() != null)
+                if(elemento.getDestinatario().equals(u))
                     l.add(elemento);
         return l;
         //confrontare l'id dell'utente con quello del parametro

@@ -37,7 +37,7 @@
             <div class="gr">
                 <div class="gr">
                     <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
-                    <label for="utente">Frase personale</label>
+                    <label for="utente">${x.getNome()}: Frase personale</label>
                 </div>
                 <div class="gr">
                     <p>${x.getFraseBio()}</p>
@@ -48,7 +48,7 @@
             <div class="gr">
                 <div class="gr">
                     <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo">
-                    <label for="gruppo">Descrizione</label>
+                    <label for="gruppo">${x.getNome()}: Descrizione</label>
                 </div>
                 <div class="gr">
                     <p>${x.getDescrizione()}</p>
@@ -136,8 +136,9 @@
                         <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
                     </c:if>
                     <label for="utente">
-                        <c:if test="${f == true}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
-                        <c:if test="${f != true}">${el_post.getAutore().getNome()} ${x.getNome()}</c:if>
+                        <c:if test="${f == true && el_post.getDestinatario() == null}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
+                        <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
+                        <c:if test="${f != true}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if>
                     </label>
                 </div>
                 <c:if test="${el_post.getTipologia() == 'TEXT'}">

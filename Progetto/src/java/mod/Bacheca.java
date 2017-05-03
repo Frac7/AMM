@@ -80,7 +80,7 @@ public class Bacheca extends HttpServlet {
                     String n = vb.toString();
                     u = UtentiRegistratiFactory.getInstance().getUserByName(n);
                     request.setAttribute("x", u); //mi serve nel jsp per decidere chi è l'autore dei post
-                    List<Post> p = PostFactory.getInstance().getPostByUser(u);
+                    List<Post> p = PostFactory.getInstance().getPostByDest(u);
                     if(p != null)
                         request.setAttribute("post", p);
                 }
@@ -90,7 +90,7 @@ public class Bacheca extends HttpServlet {
                     request.setAttribute("f",true);
                     u = (UtentiRegistrati)in;
                     request.setAttribute("x", u);
-                    List<Post> p = PostFactory.getInstance().getPostByUser(u);
+                    List<Post> p = PostFactory.getInstance().getPostByDest(u);
                     if(p != null)
                         request.setAttribute("post", p);
                 }
