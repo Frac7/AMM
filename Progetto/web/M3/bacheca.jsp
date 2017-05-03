@@ -33,6 +33,28 @@
         </header>
                 <jsp:include page="side.jsp"/>
         <div id="post">
+            <c:if test="${f == true && x.getFraseBio() != null}">
+            <div class="gr">
+                <div class="gr">
+                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
+                    <label for="utente">Frase personale</label>
+                </div>
+                <div class="gr">
+                    <p>${x.getFraseBio()}</p>
+                </div>
+            </div>
+            </c:if>
+            <c:if test="${f != true}">
+            <div class="gr">
+                <div class="gr">
+                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo">
+                    <label for="gruppo">Descrizione</label>
+                </div>
+                <div class="gr">
+                    <p>${x.getDescrizione()}</p>
+                </div>
+            </div>
+            </c:if>
             <div id="insPost">
             <form action="bacheca.html?visualizza_bacheca=${x.getNome()}" method="get">
                 <div>
@@ -104,28 +126,6 @@
             </form>
                 </c:if>
         </div>
-            <c:if test="${f == true && x.getFraseBio() != null}">
-            <div class="gr">
-                <div class="gr">
-                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
-                    <label for="utente">Frase personale</label>
-                </div>
-                <div class="gr">
-                    <p>${x.getFraseBio()}</p>
-                </div>
-            </div>
-            </c:if>
-            <c:if test="${f != true}">
-            <div class="gr">
-                <div class="gr">
-                    <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo">
-                    <label for="gruppo">Descrizione</label>
-                </div>
-                <div class="gr">
-                    <p>${x.getDescrizione()}</p>
-                </div>
-            </div>
-            </c:if>
             <c:forEach var="el_post" items="${post}">
             <div>
                 <div>

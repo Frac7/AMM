@@ -23,13 +23,19 @@ a:link:hover{
     font-weight: bold;
 }
 h1#nb{
-    font-family: "Consolas", monospace;
-    font-size: 21px;
     margin: 0%;
     margin-left: 1%;
     float: left;
+}
+a.logout, h1#nb{
+    font-family: "Consolas", monospace;
+    font-size: 21px;
     color: gainsboro;
 }
+a.logout{
+    font-weight: bold;
+}
+
 nav{
     font-family: monospace;
     background-color: rgb(77, 83, 95);

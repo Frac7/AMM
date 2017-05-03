@@ -60,10 +60,10 @@
             </div>
             <form action="" method="post">
                 <div>
-                    <label for="nome">Nome</label> <input type='text' name="nome" id="nome" value="${user.getNome()}">
+                    <label for="nome">Nome</label> <input type='text' name="nome" id="nome" placeholder="Inserire il nome">
                 </div>
                 <div>
-                    <label for="cognome">Cognome</label><input type='text' name="cognome" id="cognome" value="${user.getCognome()}">
+                    <label for="cognome">Cognome</label><input type='text' name="cognome" id="cognome" placeholder="Inserire il cognome">
                 </div>
                 <div>
                     <label for="foto">URL immagine del profilo</label> <input type='url' name="foto" id="foto" placeholder="Immagine del profilo">
@@ -72,7 +72,7 @@
                     <label for="stato">Frase di presentazione</label> <textarea name="stato" rows="1" id="stato" placeholder="A cosa stai pensando?"></textarea>
                 </div>
                 <div>
-                    <label for="compleanno">Data di nascita</label> <input type='date' name="compleanno" id="compleanno" value="${user.getDataNascita()}">
+                    <label for="compleanno">Data di nascita</label> <input type='date' name="compleanno" id="compleanno">
                 </div>
                 <div>
                     <label for="password">Password</label> <input type='password' name="password" id ="password" placeholder="Inserire la nuova password">
