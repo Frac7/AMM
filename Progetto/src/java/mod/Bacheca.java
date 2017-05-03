@@ -160,7 +160,7 @@ public class Bacheca extends HttpServlet {
                     }
                     if(!allegato.equals(""))
                     {
-                        if(tipo == null || !testo.equals(""))
+                        if(tipo == null)
                         {
                             request.setAttribute("erroretipo", true);
                             request.setAttribute("inspost", false);
@@ -183,10 +183,10 @@ public class Bacheca extends HttpServlet {
                             if(vg != null) //post su gruppo
                                 n.setGruppo(GruppiFactory.getInstance().getGroupByName(vg.toString()));
                             n.setTipologia(tipo);
-                            if(tipo == Post.pType.TEXT)
+                            if(!testo.equals(""))
                                 n.setContenuto(request.getParameter("stato"));
-                            else if(tipo == Post.pType.URL || tipo == Post.pType.IMAGE)
-                                n.setContenuto(request.getParameter("link"));
+                            if(!allegato.equals(""))
+                                n.setAllegato(request.getParameter("link"));
                             request.setAttribute("n",n);
                         }
                     }

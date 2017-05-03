@@ -63,7 +63,7 @@
                 <c:if test="${erroretipo == true}">
                     <div id="errati">
                         <h1>Errore inserimento post</h1>
-                        <p>È stato scelto un tipo di post che prevede esclusivamente l'allegato e la sua tipologia.</p>
+                        <p>È stato scelto un tipo di post che prevede l'allegato e la sua tipologia.</p>
                     </div>
                 </c:if>
                 <c:if test="${inspost == true}">
@@ -75,10 +75,10 @@
                     </p>
                     <p><strong>Messaggio:</strong> 
                         <c:if test="${multimedia == 1}">
-                            <img class = "postpic" alt="Post" src="${n.getContenuto()}">
+                            <p>${n.getContenuto()}</p><img class = "postpic" alt="Post" src="${n.getAllegato()}">
                         </c:if>
                         <c:if test="${multimedia == 2}">
-                            <a href="${n.getContenuto()}">${n.getContenuto()}</a>
+                        <a href="${n.getAllegato()}">${n.getAllegato()}</a><p>${n.getContenuto()}</p>
                         </c:if> 
                         <c:if test="${multimedia != 2 && multimedia != 1}">
                             ${n.getContenuto()}
@@ -136,8 +136,9 @@
                         <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
                     </c:if>
                     <label for="utente">
-                        <c:if test="${f == true && el_post.getDestinatario() == null}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
+                        <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
                         <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
+                        <c:if test="${f == true && el_post.getGruppo() != null}">${x.getNome()}: ${(el_post.getGruppo()).getNome()}</c:if>
                         <c:if test="${f != true}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if>
                     </label>
                 </div>
@@ -148,12 +149,12 @@
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'IMAGE'}">
                 <div>
-                    <img alt="Immagine" src="${el_post.getContenuto()}" class="postpic">
+                    <p>${el_post.getContenuto()}</p><img alt="Immagine" src="${el_post.getAllegato()}" class="postpic">
                 </div>
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'URL'}">
                 <div>
-                    <a alt="URL" href="${el_post.getContenuto()}">${el_post.getContenuto()}</a>
+                    <a alt="URL" href="${el_post.getAllegato()}">${el_post.getAllegato()}</a><p>${el_post.getContenuto()}</p>
                 </div>
                 </c:if>
             </div>

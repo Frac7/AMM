@@ -36,10 +36,12 @@ public class PostFactory {
         post1.setId(1);
         post1.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
         post1.setDestinatario(null);
+        post1.setAllegato(null);
         
         Post post2 = new Post();
         post2.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
-        post2.setContenuto("img/o.jpg");
+        post2.setContenuto("Ooliiviaa!");
+        post2.setAllegato("img/o.jpg");
         post2.setTipologia(Post.pType.IMAGE);
         post2.setId(2);
         post2.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
@@ -47,7 +49,8 @@ public class PostFactory {
         
         Post post3 = new Post();
         post3.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
-        post3.setContenuto("https://www.masseffect.com/it-it/andromeda-initiative");
+        post3.setAllegato("https://www.masseffect.com/it-it/andromeda-initiative");
+        post3.setContenuto("Unisciti all'iniziativa Andromeda! ");
         post3.setTipologia(Post.pType.URL);
         post3.setId(3);
         post3.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
@@ -60,6 +63,7 @@ public class PostFactory {
         post4.setId(4);
         post4.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 1")); //il post si trova sulla bacheca di un gruppo
         post4.setDestinatario(null);
+        post4.setAllegato(null);
         
         Post post5 = new Post();
         post5.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
@@ -68,6 +72,7 @@ public class PostFactory {
         post5.setId(5);
         post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post si trova sulla bacheca di un gruppo
         post5.setDestinatario(null);
+        post5.setAllegato(null);
         
         Post post6 = new Post();
         post6.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
@@ -76,6 +81,7 @@ public class PostFactory {
         post6.setId(6);
         post6.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 3")); //il post si trova sulla bacheca di un gruppo
         post6.setDestinatario(null);
+        post6.setAllegato(null);
         
         Post post7 = new Post();
         post7.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
@@ -84,6 +90,7 @@ public class PostFactory {
         post7.setId(7);
         post7.setGruppo(null); //il post si trova sulla bacheca di un gruppo
         post7.setDestinatario(null);
+        post7.setAllegato(null);
         
         Post post8 = new Post();
         post8.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
@@ -92,6 +99,7 @@ public class PostFactory {
         post8.setId(8);
         post8.setGruppo(null); //il post si trova sulla bacheca di un gruppo
         post8.setDestinatario(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
+        post8.setAllegato(null);
         
         //aggiunta post alla lista
         post.add(post1);
@@ -122,7 +130,7 @@ public class PostFactory {
         //sintassi for da vedere
         //scorrere la lista di utenti
         for(Post elemento:post)
-            if(elemento.getGruppo() == null && elemento.getDestinatario() == null)
+            if(elemento.getDestinatario() == null)
                 if(elemento.getAutore().equals(u))
                     l.add(elemento);
         return l;

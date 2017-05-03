@@ -197,7 +197,7 @@ div#post div#insPost, div#post div#insPost div{
     div#insPost > form{
         padding-right: 30%;
         padding-left: 30%;
-        padding-bottom: 0.5%;
+        padding-bottom: 1%;
     }
     div.tipou{
         float: right;

@@ -12,6 +12,20 @@ package mod;
 public class Post {
 
     /**
+     * @return the allegato
+     */
+    public String getAllegato() {
+        return allegato;
+    }
+
+    /**
+     * @param allegato the allegato to set
+     */
+    public void setAllegato(String allegato) {
+        this.allegato = allegato;
+    }
+
+    /**
      * @return the destinatario
      */
     public UtentiRegistrati getDestinatario() {
@@ -106,6 +120,7 @@ public class Post {
     private int id;
     private Gruppi gruppo;
     private UtentiRegistrati destinatario;
+    private String allegato;
     //costruttore
     public Post()
     {
@@ -115,5 +130,6 @@ public class Post {
         id = 0;
         gruppo = null;
         destinatario = null;
+        allegato = null;
     }
 }
