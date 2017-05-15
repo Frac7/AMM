@@ -55,6 +55,7 @@ input:focus, textArea:focus{
 button{
     width: 100%;
     margin-top: 5%;
+    margin-bottom: 5%;
     background-color: whitesmoke;
     border-radius: 5px;
     color: rgb(77, 83, 95);
@@ -324,6 +325,16 @@ img#bn, h1#Ltitle{
 }
 div#barraL a, div#post a{
     font-family: "Trebuchet MS", sans-serif;
+}
+div#info button#canc{
+    width: 50%;
+    float: right;
+    display: inline-block;
+}
+div#info button#agg{
+    width: 45%;
+    display: inline-block;
+    float: left;
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative

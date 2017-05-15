@@ -3,6 +3,10 @@
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>mod.Login</servlet-class>
+        <init-param>
+            <param-name>loadOnStartup</param-name>
+            <param-value>0</param-value>
+        </init-param>
     </servlet>
     <servlet>
         <servlet-name>Profilo</servlet-name>
@@ -12,7 +16,10 @@
         <servlet-name>Bacheca</servlet-name>
         <servlet-class>mod.Bacheca</servlet-class>
     </servlet>
-
+    <servlet>
+        <servlet-name>Cancella</servlet-name>
+        <servlet-class>mod.Cancella</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/M3/login.html</url-pattern>
@@ -24,6 +31,10 @@
     <servlet-mapping>
         <servlet-name>Bacheca</servlet-name>
         <url-pattern>/M3/bacheca.html</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cancella</servlet-name>
+        <url-pattern>/profilo.html</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -149,22 +149,24 @@ public class Bacheca extends HttpServlet {
                         }
                     }
                     //solo testo
-                    else if(testo != null)
+                    else if(!testo.equals(""))
                     {
-                        if(!testo.equals(""))
+                        if(!allegato.equals(""))
+                        {
+                            request.setAttribute("erroretipo", true);
+                            request.setAttribute("inspost", false);
+                        }
+                        else
                         {
                             request.setAttribute("inspost", true);
                             request.setAttribute("erroretipo", false);
                             tipo = Post.pType.TEXT;
                         }
                     }
-                    if(!allegato.equals(""))
+                    else if(!allegato.equals(""))
                     {
-                        if(tipo == null)
-                        {
-                            request.setAttribute("erroretipo", true);
-                            request.setAttribute("inspost", false);
-                        }                        
+                        request.setAttribute("erroretipo", true);
+                        request.setAttribute("inspost", false);
                     }
                     //se sono stati inseriti dati
                     if(request.getAttribute("erroretipo") != null)

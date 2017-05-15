@@ -20,6 +20,13 @@ public class PostFactory {
             singleton = new PostFactory();
         return singleton;
     }
+    private String connectionString;
+        public void setConnectionString(String s){
+            this.connectionString = s;
+    }
+    public String getConnectionString(){
+            return this.connectionString;
+    }
     //lista utenti
     private ArrayList<Post> post = new ArrayList<Post>();
     //costruttore
