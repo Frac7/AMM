@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package mod;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 /**
@@ -27,61 +32,111 @@ public class GruppiFactory {
     public String getConnectionString(){
             return this.connectionString;
     }
-    //lista utenti
-    private ArrayList<Gruppi> gruppi = new ArrayList<Gruppi>();
     //costruttore
     private GruppiFactory()
     {
-        //dati fittizzi
-        Gruppi gruppo1 = new Gruppi();
-        gruppo1.setNome("Gruppo 1");
-        gruppo1.setDescrizione("The Flash");
-        gruppo1.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
-        gruppo1.setId(1);
-        gruppo1.setUrlProPic("img/g.png");
         
-        Gruppi gruppo2 = new Gruppi();
-        gruppo2.setNome("Gruppo 2");
-        gruppo2.setDescrizione("Fringe");
-        gruppo2.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
-        gruppo2.setId(2);
-        gruppo2.setUrlProPic("img/g.png");
-        
-        Gruppi gruppo3 = new Gruppi();
-        gruppo3.setNome("Gruppo 3");
-        gruppo3.setDescrizione("ME saga");
-        gruppo3.setFounder(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
-        gruppo3.setId(3);
-        gruppo3.setUrlProPic("img/g.png");
-        //aggiunta utenti alla lista
-        gruppi.add(gruppo1);
-        gruppi.add(gruppo2);
-        gruppi.add(gruppo3);
     }
     public Gruppi getGroupById(int id)
     {
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(Gruppi g : this.gruppi)
-        {
-            if(g.getId() == id)
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from gruppi " 
+                    + "where id = ?";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setInt(1, id);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                Gruppi g = new Gruppi();
+                //oggetto.metodo(nome colonna)
+                g.setId(rs.getInt("id"));
+                g.setNome(rs.getString("nome"));
+                g.setDescrizione(rs.getString("descrizione"));
+                g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
+                g.setUrlProPic(rs.getString("urlProPic"));
+                ps.close();
+                c.close();
                 return g;
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
-        //confrontare l'id dell'utente con quello del parametro
     }
     public Gruppi getGroupByName(String n)
     {
-        for(Gruppi g : this.gruppi)
-        {
-            if(g.getNome().equals(n))
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from gruppi " 
+                    + "where nome = ?";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setString(1, n);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                Gruppi g = new Gruppi();
+                //oggetto.metodo(nome colonna)
+                g.setId(rs.getInt("id"));
+                g.setNome(rs.getString("nome"));
+                g.setDescrizione(rs.getString("descrizione"));
+                g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
+                g.setUrlProPic(rs.getString("urlProPic"));
+                ps.close();
+                c.close();
                 return g;
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
     public List getGroupList()
     {
-        return gruppi;
+        List<Gruppi> l = new ArrayList<>();
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from gruppi ";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                Gruppi g = new Gruppi();
+                //oggetto.metodo(nome colonna)
+                g.setId(rs.getInt("id"));
+                g.setNome(rs.getString("nome"));
+                g.setDescrizione(rs.getString("descrizione"));
+                g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
+                g.setUrlProPic(rs.getString("urlProPic"));
+                l.add(g);
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return l;
     }
 }
 

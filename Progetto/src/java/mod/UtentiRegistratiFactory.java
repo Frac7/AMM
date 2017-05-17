@@ -6,6 +6,7 @@
 package mod;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 /**
  *
  * @author Asus
@@ -27,90 +28,139 @@ public class UtentiRegistratiFactory {
     public String getConnectionString(){
             return this.connectionString;
     }
-    //lista utenti
-    private ArrayList<UtentiRegistrati> utenti = new ArrayList<UtentiRegistrati>();
+    
     //costruttore
     private UtentiRegistratiFactory()
     {
-        //dati fittizzi
-        UtentiRegistrati utente1 = new UtentiRegistrati();
-        utente1.setCognome("Cognome");
-        utente1.setId(1);
-        utente1.setNome("Utente 1");
-        utente1.setDataNascita("24/04/2017");
-        utente1.setPassword("password1");
-        utente1.setTipUtente(UtentiRegistrati.uType.USER);
-        utente1.setUrlProPic("img/ok.png");
-        utente1.setFraseBio("Il tempo è estremamente fragile come struttura, qualsiasi deviazione, per quanto piccola può provocare un cataclisma.");
         
-        UtentiRegistrati utente2 = new UtentiRegistrati();
-        utente2.setCognome("Cognome");
-        utente2.setId(2);
-        utente2.setNome("Utente 2");
-        utente2.setDataNascita("24/04/2017");
-        utente2.setPassword("password2");
-        utente2.setTipUtente(UtentiRegistrati.uType.USER);
-        utente2.setUrlProPic("img/ok.png");
-        utente2.setFraseBio("Peter, mi sbagliavo, non è troppo tardi! Puoi salvare entrambi i mondi, possiamo ricominciare daccapo. Stavolta dovrai semplicemente compiere una scelta diversa, e se qualcosa andasse storto, Olivia sarebbe la nostra ancora di salvezza...");
-        
-        UtentiRegistrati utente3 = new UtentiRegistrati();
-        utente3.setCognome("Cognome");
-        utente3.setId(3);
-        utente3.setNome("Utente 3");
-        utente3.setDataNascita("24/04/2017");
-        utente3.setPassword("password3");
-        utente3.setTipUtente(UtentiRegistrati.uType.USER);
-        utente3.setUrlProPic("img/ok.png");
-        utente3.setFraseBio("Sono il comandante Shepard e questo è il mio negozio preferito sulla Cittadella.");
-        
-        UtentiRegistrati incompleto = new UtentiRegistrati();
-        incompleto.setId(4);
-        incompleto.setNome("Incompleto");
-        incompleto.setPassword("password");
-        incompleto.setCognome(null);
-        incompleto.setTipUtente(UtentiRegistrati.uType.USER);
-        incompleto.setUrlProPic("img/ok.png");
-        incompleto.setFraseBio("Ehilà! Sto utilizzando NerdBook.");
-        
-        UtentiRegistrati vuoto = new UtentiRegistrati();
-        vuoto.setId(5);
-        vuoto.setNome("Vuoto");
-        vuoto.setPassword("password");
-        vuoto.setCognome(null);
-        vuoto.setTipUtente(UtentiRegistrati.uType.USER);
-        vuoto.setUrlProPic("img/ok.png");
-        vuoto.setFraseBio(null);
-        
-        //aggiunta utenti alla lista
-        utenti.add(utente1);
-        utenti.add(utente2);
-        utenti.add(utente3);
-        utenti.add(incompleto);
-        utenti.add(vuoto);
     }
     public UtentiRegistrati getUserById(int id)
     {
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(UtentiRegistrati u : this.utenti)
-        {
-            if(u.getId() == id)
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from utenti " 
+                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
+                    + "where id = ?";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setInt(1, id);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                UtentiRegistrati u = new UtentiRegistrati();
+                //oggetto.metodo(nome colonna)
+                u.setId(rs.getInt("id"));
+                u.setNome(rs.getString("nome"));
+                u.setCognome(rs.getString("cognome"));
+                u.setPassword(rs.getString("password"));
+                u.setUrlProPic(rs.getString("urlProPic"));
+                u.setDataNascita(rs.getString("dataNascita"));
+                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setFraseBio(rs.getString("fraseBio"));
+                ps.close();
+                c.close();
                 return u;
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
-        //confrontare l'id dell'utente con quello del parametro
     }
+    
+    private UtentiRegistrati.uType utentiTypeFromString(String type){
+        
+        if(type.equals("ADMIN"))
+            return UtentiRegistrati.uType.ADMIN;
+        else 
+            return UtentiRegistrati.uType.USER;
+    }
+    
+    private int utentiTypeFromEnum(UtentiRegistrati.uType type){
+        if(type == UtentiRegistrati.uType.ADMIN)
+                return 0;
+        else 
+            return 1;
+    }
+   
     public UtentiRegistrati getUserByName(String n)
     {
-        for(UtentiRegistrati u : this.utenti)
-        {
-            if(u.getNome().equals(n))
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from utenti " 
+                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
+                    + "where nome = ?";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setString(1, n);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                UtentiRegistrati u = new UtentiRegistrati();
+                //oggetto.metodo(nome colonna)
+                u.setId(rs.getInt("id"));
+                u.setNome(rs.getString("nome"));
+                u.setCognome(rs.getString("cognome"));
+                u.setPassword(rs.getString("password"));
+                u.setUrlProPic(rs.getString("urlProPic"));
+                u.setDataNascita(rs.getString("dataNascita"));
+                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setFraseBio(rs.getString("fraseBio"));
+                ps.close();
+                c.close();
                 return u;
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
     public List getUserList()
     {
-        return utenti;
+        List<UtentiRegistrati> l = new ArrayList<>();
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from utenti " 
+                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id ";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                UtentiRegistrati u = new UtentiRegistrati();
+                //oggetto.metodo(nome colonna)
+                u.setId(rs.getInt("id"));
+                u.setNome(rs.getString("nome"));
+                u.setCognome(rs.getString("cognome"));
+                u.setPassword(rs.getString("password"));
+                u.setUrlProPic(rs.getString("urlProPic"));
+                u.setDataNascita(rs.getString("dataNascita"));
+                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setFraseBio(rs.getString("fraseBio"));
+                l.add(u);
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return l;
     }
 }

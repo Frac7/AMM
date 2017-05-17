@@ -6,6 +6,7 @@
 package mod;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.*;
 /**
  *
  * @author Asus
@@ -20,6 +21,7 @@ public class PostFactory {
             singleton = new PostFactory();
         return singleton;
     }
+    //databse
     private String connectionString;
         public void setConnectionString(String s){
             this.connectionString = s;
@@ -27,152 +29,160 @@ public class PostFactory {
     public String getConnectionString(){
             return this.connectionString;
     }
-    //lista utenti
-    private ArrayList<Post> post = new ArrayList<Post>();
-    //costruttore
-    private PostFactory()
-    {
-        //dati fittizzi
-        //aggiungere id content ecc
-        Post post1 = new Post();
-        post1.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
-        post1.setContenuto("Cisco: \"It looks like the Vacuum.\"\n" +
-"                   Jesse: \"Uh, what's the Vacumm?\"\n" +
-"                   Cisco: \"No Fringe on Earth-2. Noted.\"");
-        post1.setTipologia(Post.pType.TEXT);
-        post1.setId(1);
-        post1.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
-        post1.setDestinatario(null);
-        post1.setAllegato(null);
-        
-        Post post2 = new Post();
-        post2.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
-        post2.setContenuto("Ooliiviaa!");
-        post2.setAllegato("img/o.jpg");
-        post2.setTipologia(Post.pType.IMAGE);
-        post2.setId(2);
-        post2.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
-        post2.setDestinatario(null);
-        
-        Post post3 = new Post();
-        post3.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
-        post3.setAllegato("https://www.masseffect.com/it-it/andromeda-initiative");
-        post3.setContenuto("Unisciti all'iniziativa Andromeda! ");
-        post3.setTipologia(Post.pType.URL);
-        post3.setId(3);
-        post3.setGruppo(null); //il post non si trova sulla bacheca di un gruppo
-        post3.setDestinatario(null);
-        
-        Post post4 = new Post();
-        post4.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
-        post4.setContenuto("Corri Barry, corri!");
-        post4.setTipologia(Post.pType.TEXT);
-        post4.setId(4);
-        post4.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 1")); //il post si trova sulla bacheca di un gruppo
-        post4.setDestinatario(null);
-        post4.setAllegato(null);
-        
-        Post post5 = new Post();
-        post5.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 2"));
-        post5.setContenuto("Chiamano questi eventi \"Lo schema\", come se qualcuno facesse esperimenti usando il mondo come laboratorio! Adesso ha visto! Adesso sa!");
-        post5.setTipologia(Post.pType.TEXT);
-        post5.setId(5);
-        post5.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 2")); //il post si trova sulla bacheca di un gruppo
-        post5.setDestinatario(null);
-        post5.setAllegato(null);
-        
-        Post post6 = new Post();
-        post6.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 3"));
-        post6.setContenuto("Benvenuti al Presidium, posso essere la vostra guida?");
-        post6.setTipologia(Post.pType.TEXT);
-        post6.setId(6);
-        post6.setGruppo(GruppiFactory.getInstance().getGroupByName("Gruppo 3")); //il post si trova sulla bacheca di un gruppo
-        post6.setDestinatario(null);
-        post6.setAllegato(null);
-        
-        Post post7 = new Post();
-        post7.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
-        post7.setContenuto("Hey, ciao!");
-        post7.setTipologia(Post.pType.TEXT);
-        post7.setId(7);
-        post7.setGruppo(null); //il post si trova sulla bacheca di un gruppo
-        post7.setDestinatario(null);
-        post7.setAllegato(null);
-        
-        Post post8 = new Post();
-        post8.setAutore(UtentiRegistratiFactory.getInstance().getUserByName("Utente 1"));
-        post8.setContenuto("Benvenuto!");
-        post8.setTipologia(Post.pType.TEXT);
-        post8.setId(8);
-        post8.setGruppo(null); //il post si trova sulla bacheca di un gruppo
-        post8.setDestinatario(UtentiRegistratiFactory.getInstance().getUserByName("Incompleto"));
-        post8.setAllegato(null);
-        
-        //aggiunta post alla lista
-        post.add(post1);
-        post.add(post2);
-        post.add(post3);
-        post.add(post4);
-        post.add(post5);
-        post.add(post6);
-        post.add(post7);
-        post.add(post8);
-    }
+    //metodi factory
     public Post getPostById(int id)
     {
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(Post p : this.post)
-        {
-            if(p.getId() == id)
+        //utente
+        UtentiRegistratiFactory u = UtentiRegistratiFactory.getInstance(); 
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from post " 
+                    + "join tipologiaPost on post.tipo = tipologiaPost.id "
+                    + "where id = ?";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setInt(1, id);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            if (rs.next()) {
+                Post p = new Post();
+                //oggetto.metodo(nome colonna)
+                p.setId(rs.getInt("id"));
+                p.setContenuto(rs.getString("contenuto"));
+                p.setTipologia(this.postTypeFromString(rs.getString("nome")));
+                UtentiRegistrati autore = UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("autore"));
+                p.setAutore(autore);
+                p.setAllegato(rs.getString("allegato"));
+                p.setGruppo(GruppiFactory.getInstance().getGroupById(rs.getInt("gruppo")));
+                UtentiRegistrati destinatario = UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("destinatario"));
+                p.setDestinatario(destinatario);
+                ps.close();
+                c.close();
                 return p;
+            }
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
-        //confrontare l'id dell'utente con quello del parametro
+    }
+    private Post.pType postTypeFromString(String type){
+        
+        if(type.equals("IMMAGINE"))
+            return Post.pType.IMAGE;
+        else if (type.equals("URL"))
+            return Post.pType.URL;
+        else
+            return Post.pType.TEXT;
+    }
+    
+    private int postTypeFromEnum(Post.pType type){
+        if(type == Post.pType.TEXT)
+                return 1;
+        else if (type == Post.pType.IMAGE)
+                return 2;
+        else
+            return 3;
     }
     public List getPostByUser(UtentiRegistrati u)
     {
         List<Post> l = new ArrayList<Post>();
-        //lista di appoggio per restituzione post
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(Post elemento:post)
-            if(elemento.getDestinatario() == null)
-                if(elemento.getAutore().equals(u))
-                    l.add(elemento);
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = "select * from post "
+                    + "join tipologiaPost on post.tipo = tipologiaPost.id "
+                    + "where autore = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Post p = new Post();
+                p.setId(rs.getInt("id"));
+                p.setContenuto(rs.getString("contenuto"));
+                p.setContenuto("ciao");
+                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setAutore(u);
+                p.setAllegato(rs.getString("allegato"));
+                p.setGruppo(GruppiFactory.getInstance().getGroupById(rs.getInt("gruppo")));
+                UtentiRegistrati destinatario = UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("destinatario"));
+                p.setDestinatario(destinatario);
+                l.add(p);
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return l;
-        //confrontare l'id dell'utente con quello del parametro
     }
     public List getPostByDest(UtentiRegistrati u)
     {
         List<Post> l = getPostByUser(u);
-        if(l == null)
-            l = new ArrayList<Post>();
-        //lista di appoggio per restituzione post
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(Post elemento:post)
-            if(elemento.getDestinatario() != null)
-                if(elemento.getDestinatario().equals(u))
-                    l.add(elemento);
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = "select * from post "
+                    + "join tipologiaPost on post.tipo = tipologiaPost.id "
+                    + "where destinatario = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Post p = new Post();
+                p.setId(rs.getInt("id"));
+                p.setContenuto(rs.getString("contenuto"));
+                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setDestinatario(u);
+                p.setAutore(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("autore")));
+                p.setAllegato(rs.getString("allegato"));
+                p.setGruppo(GruppiFactory.getInstance().getGroupById(rs.getInt("gruppo")));
+                l.add(p);
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         return l;
         //confrontare l'id dell'utente con quello del parametro
     }
     public List getPostByGroup(Gruppi g)
     {
-         List<Post> l = new ArrayList<Post>();
-        //lista di appoggio per restituzione post
-        //sintassi for da vedere
-        //scorrere la lista di utenti
-        for(Post elemento:post)
-        {
-            if(elemento.getGruppo() != null)
-            {
-                if(elemento.getGruppo().equals(g))
-                    l.add(elemento);
+        List<Post> l = new ArrayList<Post>();
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = "select * from post "
+                    + "join tipologiaPost on post.tipo = tipologiaPost.id "
+                    + "where gruppo = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, g.getId());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Post p = new Post();
+                p.setId(rs.getInt("id"));
+                p.setContenuto(rs.getString("contenuto"));
+                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setDestinatario(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("destinatario")));
+                p.setAutore(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("autore")));
+                p.setAllegato(rs.getString("allegato"));
+                p.setGruppo(g);
+                l.add(p);
             }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return l;
-        //confrontare l'id dell'utente con quello del parametro
     }
 }
