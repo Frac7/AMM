@@ -185,4 +185,24 @@ public class PostFactory {
 
         return l;
     }
+    public void addNewPost(Post n)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = 
+                      "insert into posts (id ,autore, contenuto, tipo, gruppo, destinatario, allegato) "
+                    + "values (default, ? , ? , ?, ?, ?, ? )";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, n.getAutore().getId());
+            ps.setString(2, n.getContenuto());
+            ps.setInt(3, this.postTypeFromEnum(n.getTipologia()));
+            ps.setInt(4, n.getGruppo().getId());
+            ps.setInt(5, n.getDestinatario().getId());
+            ps.setString(2, n.getAllegato());
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

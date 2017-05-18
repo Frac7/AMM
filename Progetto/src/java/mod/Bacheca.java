@@ -189,6 +189,7 @@ public class Bacheca extends HttpServlet {
                                 n.setContenuto(request.getParameter("stato"));
                             if(!allegato.equals(""))
                                 n.setAllegato(request.getParameter("link"));
+                            PostFactory.getInstance().addNewPost(n);
                             request.setAttribute("n",n);
                         }
                     }
