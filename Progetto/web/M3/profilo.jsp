@@ -81,10 +81,10 @@
                     <label for="cpassword">Conferma password</label><input type='password' name="cpassword" id="cpassword" placeholder="Confermare la nuova password">
                 </div>
                 <div>
-                    <button id="agg" type="submit" value="profilo">Aggiorna</button>
+                    <button id="agg" type="submit">Aggiorna</button>
                 </div>
                 <div>
-                    <button id="canc" type="submit">Cancella utente</button>
+                    <button id="canc" type="submit" name="cancella" value="1">Cancella utente</button>
                 </div>
             </form>
         </div>

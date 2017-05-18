@@ -56,7 +56,7 @@
             </div>
             </c:if>
             <div id="insPost">
-            <form action="bacheca.html?visualizza_bacheca=${x.getNome()}" method="get">
+            <form action="bacheca.html?visualizza_bacheca=${x.getId()}" method="get">
                 <div>
                     <h1>Nuovo post su questa bacheca</h1>
                 </div>
@@ -86,10 +86,10 @@
                     </p>
                     <div>
                         <c:if test="${f == true}">
-                        <input type="hidden" name = "visualizza_bacheca" value="${x.getNome()}"/>
+                        <input type="hidden" name = "visualizza_bacheca" value="${x.getId()}"/>
                         </c:if>
                         <c:if test="${f != true}">
-                        <input type="hidden" name = "visualizza_gruppo" value="${x.getNome()}"/>
+                        <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}"/>
                         </c:if>
                     </div>
                     <button class = "post" type ='submit' name="conferma" value=true>Confermare</button>
@@ -115,10 +115,10 @@
                 </div>
                 <div>
                    <c:if test="${f == true}">
-                        <input type="hidden" name = "visualizza_bacheca" value="${x.getNome()}"/>
+                        <input type="hidden" name = "visualizza_bacheca" value="${x.getId()}"/>
                     </c:if>
                     <c:if test="${f != true}">
-                        <input type="hidden" name = "visualizza_gruppo" value="${x.getNome()}"/>
+                        <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}"/>
                     </c:if>
                 </div>
                 <button class="post" type="submit">Crea post</button>

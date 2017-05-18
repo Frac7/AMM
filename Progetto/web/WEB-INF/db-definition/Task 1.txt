@@ -1,0 +1,38 @@
+Schema E/R
+tipologia utenti
+    id (PK)
+    nome
+tipologia post
+    id (PK)
+    nome
+utenti
+    id (PK)
+    cognome
+    nome
+    url foto profilo
+    data nascita
+    passowrd
+    frase pers
+    tipologia (FK) relazione 1 a n con tabella tipologia utenti
+gruppi
+    id (PK)
+    nome
+    descrizione
+    url foto profilo
+    founder (FK) relazione 1 a n con tabella utenti
+post
+    id (PK)
+    contenuto
+    allegato
+    autore (FK) relazione 1 a n con tabella utenti
+    destinatario (FK) relazione 1 a n con tabella utenti
+    gruppo (FK) relazione 1 a n con tabella gruppi
+    tipologia (FK) relazione 1 a n con tabella tipologia post
+utenti utenti (nasce dalla relazione n a n tra utenti, gestione amicizie) ??
+    id (PK)
+    id utente a (FK)
+    id utente b (FK)
+utenti gruppi (nasce dalla relazione n a n tra utenti e gruppi, appartenenza ad un certo gruppo)
+    id (PK)
+    id utente (FK)
+    id gruppo (FK)

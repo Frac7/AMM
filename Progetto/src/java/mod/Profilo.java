@@ -48,13 +48,24 @@ public class Profilo extends HttpServlet {
             }
             else
             {
+                int utente = Integer.parseInt(session.getAttribute("user").toString());
+                UtentiRegistrati u = UtentiRegistratiFactory.getInstance().getUserById(utente);
                 //accesso consenti, raccolta della lista degli utenti e dei gruppi presenti nel sistema
                 request.setAttribute("negato",false);
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
                 session.setAttribute("utenti", l);
                 List<Gruppi> g = GruppiFactory.getInstance().getGroupList();
                 session.setAttribute("gruppi", g);
-                UtentiRegistrati u = (UtentiRegistrati)session.getAttribute("user");
+                if(request.getParameter("cancella") != null)
+                {
+                    if(request.getParameter("cancella").equals("1"))
+                        if(PostFactory.getInstance().deleteAllByUser(u) == true)
+                            if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
+                            {
+                                session.invalidate();
+                                request.getRequestDispatcher("login.jsp").forward(request, response);
+                            }
+                }
                 String nome = request.getParameter("nome"); //richiesta parametri per eventuale modifica profilo
                 String cognome = request.getParameter("cognome");
                 String stato = request.getParameter("stato");

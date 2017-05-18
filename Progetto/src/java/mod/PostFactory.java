@@ -190,7 +190,7 @@ public class PostFactory {
         try {
             Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
             String query = 
-                      "insert into posts (id ,autore, contenuto, tipo, gruppo, destinatario, allegato) "
+                      "insert into post (id ,autore, contenuto, tipo, gruppo, destinatario, allegato) "
                     + "values (default, ? , ? , ?, ?, ?, ? )";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, n.getAutore().getId());
@@ -200,9 +200,29 @@ public class PostFactory {
             ps.setInt(5, n.getDestinatario().getId());
             ps.setString(2, n.getAllegato());
             ps.executeUpdate();
+            ps.close();
+            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
         }
+    }
+    public boolean deleteAllByUser(UtentiRegistrati u)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = 
+                      "delete from post "
+                    + "where autore = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 }

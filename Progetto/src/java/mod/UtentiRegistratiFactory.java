@@ -163,4 +163,22 @@ public class UtentiRegistratiFactory {
         }
         return l;
     }
+    public boolean deleteUser(UtentiRegistrati u)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            String query = 
+                      "delete from utenti "
+                    + "where id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return true;
+    }
 }

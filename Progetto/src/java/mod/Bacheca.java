@@ -46,7 +46,7 @@ public class Bacheca extends HttpServlet {
             }
             else
             {
-                in = session.getAttribute("user"); //utente loggato: chi è
+                in = session.getAttribute("user"); //utente loggato: chi è (riutilizzo della variabile in)
                 request.setAttribute("negato",false);
                 //lista utenti e gruppi presenti nel sistema
                 List<UtentiRegistrati> lu = UtentiRegistratiFactory.getInstance().getUserList();
@@ -62,8 +62,8 @@ public class Bacheca extends HttpServlet {
                 if(vg != null)
                 {
                     //cercare il gruppo corrispondente e mostrare i post
-                    String n = vg.toString();
-                    g = GruppiFactory.getInstance().getGroupByName(n);
+                    int n = Integer.parseInt(vg.toString());
+                    g = GruppiFactory.getInstance().getGroupById(n);
                     if(g != null)
                     {
                         request.setAttribute("x", g);
@@ -77,8 +77,8 @@ public class Bacheca extends HttpServlet {
                 {
                     //f sta per voglio visualizzare la bacheca di un utente (corrente o presente nel sistema)
                     request.setAttribute("f",true);
-                    String n = vb.toString();
-                    u = UtentiRegistratiFactory.getInstance().getUserByName(n);
+                    int n = Integer.parseInt(vb.toString());
+                    u = UtentiRegistratiFactory.getInstance().getUserById(n);
                     request.setAttribute("x", u); //mi serve nel jsp per decidere chi è l'autore dei post
                     List<Post> p = PostFactory.getInstance().getPostByDest(u);
                     if(p != null)
@@ -207,7 +207,7 @@ public class Bacheca extends HttpServlet {
         {
             //accesso negato
             request.setAttribute("negato",true);
-            request.getRequestDispatcher("profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("bacheca.jsp").forward(request, response);
         }
     }
 

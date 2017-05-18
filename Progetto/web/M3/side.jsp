@@ -12,7 +12,7 @@
                     <div>
                         <ul>
                            <c:forEach var="el_utenti" items="${utenti}">
-                            <li><img src="${el_utenti.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.getNome()}">${el_utenti.getNome()}</a></li>
+                            <li><img src="${el_utenti.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.getId()}">${el_utenti.getNome()}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
@@ -22,7 +22,7 @@
                     <div>
                         <ul>
                             <c:forEach var="el_gruppi" items="${gruppi}">
-                                <li><img src="${el_gruppi.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_gruppo=${el_gruppi.getNome()}">${el_gruppi.getNome()}</a></li>
+                                <li><img src="${el_gruppi.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_gruppo=${el_gruppi.getId()}">${el_gruppi.getNome()}</a></li>
                             </c:forEach>
                         </ul>
                     </div>
