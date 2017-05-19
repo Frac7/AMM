@@ -41,7 +41,7 @@ public class GruppiFactory {
     {
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from gruppi " 
                     + "where id = ?";
@@ -76,7 +76,7 @@ public class GruppiFactory {
     {
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from gruppi " 
                     + "where nome = ?";
@@ -112,7 +112,7 @@ public class GruppiFactory {
         List<Gruppi> l = new ArrayList<>();
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from gruppi ";
             //prepared statement (validare sintassi sql con caratteri speciali)

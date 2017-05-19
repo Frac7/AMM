@@ -24,6 +24,19 @@ public class Login extends HttpServlet {
     private static final String JDBC_DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String DB_CLEAN_PATH = "../../web/WEB-INF/db/ammdb";
     private static final String DB_BUILD_PATH = "WEB-INF/db/ammdb";
+
+    @Override
+    public void init() {
+        String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
+        try {
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UtentiRegistratiFactory.getInstance().setConnectionString(dbConnection);
+        PostFactory.getInstance().setConnectionString(dbConnection);
+        GruppiFactory.getInstance().setConnectionString(dbConnection);
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,7 +48,7 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");        
         //se si è premuto su logout - parametro get quindi visibile su url
         if(request.getParameter("logout") != null)
         {
@@ -99,18 +112,6 @@ public class Login extends HttpServlet {
             }
         }
     }
-    @Override
-    public void init(){
-       String dbConnection = "jdbc:derby:" + this.getServletContext().getRealPath("/") + DB_BUILD_PATH;
-       try {
-           Class.forName(JDBC_DRIVER);
-       } catch (ClassNotFoundException ex) {
-           Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-       }
-       UtentiRegistratiFactory.getInstance().setConnectionString(dbConnection);
-       PostFactory.getInstance().setConnectionString(dbConnection);
-       GruppiFactory.getInstance().setConnectionString(dbConnection);
-   }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

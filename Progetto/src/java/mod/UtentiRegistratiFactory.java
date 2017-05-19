@@ -38,7 +38,7 @@ public class UtentiRegistratiFactory {
     {
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from utenti " 
                     + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
@@ -93,7 +93,7 @@ public class UtentiRegistratiFactory {
     {
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from utenti " 
                     + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
@@ -133,7 +133,7 @@ public class UtentiRegistratiFactory {
         List<UtentiRegistrati> l = new ArrayList<>();
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from utenti " 
                     + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id ";
@@ -166,7 +166,7 @@ public class UtentiRegistratiFactory {
     public boolean deleteUser(UtentiRegistrati u)
     {
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from utenti "
                     + "where id = ?";

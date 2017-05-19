@@ -36,7 +36,7 @@ public class PostFactory {
         UtentiRegistratiFactory u = UtentiRegistratiFactory.getInstance(); 
         try {
             //connessione al db
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from post " 
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
@@ -93,7 +93,7 @@ public class PostFactory {
     {
         List<Post> l = new ArrayList<Post>();
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
                     + "where autore = ?";
@@ -126,7 +126,7 @@ public class PostFactory {
     {
         List<Post> l = getPostByUser(u);
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
                     + "where destinatario = ?";
@@ -158,7 +158,7 @@ public class PostFactory {
     {
         List<Post> l = new ArrayList<Post>();
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
                     + "where gruppo = ?";
@@ -188,7 +188,7 @@ public class PostFactory {
     public void addNewPost(Post n)
     {
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "insert into post (id ,autore, contenuto, tipo, gruppo, destinatario, allegato) "
                     + "values (default, ? , ? , ?, ?, ?, ? )";
@@ -210,7 +210,7 @@ public class PostFactory {
     public boolean deleteAllByUser(UtentiRegistrati u)
     {
         try {
-            Connection c = DriverManager.getConnection(connectionString, "amm", "amm");
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from post "
                     + "where autore = ?";
