@@ -40,9 +40,8 @@ public class UtentiRegistratiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "select * from utenti " 
-                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
-                    + "where id = ?";
+            String query = "select * from utenti "
+                    + "where utenti.id = ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)
@@ -59,7 +58,7 @@ public class UtentiRegistratiFactory {
                 u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
-                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
                 ps.close();
                 c.close();
@@ -76,7 +75,7 @@ public class UtentiRegistratiFactory {
     
     private UtentiRegistrati.uType utentiTypeFromString(String type){
         
-        if(type.equals("ADMIN"))
+        if(type.equals("0"))
             return UtentiRegistrati.uType.ADMIN;
         else 
             return UtentiRegistrati.uType.USER;
@@ -96,8 +95,7 @@ public class UtentiRegistratiFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from utenti " 
-                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id "
-                    + "where nome = ?";
+                    + "where utenti.nome = ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)
@@ -114,7 +112,7 @@ public class UtentiRegistratiFactory {
                 u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
-                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
                 ps.close();
                 c.close();
@@ -135,24 +133,23 @@ public class UtentiRegistratiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "select * from utenti " 
-                    + "join tipologiaUtenti on utenti.tipo = tipologiaUtenti.id ";
+            String query = "select utenti.id, utenti.nome, utenti.urlpropic from utenti ";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //esecuzione query
             ResultSet rs = ps.executeQuery();
             //ciclare sui risultati
-            if (rs.next()) {
+            while (rs.next()) {
                 UtentiRegistrati u = new UtentiRegistrati();
                 //oggetto.metodo(nome colonna)
                 u.setId(rs.getInt("id"));
                 u.setNome(rs.getString("nome"));
-                u.setCognome(rs.getString("cognome"));
-                u.setPassword(rs.getString("password"));
+                //u.setCognome(rs.getString("cognome"));
+                //u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
-                u.setDataNascita(rs.getString("dataNascita"));
+                //u.setDataNascita(rs.getString("dataNascita"));
                 //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
-                u.setFraseBio(rs.getString("fraseBio"));
+                //u.setFraseBio(rs.getString("fraseBio"));
                 l.add(u);
             }
 
@@ -169,7 +166,7 @@ public class UtentiRegistratiFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from utenti "
-                    + "where id = ?";
+                    + "where utenti.id = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();

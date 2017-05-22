@@ -137,8 +137,8 @@
                     </c:if>
                     <label for="utente">
                         <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
-                        <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
-                        <c:if test="${f == true && el_post.getGruppo() != null}">${x.getNome()}: ${(el_post.getGruppo()).getNome()}</c:if>
+                        <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()}: ${el_post.getDestinatario().getNome()}</c:if> <%--nome utente bacheca utente--%>
+                        <c:if test="${f == true && el_post.getGruppo() != null}">${el_post.getAutore().getNome()}: ${(el_post.getGruppo()).getNome()}</c:if>
                         <c:if test="${f != true}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if>
                     </label>
                 </div>

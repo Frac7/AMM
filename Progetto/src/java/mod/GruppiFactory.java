@@ -44,7 +44,7 @@ public class GruppiFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from gruppi " 
-                    + "where id = ?";
+                    + "where gruppi.id = ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)
@@ -79,7 +79,7 @@ public class GruppiFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from gruppi " 
-                    + "where nome = ?";
+                    + "where gruppi.nome = ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)
@@ -120,7 +120,7 @@ public class GruppiFactory {
             //esecuzione query
             ResultSet rs = ps.executeQuery();
             //ciclare sui risultati
-            if (rs.next()) {
+            while (rs.next()) {
                 Gruppi g = new Gruppi();
                 //oggetto.metodo(nome colonna)
                 g.setId(rs.getInt("id"));

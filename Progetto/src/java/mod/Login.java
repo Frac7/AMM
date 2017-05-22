@@ -48,19 +48,28 @@ public class Login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");        
+        response.setContentType("text/html;charset=UTF-8");     
+        HttpSession session = request.getSession(false);
         //se si è premuto su logout - parametro get quindi visibile su url
         if(request.getParameter("logout") != null)
         {
-            HttpSession session = request.getSession(false);
             //invalidare la sessione
             if(request.getParameter("logout").equals("1"))
             {
                 session.invalidate();
+                session = request.getSession();
             }
         }
-        //creare/cercare la sessione
-        HttpSession session = request.getSession();
+        if(session.getAttribute("cancella") != null)
+        {
+            //invalidare la sessione
+            if(session.getAttribute("cancella").equals(true))
+            {
+                session.invalidate();
+                session = request.getSession();
+                request.getRequestDispatcher("login.jsp").forward(request, response);
+            }
+        }
         //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");
@@ -83,6 +92,10 @@ public class Login extends HttpServlet {
                     session.setAttribute("in",true);
                     session.setAttribute("user",u); //chi è utente loggato
                     session.setAttribute("x",u); //utente del quale visualizzo la bacheca (dopo login si visualizza la bacheca dell'utente loggato)
+                    List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList();
+                    session.setAttribute("utenti", l);
+                    List<Gruppi> g = GruppiFactory.getInstance().getGroupList();
+                    session.setAttribute("gruppi", g);
                     //se mancano dati
                     if(u.getNome() == null || u.getUrlProPic() == null || u.getCognome() == null || u.getFraseBio() == null)
                         //si visualizza il profilo

@@ -40,7 +40,7 @@ public class PostFactory {
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
             String query = "select * from post " 
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
-                    + "where id = ?";
+                    + "where post.id = ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)
@@ -96,7 +96,8 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
-                    + "where autore = ?";
+                    + "where post.autore = ? "
+                    + "and post.destinatario is null";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ResultSet rs = ps.executeQuery();
@@ -104,8 +105,7 @@ public class PostFactory {
                 Post p = new Post();
                 p.setId(rs.getInt("id"));
                 p.setContenuto(rs.getString("contenuto"));
-                p.setContenuto("ciao");
-                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setTipologia(this.postTypeFromString(rs.getString("nome")));
                 p.setAutore(u);
                 p.setAllegato(rs.getString("allegato"));
                 p.setGruppo(GruppiFactory.getInstance().getGroupById(rs.getInt("gruppo")));
@@ -129,7 +129,7 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
-                    + "where destinatario = ?";
+                    + "where post.destinatario = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ResultSet rs = ps.executeQuery();
@@ -137,7 +137,7 @@ public class PostFactory {
                 Post p = new Post();
                 p.setId(rs.getInt("id"));
                 p.setContenuto(rs.getString("contenuto"));
-                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setTipologia(this.postTypeFromString(rs.getString("nome")));
                 p.setDestinatario(u);
                 p.setAutore(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("autore")));
                 p.setAllegato(rs.getString("allegato"));
@@ -161,7 +161,7 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
-                    + "where gruppo = ?";
+                    + "where post.gruppo = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, g.getId());
             ResultSet rs = ps.executeQuery();
@@ -169,7 +169,7 @@ public class PostFactory {
                 Post p = new Post();
                 p.setId(rs.getInt("id"));
                 p.setContenuto(rs.getString("contenuto"));
-                p.setTipologia(this.postTypeFromString(rs.getString("name")));
+                p.setTipologia(this.postTypeFromString(rs.getString("nome")));
                 p.setDestinatario(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("destinatario")));
                 p.setAutore(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("autore")));
                 p.setAllegato(rs.getString("allegato"));
@@ -194,11 +194,23 @@ public class PostFactory {
                     + "values (default, ? , ? , ?, ?, ?, ? )";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, n.getAutore().getId());
-            ps.setString(2, n.getContenuto());
+            if(n.getContenuto() != null)
+                ps.setString(2, n.getContenuto());
+            else
+                ps.setString(2, null);
             ps.setInt(3, this.postTypeFromEnum(n.getTipologia()));
-            ps.setInt(4, n.getGruppo().getId());
-            ps.setInt(5, n.getDestinatario().getId());
-            ps.setString(2, n.getAllegato());
+            if(n.getGruppo() != null)
+                ps.setInt(4, n.getGruppo().getId());
+            else
+                ps.setString(4, null);
+            if(n.getDestinatario() != null)
+                ps.setInt(5, n.getDestinatario().getId());
+            else
+                ps.setString(5, null);
+            if(n.getAllegato() != null)
+                ps.setString(6, n.getAllegato());
+            else
+                ps.setString(6, null);
             ps.executeUpdate();
             ps.close();
             c.close();
@@ -213,7 +225,7 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from post "
-                    + "where autore = ?";
+                    + "where post.autore = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();

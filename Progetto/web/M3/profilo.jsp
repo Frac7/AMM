@@ -56,7 +56,7 @@
         <c:if test="${erroredati == null}">
         <div id="info">
             <div>
-                <img src="${user.getUrlProPic()}" alt="utente" id="utente">
+                <img src="${user.getUrlProPic()}" alt="utente" id="utente" class="proPic">
             </div>
             <form action="" method="post">
                 <div>

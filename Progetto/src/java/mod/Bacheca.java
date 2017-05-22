@@ -48,11 +48,6 @@ public class Bacheca extends HttpServlet {
             {
                 in = session.getAttribute("user"); //utente loggato: chi è (riutilizzo della variabile in)
                 request.setAttribute("negato",false);
-                //lista utenti e gruppi presenti nel sistema
-                List<UtentiRegistrati> lu = UtentiRegistratiFactory.getInstance().getUserList();
-                session.setAttribute("utenti", lu);
-                List<Gruppi> lg = GruppiFactory.getInstance().getGroupList();
-                session.setAttribute("gruppi", lg);
                 //raccolta parametri get: visualizza bacheca oppure visualizza gruppo?
                 Object vb = request.getParameter("visualizza_bacheca"); //utente del quale si vuole visualizzare la bacheca
                 Object vg = request.getParameter("visualizza_gruppo");
@@ -178,11 +173,11 @@ public class Bacheca extends HttpServlet {
                             //creare nuovo post
                             Post n = new Post();
                             n.setAutore((UtentiRegistrati)session.getAttribute("user"));
-                            if(vb != null) //post su bacheca altrui
-                                n.setDestinatario(UtentiRegistratiFactory.getInstance().getUserByName(vb.toString()));
-                            else //post su bacheca utente corrente
-                                n.setDestinatario((UtentiRegistrati)session.getAttribute("user"));
-                            if(vg != null) //post su gruppo
+                            if(vb != null && Integer.parseInt(vb.toString()) != ((UtentiRegistrati)session.getAttribute("user")).getId()) //post su bacheca altrui
+                                n.setDestinatario(UtentiRegistratiFactory.getInstance().getUserById(Integer.parseInt(vb.toString())));
+                            else if(vg == null)//post su bacheca utente corrente
+                                n.setDestinatario(null);
+                            else //if(vg != null) //post su gruppo
                                 n.setGruppo(GruppiFactory.getInstance().getGroupByName(vg.toString()));
                             n.setTipologia(tipo);
                             if(!testo.equals(""))
