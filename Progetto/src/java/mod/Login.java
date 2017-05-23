@@ -60,8 +60,6 @@ public class Login extends HttpServlet {
                 session = request.getSession();
             }
         }
-        if(session == null)
-            request.getRequestDispatcher("login.jsp").forward(request, response);
         //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");
