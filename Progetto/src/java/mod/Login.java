@@ -60,15 +60,6 @@ public class Login extends HttpServlet {
                 session = request.getSession();
             }
         }
-        if(request.getAttribute("cancella") != null)
-        {
-            //invalidare la sessione
-            if(request.getParameter("cancella").equals("1"))
-            {
-                session.invalidate();
-                session = request.getSession();
-            }
-        }
         //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");

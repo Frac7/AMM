@@ -57,7 +57,8 @@ public class Profilo extends HttpServlet {
                         if(PostFactory.getInstance().deleteAllByUser(u) == true)
                             if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
                             {
-                                request.setAttribute("cancella",1);
+                                session.invalidate();
+                                session = request.getSession();
                                 request.getRequestDispatcher("login.jsp").forward(request, response);
                             }
                 }

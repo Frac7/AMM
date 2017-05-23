@@ -217,6 +217,9 @@ div#post div#insPost, div#post div#insPost div{
     width: 49%;
     display: inline-block;
 }
+.cpost{
+    width: 100%;
+}
 div#conferma{
     margin-top: 0.9%;
     width: 84%;

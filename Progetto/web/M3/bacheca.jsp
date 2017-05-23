@@ -92,8 +92,7 @@
                         <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}"/>
                         </c:if>
                     </div>
-                    <button class = "post" type ='submit' name="conferma" value=true>Confermare</button>
-                    <button class = "post" type ="submit" name="conferma" value=false>Annullare</button>
+                    <button class = "cpost" type ='submit' name="conferma" value=true>Confermare</button>
                 </c:if>
                 <c:if test="${conferma == true}">
                     <h2>Hai scritto sulla bacheca di ${x.getNome()}</h2>
