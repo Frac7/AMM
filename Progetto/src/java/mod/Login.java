@@ -60,16 +60,8 @@ public class Login extends HttpServlet {
                 session = request.getSession();
             }
         }
-        if(session.getAttribute("cancella") != null)
-        {
-            //invalidare la sessione
-            if(session.getAttribute("cancella").equals(true))
-            {
-                session.invalidate();
-                session = request.getSession();
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-            }
-        }
+        if(session == null)
+            request.getRequestDispatcher("login.jsp").forward(request, response);
         //parametri della richiesta (dopo aver premuto login)
         String utente = request.getParameter("user");
         String password = request.getParameter("password");

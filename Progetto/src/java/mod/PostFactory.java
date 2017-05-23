@@ -191,7 +191,7 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "insert into post (id ,autore, contenuto, tipo, gruppo, destinatario, allegato) "
-                    + "values (default, ? , ? , ?, ?, ?, ? )";
+                    + "values (default, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, n.getAutore().getId());
             if(n.getContenuto() != null)
@@ -211,9 +211,7 @@ public class PostFactory {
                 ps.setString(6, n.getAllegato());
             else
                 ps.setString(6, null);
-            ps.executeUpdate();
             ps.close();
-            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -230,7 +228,6 @@ public class PostFactory {
             ps.setInt(1, u.getId());
             ps.executeUpdate();
             ps.close();
-            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
