@@ -160,13 +160,13 @@ public class UtentiRegistratiFactory {
         }
         return l;
     }
-    public boolean deleteUser(UtentiRegistrati u)
+    private boolean delete(UtentiRegistrati u)
     {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
-                      "delete from utenti "
-                    + "where utenti.id = ?";
+                      "delete from gruppi "
+                    + "where gruppi.founder = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
@@ -176,6 +176,57 @@ public class UtentiRegistratiFactory {
         catch(SQLException e){
             e.printStackTrace();
         }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      "delete from utenti_gruppi "
+                    + "where utenti_gruppi.id_u = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      "delete from utenti_utenti "
+                    + "where utenti_utenti.id_ua = ? or utenti_utenti.id_ub = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.setInt(2, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         return true;
+    }
+    public boolean deleteUser(UtentiRegistrati u)
+    {
+        if(delete(u) == true)
+        {
+            try {
+                Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+                String query = 
+                          "delete from utenti "
+                        + "where utenti.id = ?";
+                PreparedStatement ps = c.prepareStatement(query);
+                ps.setInt(1, u.getId());
+                ps.executeUpdate();
+                ps.close();
+                c.close();
+            }
+            catch(SQLException e){
+                e.printStackTrace();
+            }
+            return true;
+        }
+        return false;
     }
 }

@@ -225,9 +225,10 @@ public class PostFactory {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from post "
-                    + "where post.autore = ?";
+                    + "where post.autore = ? or post.destinatario = ? ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
+            ps.setInt(2, u.getId());
             ps.executeUpdate();
             ps.close();
             c.close();
