@@ -144,7 +144,12 @@ public class UtentiRegistratiFactory {
                 //oggetto.metodo(nome colonna)
                 u.setId(rs.getInt("id"));
                 u.setNome(rs.getString("nome"));
+                //u.setCognome(rs.getString("cognome"));
+                //u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
+                //u.setDataNascita(rs.getString("dataNascita"));
+                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                //u.setFraseBio(rs.getString("fraseBio"));
                 l.add(u);
             }
 
@@ -166,6 +171,7 @@ public class UtentiRegistratiFactory {
             ps.setInt(1, u.getId());
             ps.executeUpdate();
             ps.close();
+            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();

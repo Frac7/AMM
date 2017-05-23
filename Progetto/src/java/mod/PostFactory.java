@@ -212,6 +212,7 @@ public class PostFactory {
             else
                 ps.setString(6, null);
             ps.close();
+            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -228,6 +229,7 @@ public class PostFactory {
             ps.setInt(1, u.getId());
             ps.executeUpdate();
             ps.close();
+            c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
