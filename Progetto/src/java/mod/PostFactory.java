@@ -211,6 +211,7 @@ public class PostFactory {
                 ps.setString(6, n.getAllegato());
             else
                 ps.setString(6, null);
+            ps.executeUpdate();
             ps.close();
             c.close();
         }
