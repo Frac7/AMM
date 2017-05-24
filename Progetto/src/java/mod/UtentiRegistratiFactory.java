@@ -165,8 +165,8 @@ public class UtentiRegistratiFactory {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
-                      "delete from gruppi "
-                    + "where gruppi.founder = ?";
+                      "delete from utenti_gruppi "
+                    + "where utenti_gruppi.id_u = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
@@ -179,8 +179,8 @@ public class UtentiRegistratiFactory {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
-                      "delete from utenti_gruppi "
-                    + "where utenti_gruppi.id_u = ?";
+                      "delete from gruppi "
+                    + "where gruppi.founder = ?";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();

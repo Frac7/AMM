@@ -236,6 +236,21 @@ public class PostFactory {
         catch(SQLException e){
             e.printStackTrace();
         }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      "delete from post "
+                    + "join gruppi on post.gruppo = gruppi.id "
+                    + "where gruppi.founder = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
         return true;
     }
 }
