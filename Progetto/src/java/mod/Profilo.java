@@ -57,9 +57,7 @@ public class Profilo extends HttpServlet {
                         if(PostFactory.getInstance().deleteAllByUser(u) == true)
                             if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
                             {
-                                session.invalidate();
-                                session = request.getSession();
-                                request.getRequestDispatcher("login.jsp").forward(request, response);
+                                request.getRequestDispatcher("login.html?logout=1").forward(request, response);
                             }
                 }
                 String nome = request.getParameter("nome"); //richiesta parametri per eventuale modifica profilo
