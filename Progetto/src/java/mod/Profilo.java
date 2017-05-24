@@ -59,7 +59,7 @@ public class Profilo extends HttpServlet {
                             {
                                 session.invalidate();
                                 session = request.getSession();
-                                request.getRequestDispatcher("descrizione.jsp").forward(request, response);
+                                request.getRequestDispatcher("descrizione.html").forward(request, response);
                             }
                 }
                 String nome = request.getParameter("nome"); //richiesta parametri per eventuale modifica profilo
