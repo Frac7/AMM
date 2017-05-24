@@ -348,3 +348,34 @@ del social network */
 h1#nb:before{
     content: url("img/logom.png");
 }
+#new:before{
+    content: url("img/new.png");
+    margin-right: 1%;
+    margin-left: -4.5%;
+}
+label[for="username"]:before{
+    content: url("img/o.png");
+    margin: 1%;
+}
+div#dati label[for="password"]:before{
+    content: url("img/k.png");
+    margin: 1%;
+}
+div#insPost label[for="stato"]:before{
+    content: url("img/tt.png");
+    margin: 1%;
+}
+div#insPost label[for="link"]:before{
+    content: url("img/graff.png");
+    margin: 1%;
+}
+div#insPost p strong.omino:before{
+    content: url("img/omino.png");
+    margin-right: 1%;
+    margin-left: -6.5%;
+}
+div#insPost p strong.msg:before{
+    content: url("img/msg.png");
+    margin-right: 1%;
+    margin-left: -6.5%;
+}

@@ -39,11 +39,11 @@
                 <p>Dati inseriti correttamente!</p>
             </div>
             <div>
-                <p class="dati"><strong>Nome:</strong> ${user.getNome()}</p>
-                <p class="dati"><strong>Cognome:</strong> ${user.getCognome()}</p>
-                <p class="dati"><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
-                <p class="dati"><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="proPic,utente" id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
-                <p class="dati"><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
+                <p class="dati" <c:if test="${nome == true}">id = "new" </c:if>><strong>Nome:</strong> ${user.getNome()}</p>
+                <p class="dati" <c:if test="${cognome == true}">id = "new" </c:if>><strong>Cognome:</strong> ${user.getCognome()}</p>
+                <p class="dati" <c:if test="${compleanno == true}">id = "new" </c:if>><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
+                <p class="dati" <c:if test="${foto == true}">id = "new" </c:if>><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="proPic,utente" id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
+                <p class="dati" <c:if test="${stato == true}">id = "new" </c:if>><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
             </div>
         </div>
         </c:if>

@@ -74,40 +74,50 @@ public class Profilo extends HttpServlet {
                 {
                     if(!nome.equals(""))
                     {
+                        UtentiRegistratiFactory.getInstance().updateNome(nome, u.getId());
                         u.setNome(nome);
                         request.setAttribute("erroredati", false);
+                        request.setAttribute("nome", true);
                     }
                 }
                 if(cognome != null)
                 {
                     if(!cognome.equals(""))
                     {
+                        UtentiRegistratiFactory.getInstance().updateCognome(cognome, u.getId());
                         u.setCognome(cognome);
                         request.setAttribute("erroredati", false);
+                        request.setAttribute("cognome", true);
                     }
                 }
                 if(stato != null)
                 {
                     if(!stato.equals(""))
                     {
+                        UtentiRegistratiFactory.getInstance().updateFraseBio(stato, u.getId());
                         u.setFraseBio(stato);
                         request.setAttribute("erroredati", false);
+                        request.setAttribute("stato", true);
                     }
                 }
                 if(compleanno != null)
                 {
                     if(!compleanno.equals(""))
                     {
+                        UtentiRegistratiFactory.getInstance().updateDataNascita(compleanno, u.getId());
                         u.setDataNascita(compleanno);
                         request.setAttribute("erroredati", false);
+                        request.setAttribute("compleanno", true);
                     }
                 }
                 if(foto != null)
                 {
                     if(!foto.equals(""))
                     {
+                        UtentiRegistratiFactory.getInstance().updateUrlProPic(foto, u.getId());
                         u.setUrlProPic(foto);
                         request.setAttribute("erroredati", false);
+                        request.setAttribute("foto", true);
                     }
                 }
                 if(password != null)
@@ -118,6 +128,7 @@ public class Profilo extends HttpServlet {
                         {
                             if (!(password.equals("")))
                             {
+                                UtentiRegistratiFactory.getInstance().updatePassword(password, u.getId());
                                 u.setPassword(password);
                                 request.setAttribute("erroredati", false);
                             }

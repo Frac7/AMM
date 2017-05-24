@@ -68,12 +68,12 @@
                 </c:if>
                 <c:if test="${inspost == true}">
                     <h2>Riepilogo Post</h2>
-                    <p><strong>Autore:</strong> ${(n.getAutore()).getNome()}</p>
-                    <p><strong>Destinatario:</strong>
+                    <p><strong class="omino">Autore:</strong> ${(n.getAutore()).getNome()}</p>
+                    <p><strong class="omino">Destinatario:</strong>
                         <c:if test="${f == true}"> ${(n.getDestinatario()).getNome()}</c:if>
                         <c:if test="${f != true}"> ${(n.getGruppo()).getNome()}</c:if>
                     </p>
-                    <p><strong>Messaggio:</strong> 
+                    <p><strong class="msg">Messaggio:</strong> 
                         <c:if test="${multimedia == 1}">
                             <p>${n.getContenuto()}</p><img class = "postpic" alt="Post" src="${n.getAllegato()}">
                         </c:if>

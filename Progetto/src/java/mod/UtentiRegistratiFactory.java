@@ -229,4 +229,100 @@ public class UtentiRegistratiFactory {
         }
         return false;
     }
+    public void updateNome(String nome, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET nome = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, nome);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateCognome(String cognome, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET cognome = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, cognome);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateFraseBio(String frase, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET fraseBio = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, frase);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateDataNascita(String data, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET dataNascita = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, data);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updateUrlProPic(String url, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET urlProPic = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, url);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public void updatePassword(String psw, int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "UPDATE utenti SET password = ? WHERE id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, psw);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }
