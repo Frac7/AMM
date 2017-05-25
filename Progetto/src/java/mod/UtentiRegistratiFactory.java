@@ -178,6 +178,18 @@ public class UtentiRegistratiFactory {
         }
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = "DELETE FROM utenti_gruppi WHERE utenti_gruppi.id_g IN (SELECT gruppi.id FROM gruppi where founder = ?)";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       "delete from gruppi "
                     + "where gruppi.founder = ?";

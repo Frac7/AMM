@@ -238,10 +238,7 @@ public class PostFactory {
         }
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
-            String query = 
-                      "delete from post "
-                    + "join gruppi on post.gruppo = gruppi.id "
-                    + "where gruppi.founder = ? ";
+            String query = "DELETE FROM post WHERE post.GRUPPO IN (SELECT gruppi.id FROM gruppi where founder = ?)";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
