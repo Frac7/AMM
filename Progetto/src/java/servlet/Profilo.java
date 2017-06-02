@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod;
+package servlet;
 
+import factory.PostFactory;
+import factory.UtentiRegistratiFactory;
+import entita.UtentiRegistrati;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -141,6 +144,9 @@ public class Profilo extends HttpServlet {
                     request.setAttribute("erroredati", true);
                 request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }
+            if(request.getAttribute("erroredati") != null)
+                if(request.getAttribute("erroredati").equals(false))
+                    session.setAttribute("utenti",UtentiRegistratiFactory.getInstance().getUserList());
         }
         else
         {

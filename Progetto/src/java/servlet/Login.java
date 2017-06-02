@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod;
+package servlet;
 
+import entita.Gruppi;
+import factory.PostFactory;
+import entita.Post;
+import factory.UtentiRegistratiFactory;
+import entita.UtentiRegistrati;
+import factory.GruppiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;

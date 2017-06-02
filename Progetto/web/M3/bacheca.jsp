@@ -21,6 +21,8 @@
         <meta name="keywords" content="nerbook social bacheca notizie">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
         <link rel="icon" href="img/favicon.png" type="image/png" />
+        <script src="../js/jquery-3.2.1.min.js"></script>
+        <script src="../js/filter.js"></script>
     </head>
     <body>
         <c:if test="${negato == false}">
@@ -33,15 +35,23 @@
         </header>
                 <jsp:include page="side.jsp"/>
         <div id="post">
-            <c:if test="${f == true && x.getFraseBio() != null}">
+            <c:if test="${f == true}">
             <div class="gr">
                 <div class="gr">
                     <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
-                    <label for="utente">${x.getNome()}: Frase personale</label>
+                    <label for="utente">${x.getNome()} ${x.getCognome()}: Frase personale</label>
                 </div>
                 <div class="gr">
                     <p>${x.getFraseBio()}</p>
                 </div>
+                <%-- aggiungere la condizione per già iscritto--%>
+                <c:if test="${user.getId() != x.getId()}">
+                <div class="gr">
+                    <form action="" method="get">
+                        <button class = "cancella" type ='submit' name="aggiungi" value=1>Aggiungi amico...</button>
+                    </form>
+                </div>
+                </c:if>
             </div>
             </c:if>
             <c:if test="${f != true}">
@@ -52,11 +62,26 @@
                 </div>
                 <div class="gr">
                     <p>${x.getDescrizione()}</p>
+                    <c:if test="${user.getTipUtente() == 'ADMIN' || x.getFounder().equals(user)}">
+                    <div class="gr">
+                        <form action="" method="get">
+                            <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}" />
+                            <button class = "cancella" type ='submit' name="cancella_g" value=${x.getId()}>Cancella questo gruppo...</button>
+                        </form>
+                    </div>
+                    </c:if> <%-- aggiungere la condizione per già iscritto--%>
+                    <c:if test="${user.getId() != x.getId()}">
+                    <div class="gr">
+                        <form action="" method="get">
+                            <button class = "cancella" type ='submit' name="iscriviti" value=1>Iscriviti a questo gruppo...</button>
+                        </form>
+                    </div>
+                    </c:if>
                 </div>
             </div>
             </c:if>
             <div id="insPost">
-            <form action="bacheca.html?visualizza_bacheca=${x.getId()}" method="get">
+            <form action="" method="get">
                 <div>
                     <h1>Nuovo post su questa bacheca</h1>
                 </div>
@@ -70,10 +95,11 @@
                     <h2>Riepilogo Post</h2>
                     <p><strong class="omino">Autore:</strong> ${(n.getAutore()).getNome()}</p>
                     <p><strong class="omino">Destinatario:</strong>
-                        <c:if test="${f == true}"> ${(n.getDestinatario()).getNome()}</c:if>
+                        <c:if test="${f == true}"> ${(n.getDestinatario()).getNome()} ${(n.getDestinatario()).getCognome()}</c:if>
                         <c:if test="${f != true}"> ${(n.getGruppo()).getNome()}</c:if>
                     </p>
-                    <p><strong class="msg">Messaggio:</strong> 
+                    <p>
+                        <strong class="msg">Messaggio:</strong> 
                         <c:if test="${multimedia == 1}">
                             <p>${n.getContenuto()}</p><img class = "postpic" alt="Post" src="${n.getAllegato()}">
                         </c:if>
@@ -81,9 +107,8 @@
                         <a href="${n.getAllegato()}">${n.getAllegato()}</a><p>${n.getContenuto()}</p>
                         </c:if> 
                         <c:if test="${multimedia != 2 && multimedia != 1}">
-                            ${n.getContenuto()}
+                        <p>${n.getContenuto()}</p>
                         </c:if> 
-                    </p>
                     <div>
                         <c:if test="${f == true}">
                         <input type="hidden" name = "visualizza_bacheca" value="${x.getId()}"/>
@@ -128,17 +153,12 @@
             <c:forEach var="el_post" items="${post}">
             <div>
                 <div>
-                    <c:if test="${f == true}">
-                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic">
-                    </c:if>
-                    <c:if test="${f != true}">
                         <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
-                    </c:if>
                     <label for="utente">
-                        <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()}</c:if> <%--nome utente bacheca utente--%>
-                        <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()}: ${el_post.getDestinatario().getNome()}</c:if> <%--nome utente bacheca utente--%>
-                        <c:if test="${f == true && el_post.getGruppo() != null}">${el_post.getAutore().getNome()}: ${(el_post.getGruppo()).getNome()}</c:if>
-                        <c:if test="${f != true}">${el_post.getAutore().getNome()}: ${x.getNome()}</c:if>
+                        <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()} ${x.getCognome()}</c:if>
+                        <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()} ${el_post.getAutore().getCognome()}: ${el_post.getDestinatario().getNome()} ${el_post.getDestinatario().getCognome()}</c:if>
+                        <c:if test="${f == true && el_post.getGruppo() != null}">${el_post.getAutore().getNome()} ${el_post.getAutore().getCognome()}: ${(el_post.getGruppo()).getNome()}</c:if>
+                        <c:if test="${f != true}">${el_post.getAutore().getNome()} ${el_post.getAutore().getCognome()}: ${x.getNome()}</c:if>
                     </label>
                 </div>
                 <c:if test="${el_post.getTipologia() == 'TEXT'}">
@@ -155,6 +175,19 @@
                 <div>
                     <a alt="URL" href="${el_post.getAllegato()}">${el_post.getAllegato()}</a><p>${el_post.getContenuto()}</p>
                 </div>
+                </c:if>
+                <c:if test="${user.getTipUtente() == 'ADMIN'}">
+                    <form action="" method="get">
+                    <div>
+                        <button class = "cancella" type ='submit' name="cancella_p" value=${el_post.getId()}>Inappropriato: cancella questo post...</button>
+                        <c:if test="${f == true}">
+                            <input type="hidden" name = "visualizza_bacheca" value="${x.getId()}"/>
+                        </c:if>
+                        <c:if test="${f != true}">
+                            <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}"/>
+                        </c:if>
+                    </div>
+                    </form>
                 </c:if>
             </div>
             </c:forEach>

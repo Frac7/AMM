@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod;
+package factory;
+import entita.UtentiRegistrati;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -34,6 +35,33 @@ public class UtentiRegistratiFactory {
     {
         
     }
+    public boolean aggiungi(int id1, int id2)
+    {
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "INSERT INTO utenti_utenti(id, id_ua, id_ub) VALUES (default, ?, ?);";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setInt(1, id1);
+            ps.setInt(2, id2);
+            //esecuzione query
+            int rs = ps.executeUpdate();
+            if(rs == 1)
+            {
+                ps.close();
+                c.close();
+                return true;
+            }
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
     public UtentiRegistrati getUserById(int id)
     {
         try {
@@ -58,7 +86,7 @@ public class UtentiRegistratiFactory {
                 u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
-                u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
                 ps.close();
                 c.close();
@@ -73,19 +101,19 @@ public class UtentiRegistratiFactory {
         return null;
     }
     
-    private UtentiRegistrati.uType utentiTypeFromString(String type){
+    private UtentiRegistrati.uType utentiTypeFromString(int type){
         
-        if(type.equals("0"))
+        if(type == 1)
             return UtentiRegistrati.uType.ADMIN;
         else 
             return UtentiRegistrati.uType.USER;
     }
     
     private int utentiTypeFromEnum(UtentiRegistrati.uType type){
-        if(type == UtentiRegistrati.uType.ADMIN)
-                return 0;
+        if(type.equals(UtentiRegistrati.uType.ADMIN))
+                return 1;
         else 
-            return 1;
+            return 2;
     }
    
     public UtentiRegistrati getUserByName(String n)
@@ -112,7 +140,7 @@ public class UtentiRegistratiFactory {
                 u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
-                u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
+                u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
                 ps.close();
                 c.close();
@@ -126,6 +154,45 @@ public class UtentiRegistratiFactory {
         }
         return null;
     }
+    public List getUserList(String nome)
+    {
+        List<UtentiRegistrati> l = new ArrayList<>();
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "select * from utenti where utenti.nome like '%?%'";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setString(1, nome);
+            //esecuzione query
+            ResultSet rs = ps.executeQuery();
+            //ciclare sui risultati
+            while (rs.next()) {
+                UtentiRegistrati u = new UtentiRegistrati();
+                //oggetto.metodo(nome colonna)
+                u.setId(rs.getInt("id"));
+                if(rs.getString("nome") != null)
+                    u.setNome(rs.getString("nome"));
+                if(rs.getString("cognome") != null)
+                    u.setCognome(rs.getString("cognome"));
+                u.setPassword(rs.getString("password"));
+                u.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("dataNascita") != null)
+                    u.setDataNascita(rs.getString("dataNascita"));
+                u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
+                if(rs.getString("fraseBio") != null)
+                    u.setFraseBio(rs.getString("fraseBio"));
+                l.add(u);
+            }
+
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return l;
+    }
     public List getUserList()
     {
         List<UtentiRegistrati> l = new ArrayList<>();
@@ -133,7 +200,7 @@ public class UtentiRegistratiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "select utenti.id, utenti.nome, utenti.urlpropic from utenti ";
+            String query = "select * from utenti ";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //esecuzione query
@@ -143,13 +210,17 @@ public class UtentiRegistratiFactory {
                 UtentiRegistrati u = new UtentiRegistrati();
                 //oggetto.metodo(nome colonna)
                 u.setId(rs.getInt("id"));
-                u.setNome(rs.getString("nome"));
-                //u.setCognome(rs.getString("cognome"));
-                //u.setPassword(rs.getString("password"));
+                if(rs.getString("nome") != null)
+                    u.setNome(rs.getString("nome"));
+                if(rs.getString("cognome") != null)
+                    u.setCognome(rs.getString("cognome"));
+                u.setPassword(rs.getString("password"));
                 u.setUrlProPic(rs.getString("urlProPic"));
-                //u.setDataNascita(rs.getString("dataNascita"));
-                //u.setTipUtente(utentiTypeFromString(rs.getString("tipo")));
-                //u.setFraseBio(rs.getString("fraseBio"));
+                if(rs.getString("dataNascita") != null)
+                    u.setDataNascita(rs.getString("dataNascita"));
+                u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
+                if(rs.getString("fraseBio") != null)
+                    u.setFraseBio(rs.getString("fraseBio"));
                 l.add(u);
             }
 
@@ -165,8 +236,8 @@ public class UtentiRegistratiFactory {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
-                      "delete from utenti_gruppi "
-                    + "where utenti_gruppi.id_u = ?";
+                      " delete from utenti_gruppi "
+                    + "where utenti_gruppi.id_u = ? ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
@@ -178,21 +249,7 @@ public class UtentiRegistratiFactory {
         }
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
-            String query = "DELETE FROM utenti_gruppi WHERE utenti_gruppi.id_g IN (SELECT gruppi.id FROM gruppi where founder = ?)";
-            PreparedStatement ps = c.prepareStatement(query);
-            ps.setInt(1, u.getId());
-            ps.executeUpdate();
-            ps.close();
-            c.close();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
-        }
-        try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
-            String query = 
-                      "delete from gruppi "
-                    + "where gruppi.founder = ?";
+            String query = " DELETE FROM utenti_gruppi WHERE utenti_gruppi.id_g IN (SELECT gruppi.id FROM gruppi where founder = ?) ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
@@ -205,7 +262,21 @@ public class UtentiRegistratiFactory {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
-                      "delete from utenti_utenti "
+                      " delete from gruppi "
+                    + "where gruppi.founder = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      " delete from utenti_utenti "
                     + "where utenti_utenti.id_ua = ? or utenti_utenti.id_ub = ? ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
@@ -226,8 +297,8 @@ public class UtentiRegistratiFactory {
             try {
                 Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
                 String query = 
-                          "delete from utenti "
-                        + "where utenti.id = ?";
+                          " delete from utenti "
+                        + "where utenti.id = ? ";
                 PreparedStatement ps = c.prepareStatement(query);
                 ps.setInt(1, u.getId());
                 ps.executeUpdate();

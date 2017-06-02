@@ -92,10 +92,10 @@ div#post div#insPost label, div#post div#insPost p, div#post div#insPost a{
     color: seashell;
 }
 div#info{
-    margin: 0.7%;
+    margin: 0.8%;
     background-color: slategray; 
     text-align: left;
-    width: 84%;
+    width: 79%;
     margin-right: 0%;
     border-radius: 5px;
 }
@@ -103,14 +103,17 @@ div#info img{
     float: left;
     margin: 1%;
 }
-div#persone, div#gruppi{
+div#persone, div#gruppi, div#ricerca{
     margin-top: 1%;
     margin-bottom: 5%;
     margin-left: 0%;
     margin-right: 0%;
-    background-color: rgb(77, 83, 95);
+    background-color: #666666;
     border-radius: 5px;
     padding: 5%;
+}
+div#ricerca textArea{
+    width: 97%;
 }
 label{
     font-weight: bold;
@@ -174,22 +177,21 @@ div#post div#insPost, div#post div#insPost div{
     background-color: rgb(77, 83, 95);
 }
 /*task 6*/
-@media only screen and (min-width: 1024.1px) /* da 1024 in poi: layout a due colonne*/
+@media only screen and (min-width: 1024px)
 {
     h1#nb, a{
         display: inline-block;
     }
     div#post{
-        width: 85%;
+        width: 80%;
         float: right;
     }
     div#info{
             float: right;
-            margin-top: 0.9%;
         }
     div#barraL{ /*sidebar*/
-        width: 15%;
-        margin-top: 0.7%;
+        width: 20%;
+        margin-top: 0.5%;
         float: left;
     }
     div#insPost{
@@ -197,8 +199,8 @@ div#post div#insPost, div#post div#insPost div{
         margin-top: 0.7%;
     }
     div#insPost > form{
-        padding-right: 30%;
-        padding-left: 30%;
+        padding-right: 20%;
+        padding-left: 20%;
         padding-bottom: 1%;
     }
     div.tipou{
@@ -245,7 +247,7 @@ div#conferma div{
 div#errati{
     padding-bottom: 5%;
 }
-@media only screen and (min-width: 0px) and (max-width: 1024px) /*da 0 a 480, da 480 a 1024 una sola colonna*/
+@media only screen and (min-width: 0px) and (max-width: 1024px)
 {
     div#conferma{
         margin: auto;
@@ -276,7 +278,7 @@ div#errati{
         background-color: rgb(77, 83, 95);
         border-radius: 5px;
     }
-    div#persone, div#gruppi{
+    div#persone, div#gruppi, div#ricerca{
         margin-bottom: 1%;
         padding: 0.5%;
         width: 30%;
@@ -338,6 +340,10 @@ div#info button#agg{
     width: 45%;
     display: inline-block;
     float: left;
+}
+.cancella{
+    width: 30%;
+    margin: auto;
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative

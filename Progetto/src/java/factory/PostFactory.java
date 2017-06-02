@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod;
+package factory;
+import entita.Gruppi;
+import entita.Post;
+import entita.UtentiRegistrati;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -97,7 +100,8 @@ public class PostFactory {
             String query = "select * from post "
                     + "join tipologiaPost on post.tipo = tipologiaPost.id "
                     + "where post.autore = ? "
-                    + "and post.destinatario is null";
+                    + "and post.destinatario is null "
+                    + "and post.gruppo is null";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ResultSet rs = ps.executeQuery();
@@ -249,5 +253,25 @@ public class PostFactory {
             e.printStackTrace();
         }
         return true;
+    }
+    public boolean cancella(int id)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      "delete from post "
+                    + "where post.id = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            int rs = ps.executeUpdate();
+            ps.close();
+            c.close();
+            if(rs == 1)
+                return true;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }

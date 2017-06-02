@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mod;
+package factory;
+import entita.Gruppi;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -36,6 +37,81 @@ public class GruppiFactory {
     private GruppiFactory()
     {
         
+    }
+    public boolean cancella(int id)
+    {
+        //cancellazione post
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      " delete from post "
+                    + "where post.gruppo = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        //cancellazione da tabella relazione con utenti
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      " delete from utenti_gruppi "
+                    + "where utenti_gruppi.id_g = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+                    e.printStackTrace();
+                }
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                          " delete from gruppi "
+                        + "where gruppi.id = ? ";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            c.close();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return true;
+    }
+    public boolean iscrivi(int id_u, int id_g)
+    {
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "INSERT INTO utenti_gruppi(id, id_u, id_ug) VALUES (default, ?, ?);";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //associazione carattere speciale con id (ricerca post per id)
+            ps.setInt(1, id_u);
+            ps.setInt(2, id_g);
+            //esecuzione query
+            int rs = ps.executeUpdate();
+            if(rs == 1)
+            {
+                ps.close();
+                c.close();
+                return true;
+            }
+            ps.close();
+            c.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
     public Gruppi getGroupById(int id)
     {

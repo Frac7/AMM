@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>mod.Login</servlet-class>
+        <servlet-class>servlet.Login</servlet-class>
         <init-param>
             <param-name>loadOnStartup</param-name>
             <param-value>0</param-value>
@@ -10,15 +10,15 @@
     </servlet>
     <servlet>
         <servlet-name>Profilo</servlet-name>
-        <servlet-class>mod.Profilo</servlet-class>
+        <servlet-class>servlet.Profilo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Bacheca</servlet-name>
-        <servlet-class>mod.Bacheca</servlet-class>
+        <servlet-class>servlet.Bacheca</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Cancella</servlet-name>
-        <servlet-class>mod.Cancella</servlet-class>
+        <servlet-name>Filter</servlet-name>
+        <servlet-class>servlet.Filter</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
@@ -33,8 +33,8 @@
         <url-pattern>/M3/bacheca.html</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Cancella</servlet-name>
-        <url-pattern>/profilo.html</url-pattern>
+        <servlet-name>Filter</servlet-name>
+        <url-pattern>/js/filter.js</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
