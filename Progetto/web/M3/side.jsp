@@ -9,7 +9,7 @@
 <div id='barraL'>
                 <div id="ricerca">
                     <h1>Ricerca</h1>
-                    <textarea type="text" class="ricerca_testo" name="q" rows="1" placeholder="Cerca Amici Nerd..."></textarea>
+                    <input type="text" class="ricerca_testo" name="q" placeholder="Cerca Amici Nerd..."/>
                     <button class="ricerca_bottone">Cerca</button>
                 </div>
                 <div id="persone">

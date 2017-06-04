@@ -112,8 +112,8 @@ div#persone, div#gruppi, div#ricerca{
     border-radius: 5px;
     padding: 5%;
 }
-div#ricerca textArea{
-    width: 97%;
+div#ricerca input{
+    width: 100%;
 }
 label{
     font-weight: bold;
@@ -224,7 +224,7 @@ div#post div#insPost, div#post div#insPost div{
 }
 div#conferma{
     margin-top: 0.9%;
-    width: 84%;
+    width: 80%;
     background-color: rgb(77, 83, 95);
     border-radius: 5px;
 }

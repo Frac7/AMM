@@ -30,29 +30,26 @@ function stateSuccess(data){
         $(lista).append(crea(data[instance]));
     }
 }
-function stateFailure(data, state){
+function stateFailure(state){
     console.log(state);
 }
 
-$(document).ready(
-        function(){
-            //click sul bottone con classe ricerca
-            $(".ricerca_bottone").click(
-                    function(){
+$(document).ready(function(){
+            //click sul bottone con classe ricerca (cambiare con onkeypress)
+            $(".ricerca_bottone").click(function(){
                         var a = $(".ricerca_testo")[0].value;
-                        $.ajax(
-                                {
-                                    url: "Filter", //url servlet
+                        $.ajax({
+                                    url: "filter.json",
                                     data:{
                                         cmd: "search",
                                         q: a
                                     },
                                     dataType:"json",
-                                    success: function(data, state){
+                                    success: function(data){
                                         stateSuccess(data);
                                     },
-                                    error: function(data, state){
-                                        stateFailure(data, state);
+                                    error: function(state){
+                                        stateFailure(state);
                                     }
                                 });
                     });
