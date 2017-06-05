@@ -10,12 +10,12 @@
 <json:array>
     <c:forEach var="el_utenti" items="${utenti}">
         <json:object>
-            <json:property name="nome" value="${el_utenti.getNome()}"/>
-            <json:property name="cognome" value="${el_utenti.getCognome()}"/>
-            <json:property name="id" value="${el_utenti.getId()}"/>
-            <json:property name="dataNascita" value="${el_utenti.getDataNascita()}"/>
-            <json:property name="fraseBio" value="${el_utenti.getFraseBio()}"/>
-            <json:property name="urlProPic" value="${el_utenti.getUrlProPic()}"/>
+            <json:property name="nome" value="${el_utenti.nome}"/>
+            <json:property name="cognome" value="${el_utenti.cognome}"/>
+            <json:property name="id" value="${el_utenti.id}"/>
+            <json:property name="dataNascita" value="${el_utenti.dataNascita}"/>
+            <json:property name="fraseBio" value="${el_utenti.fraseBio}"/>
+            <json:property name="urlProPic" value="${el_utenti.urlProPic}"/>
         </json:object>
     </c:forEach>
 </json:array>

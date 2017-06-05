@@ -35,7 +35,6 @@ function stateFailure(state){
 }
 
 $(document).ready(function(){
-            //click sul bottone con classe ricerca (cambiare con onkeypress)
             $(".ricerca_bottone").click(function(){
                         var a = $(".ricerca_testo")[0].value;
                         $.ajax({
