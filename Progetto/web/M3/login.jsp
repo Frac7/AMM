@@ -23,14 +23,13 @@
                 <a href="profilo.html">Profilo</a>
                 <a href="bacheca.html">Bacheca</a>
             </nav>
-            <img id="bn" alt="Logo" src="img/logo.png">
             <h1 id="Ltitle">Login NerdBook</h1>
         </header>
         <div id="dati">
             <form action="" method="post">
                 <c:if test="${errore == true}">
                 <div id="errati">
-                     <h2>Errore autenticazione</h2>
+                     <h2 class="errore">Errore autenticazione</h2>
                      <p>Username o password errati.</p>
                 </div>
                 </c:if>

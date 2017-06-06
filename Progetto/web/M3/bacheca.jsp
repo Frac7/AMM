@@ -48,7 +48,7 @@
                 <c:if test="${user.getId() != x.getId()}">
                 <div class="gr">
                     <form action="" method="get">
-                        <button class = "cancella" type ='submit' name="aggiungi" value=1>Aggiungi amico...</button>
+                        <button class = "aggiungi" type ='submit' name="aggiungi" value=1>Aggiungi amico...</button>
                     </form>
                 </div>
                 </c:if>
@@ -73,7 +73,7 @@
                     <c:if test="${user.getId() != x.getId()}">
                     <div class="gr">
                         <form action="" method="get">
-                            <button class = "cancella" type ='submit' name="iscriviti" value=1>Iscriviti a questo gruppo...</button>
+                            <button class = "iscriviti" type ='submit' name="iscriviti" value=1>Iscriviti a questo gruppo...</button>
                         </form>
                     </div>
                     </c:if>
@@ -87,16 +87,17 @@
                 </div>
                 <c:if test="${erroretipo == true}">
                     <div id="errati">
-                        <h1>Errore inserimento post</h1>
+                        <h1 class="errore">Errore inserimento post</h1>
                         <p>È stato scelto un tipo di post che prevede l'allegato e la sua tipologia.</p>
                     </div>
                 </c:if>
                 <c:if test="${inspost == true}">
                     <h2>Riepilogo Post</h2>
-                    <p><strong class="omino">Autore:</strong> ${(n.getAutore()).getNome()}</p>
+                    <p><strong class="omino">Autore:</strong> ${(n.getAutore()).getNome()} ${(n.getAutore()).getCognome()}</p>
                     <p><strong class="omino">Destinatario:</strong>
                         <c:if test="${f == true}"> ${(n.getDestinatario()).getNome()} ${(n.getDestinatario()).getCognome()}</c:if>
                         <c:if test="${f != true}"> ${(n.getGruppo()).getNome()}</c:if>
+                        <c:if test="${(n.getDestinatario()) == null && f == true}"> Post sulla tua bacheca</c:if>
                     </p>
                     <p>
                         <strong class="msg">Messaggio:</strong> 
@@ -146,14 +147,13 @@
                     </c:if>
                 </div>
                 <button class="post" type="submit">Crea post</button>
-                <button class="post" type="reset">Pulisci campi</button>
             </form>
                 </c:if>
         </div>
             <c:forEach var="el_post" items="${post}">
             <div>
                 <div>
-                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
+                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${x.getNome()}" class="utente">
                     <label for="utente">
                         <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()} ${x.getCognome()}</c:if>
                         <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()} ${el_post.getAutore().getCognome()}: ${el_post.getDestinatario().getNome()} ${el_post.getDestinatario().getCognome()}</c:if>
@@ -194,8 +194,8 @@
         </div>
         </c:if>
         <c:if test="${negato == true}">
-            <h1>Accesso negato</h1>
-            <p>Non si disponde delle autorizzazioni necessarie per accedere alla
+            <h1 class="negato">Accesso negato</h1>
+            <p class="negato">Non si disponde delle autorizzazioni necessarie per accedere alla
                 pagina.</p>
         </c:if>
     </body>

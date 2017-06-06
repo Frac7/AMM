@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Login</servlet-name>
-        <servlet-class>servlet.Login</servlet-class>
+        <servlet-class>amm.nb.servlet.Login</servlet-class>
         <init-param>
             <param-name>loadOnStartup</param-name>
             <param-value>0</param-value>
@@ -10,15 +10,15 @@
     </servlet>
     <servlet>
         <servlet-name>Profilo</servlet-name>
-        <servlet-class>servlet.Profilo</servlet-class>
+        <servlet-class>amm.nb.servlet.Profilo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Bacheca</servlet-name>
-        <servlet-class>servlet.Bacheca</servlet-class>
+        <servlet-class>amm.nb.servlet.Bacheca</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Filter</servlet-name>
-        <servlet-class>servlet.Filter</servlet-class>
+        <servlet-class>amm.nb.servlet.Filter</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>

@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <c:if test="${c=='bacheca' || c=='profilo'}">
-    <h1 id="nb">${x.getNome()}: ${t}</h1>
+    <a href="" id="nb">NerdBook</a>
     <a href='descrizione.html'>Descrizione</a>
     <a href='login.html'>Login</a>
     <img src="${user.getUrlProPic()}" alt="utente" class="logout">

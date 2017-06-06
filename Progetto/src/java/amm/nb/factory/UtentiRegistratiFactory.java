@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package factory;
-import entita.UtentiRegistrati;
+package amm.nb.factory;
+import amm.nb.entita.UtentiRegistrati;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;

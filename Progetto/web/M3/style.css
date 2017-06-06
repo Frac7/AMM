@@ -1,349 +1,323 @@
-/*task 3*/
 body{
-    background-color: rgb(37, 43, 55);
-    font-family: "Consolas", sans-serif;
-    color: seashell;
-    margin: 1%;
-}
-p{
+    background-color: rgb(137, 143, 155);
+    font-family: "Trebuchet MS", sans-serif;
+    color: black;
+    margin: 5%;
     text-align: justify;
-    margin: 1%;
 }
 h1, h2, h3{
-    text-align: left;
-    font-family: "Trebuchet MS", sans-serif;
-    color: #ff6600;
+    color: white;
+    font-family: "Century Gothic", sans-serif;
+    text-align: center;
+    font-weight: normal;
 }
 a:link, a:visited{
-    font-family: "Courier New", monospace;
-    color: white;
+    font-family: "Century Gothic", sans-serif;
     text-decoration: none;
 }
+li > a, a{
+    color: whitesmoke;
+}
 a:link:hover{
+    color: orange;
     font-weight: bold;
 }
-h1#nb{
-    margin: 0%;
-    margin-left: 1%;
-    float: left;
-}
-a.logout, h1#nb{
-    font-family: "Consolas", monospace;
-    font-size: 21px;
-    color: gainsboro;
-}
-a.logout{
-    font-weight: bold;
-}
-
-nav{
-    font-family: monospace;
-    background-color: rgb(77, 83, 95);
-    text-align: center;
-    font-size: 21px;
-}
-a::after, a::before{
+a:after, a:before{
     content: ' ';
     white-space: pre;
+}
+input, textArea{
+    border: none;
+    border-radius: 5px;
+}
+input:focus, textArea:focus{
+    background-color: gainsboro;
+}
+input, textArea{
+    font-family: "Consolas", monospace;
 }
 li{
     list-style-type: none;
 }
-input:focus, textArea:focus{
-    background-color: lightgoldenrodyellow;
+nav{
+    height: 35px;
+    background-color: rgb(37, 43, 55);
+    border-radius: 10px;
+    text-align: center;
+}
+nav a{
+    font-size: 25px;
+    color: white;
+}
+img#nb{
+    float: left;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+div#dati{
+    width: 50%;
+    background-color: rgb(37, 43, 55);
+    border-radius: 10px;
+    margin: auto;
+    color: white;
+}
+div#dati form{
+    padding: 5%;
+}
+div#dati label, div#dati input{
+    width: 90%;
+    height: 25px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 4%;
+    margin-right: 4%;
+    padding: 1%;
 }
 button{
-    width: 100%;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    background-color: whitesmoke;
+    background-color: gainsboro;
     border-radius: 5px;
     color: rgb(77, 83, 95);
     font-family: "Trebuchet MS", sans-serif;
     font-weight: bold;
     border: none;
 }
-.logout{
-    float: right;
-    margin: 0%;
+div#dati button{
+    margin: 5%;
+    width: 90%;
 }
-img.logout{
+img.utente{
+    width: 50px;
+}
+img.mini{
     width: 25px;
 }
-/*task 4 e 5*/
-div#post div{
-    margin: 1%;
-    padding: 0.1%;
-    margin-right: 0%;
-    border-radius: 5px;
+img.logout{
+    width: 35px;
 }
-div#post div{
-    background-color: gainsboro;
-    color: rgb(77, 83, 95);
-}
-div#post div label, div#post div a{
-    color: rgb(77, 83, 95);
-}
-div#post div.gr, div#post div.gr label{
-    background-color: #888888;
-    color: seashell;
-}
-div#post div#insPost label, div#post div#insPost p, div#post div#insPost a{
-    color: seashell;
-}
-div#info{
-    margin: 0.8%;
-    background-color: slategray; 
-    text-align: left;
-    width: 79%;
-    margin-right: 0%;
-    border-radius: 5px;
+a.logout, img.logout{
+    float: right;
 }
 div#info img{
     float: left;
     margin: 1%;
 }
-div#persone, div#gruppi, div#ricerca{
-    margin-top: 1%;
-    margin-bottom: 5%;
-    margin-left: 0%;
-    margin-right: 0%;
-    background-color: #666666;
-    border-radius: 5px;
-    padding: 5%;
+div#post div{
+    background-color: rgb(97, 103, 115);
+    border-radius: 10px;
+    margin-bottom: 1%;
+    padding: 1%;
 }
-div#ricerca input{
-    width: 100%;
+div#info, div#conferma{
+    background-color: rgb(97, 103, 115);
+    border-radius: 10px;
 }
-label{
-    font-weight: bold;
-    color: whitesmoke;
-    font-family: "Trebuchet MS", sans-serif;
-}
-div#info label, div#dati label{
-    margin: 1%;
-    text-align: left;
-    width: 40%;
-}
-div#info label{
-    display: inline-block;
-}
-div#info input, div#info textArea{
-    float: right;
-    width: 50%;
-    margin-top: 0.5%;
-}
-div#info form{
+div#info form, div#conferma div{
     padding-left: 10%;
-    padding-right: 10%;
     padding-top: 1%;
     padding-bottom: 1%;
+    padding-right: 10%;
+    color: white;
 }
-div#dati form{
-    padding: 10%;
+div#conferma img{
+    display: block;
+    margin: 1%;
 }
-div#dati{
-    width: 35%;
-    background-color: rgb(77, 83, 95);
-    margin: auto;
-    border-radius: 5px;
+div#info form label{
+    width: 40%;
+    display: inline-block;
+    margin: 1%;
+    padding: 1%;
 }
-div#dati input{
-    width: 100%;
+div#info form input, div#info form textArea{
+    width: 50%;
+    float: right;
+    display: inline-block;
+    margin: 1%;
+    padding: 1%;
 }
-h1#Ltitle{
-    text-align: center;
+img.postpic{
+    width: 70%;
+    margin: 15%;
 }
-input, textArea{
-    border-radius: 5px;
-    font-family: "Consolas", monospace;
-    font-weight: bold;
+div#barraL button{
+    width: 80%;
+    margin: 10%;
+}
+div#barraL input{
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 1%;
+}
+div#post div.gr{
+    background-color: whitesmoke;
+}
+div#post div.gr label{
     color: rgb(37, 43, 55);
+    font-weight: bold;
 }
-.utente{
-    margin-left: 1%;
-    width: 50px;
-}
-.proPic{
-    width: 50px;
-}
-.postpic{
-    width: 30%;
-    position: relative;
-    right: 35%;
-    left: 35%;
+div#post label{
+    color: whitesmoke;
+    font-weight: bold;
 }
 div#post div#insPost, div#post div#insPost div{
-    background-color: rgb(77, 83, 95);
+    background-color: rgb(57, 63, 75);
 }
-/*task 6*/
-@media only screen and (min-width: 1024px)
-{
-    h1#nb, a{
-        display: inline-block;
-    }
-    div#post{
-        width: 80%;
-        float: right;
-    }
-    div#info{
-            float: right;
-        }
-    div#barraL{ /*sidebar*/
-        width: 20%;
-        margin-top: 0.5%;
-        float: left;
-    }
-    div#insPost{
-        border-radius: 5px;
-        margin-top: 0.7%;
-    }
-    div#insPost > form{
-        padding-right: 20%;
-        padding-left: 20%;
-        padding-bottom: 1%;
-    }
-    div.tipou{
-        float: right;
-        display: inline-block;
-    }
-    div.tipoi{
-        display: inline-block;
-    }
-    div#conferma{
-        float: right;
-    }
-
-}
-.post{
-    width: 49%;
-    display: inline-block;
-}
-.cpost{
-    width: 100%;
-}
-div#conferma{
-    margin-top: 0.9%;
-    width: 80%;
-    background-color: rgb(77, 83, 95);
-    border-radius: 5px;
-}
-div#conferma p.dati, div#conferma div{
-    padding-left: 10%;
-    padding-right: 10%;
-}
-strong{
-    font-family: "Trebuchet MS", sans-serif;
-}
-img#profilo{
-    display: block;
-    margin-top: 1%;
-    width: 50px;
-}
-div#conferma div{
-    padding-top: 1%;
-    padding-bottom: 1%;
-}
-div#errati{
+div#insPost form{
+    padding-right: 20%;
+    padding-left: 20%;
+    padding-top: 5%;
     padding-bottom: 5%;
 }
-@media only screen and (min-width: 0px) and (max-width: 1024px)
-{
-    div#conferma{
-        margin: auto;
-    }
-    .logout{
-        display: none;
-    }
-    div#insPost > form{
-        padding: 5%;
-    }
-    div#post{ /*contenitore bacheca*/
-        width: 85%;
-        margin: auto;
-        margin-top: 1%;
-        margin-bottom: 1%;
-    }
-    div#post div{
-        margin: 0.5%;
-        margin-top: 1%;
-    }
-    div#barraL{
-        width: 84%;
-    }
-    div#barraL, div#insPost{
-        margin: auto;
-        margin-top: 1%;
-        margin-bottom: 1%;
-        background-color: rgb(77, 83, 95);
-        border-radius: 5px;
-    }
-    div#persone, div#gruppi, div#ricerca{
-        margin-bottom: 1%;
-        padding: 0.5%;
-        width: 30%;
-        display: inline-block;
-        background: none;
-    }
-    div#info{
-        margin: auto;
-        margin-top: 1%;
-        margin-bottom: 1%;
-    }
-    h1#nb, div#info img{ 
-        display: none;
-    }
-    div#info form{
-        padding: 1%;
-    }
-    div#gruppi{
-        position: relative;
-        right: 10%;
-        float: right;
-    }
-    div#persone{
-        position: relative;
-        left: 10%;
-    }
-    div#barraL h2{
-        text-align: center;
-    }
-}
-.mini{
-    margin-right: 5%;
-    width: 25px;
-}
-div#insPost div{
-    margin: 1%;
-}
-div#insPost input[type="url"], div#insPost textArea{
+div#insPost input[type="url"], div#insPost textArea {
     width: 100%;
+    padding: 1%;
 }
-img#nb, h1#Dtitle{
-    display: inline-block;
-}
-img#bn, h1#Ltitle{
-    display: inline-block;
-    position: relative;
-    left: 42%;
-    right: 42%;
-}
-div#barraL a, div#post a{
-    font-family: "Trebuchet MS", sans-serif;
-}
-div#info button#canc{
-    width: 50%;
+div.tipou{
     float: right;
     display: inline-block;
 }
-div#info button#agg{
-    width: 45%;
-    display: inline-block;
+div.tipoi{
     float: left;
+    display: inline-block;
 }
-.cancella{
-    width: 30%;
+div#info button{
+    display: inline-block;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+div#info button{
+    width: 48%;
+}
+button.iscriviti{
+    width: 40%;
+    float: left;
     margin: auto;
+    display: inline-block;
+}
+button.aggiungi{
+    width: 100%;
+}
+div#insPost button.cpost{
+    width: 100%;
+    margin: auto;
+}
+div#insPost{
+    color: white;
+}
+.errore{
+    color: orange;
+}
+button#canc{
+    float: right;
+    display: inline-block;
+}
+button#agg{
+    float: left;
+    display: inline-block;
+}
+button.post[type="submit"]{
+    width: 100%;
+    margin: 1%;
+}
+p.negato{
+    text-align: center;
+}
+button#no{
+    float: left;
+    display: inline-block;
+}
+button#canc{
+   width: 50%;
+   margin-left: 25%;
+   margin-right: 25%;
+   margin-top: 1%;
+   margin-bottom: 1%;
+}
+.confermacancella{
+    text-align: center;
+}
+@media only screen and (min-width: 1024px){
+    div#barraL{
+        width: 20%;
+        float: left;
+        background-color: rgb(57, 63, 75);
+        border-radius: 10px;
+        margin: 1%;
+    }
+    div#post, div#info, div#conferma{
+        width: 75%;
+        float: right;
+        margin: 1%;
+    }
+    button.cancella, button.iscriviti{
+        width: 40%;
+        margin: auto;
+        display: inline-block;  
+    }
+    a#nb{
+        float: left;
+    }
+}
+@media only screen and (min-width: 480px) and (max-width: 1024px)
+{
+    h1#nb, a#nb{
+        display: none;
+    }
+    div#barraL{
+        background-color: rgb(57, 63, 75);
+        border-radius: 10px;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }
+    div#persone h1, div#gruppi h1{
+        text-align: left;
+        margin: 1%;
+    }
+    div#ricerca h1{
+        margin: 1%;
+    }
+    div#ricerca{
+        width: 50%;
+        float: right;
+    }
+    div#dati{
+        width: 80%;
+    }
+    button.iscriviti, button.cancella, button.aggiungi{
+        width: 50%;
+        float: right;
+    }
+}
+@media only screen and (max-width: 480px){
+    a.logout, img.logout, a#nb, h1#nb{
+        display: none;
+    }
+    div#info img{
+        display: none;
+    }
+    div#info{
+        text-align: left;
+    }
+    div#dati{
+        width: 100%;
+    }
+    div#barraL{
+        background-color: rgb(57, 63, 75);
+        border-radius: 10px;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        padding-top: 0.5%;
+        padding-bottom: 0.5%;
+    }
+    div#insPost form{
+        padding: 5%;
+    }
+    button.cancella, button.iscriviti{
+        width: 100%;
+    }
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative
@@ -351,9 +325,6 @@ a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
 le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */
-h1#nb:before{
-    content: url("img/logom.png");
-}
 #new:before{
     content: url("img/new.png");
     margin-right: 1%;

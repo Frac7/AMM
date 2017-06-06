@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package amm.nb.servlet;
 
-import factory.PostFactory;
-import factory.UtentiRegistratiFactory;
-import entita.UtentiRegistrati;
+import amm.nb.factory.PostFactory;
+import amm.nb.factory.UtentiRegistratiFactory;
+import amm.nb.entita.UtentiRegistrati;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -55,16 +55,15 @@ public class Profilo extends HttpServlet {
                 //accesso consenti, raccolta della lista degli utenti e dei gruppi presenti nel sistema
                 request.setAttribute("negato",false);
                 if(request.getParameter("cancella") != null)
-                {
-                    if(request.getParameter("cancella").equals("1"))
-                        if(PostFactory.getInstance().deleteAllByUser(u) == true)
-                            if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
-                            {
-                                session.invalidate();
-                                session = request.getSession();
-                                request.getRequestDispatcher("descrizione.html").forward(request, response);
-                            }
-                }
+                    request.setAttribute("chiedi",1);
+                if(request.getParameter("davvero") != null)
+                    if(PostFactory.getInstance().deleteAllByUser(u) == true)
+                        if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
+                        {
+                            session.invalidate();
+                            session = request.getSession();
+                            request.getRequestDispatcher("descrizione.html").forward(request, response);
+                        }
                 String nome = request.getParameter("nome"); //richiesta parametri per eventuale modifica profilo
                 String cognome = request.getParameter("cognome");
                 String stato = request.getParameter("stato");

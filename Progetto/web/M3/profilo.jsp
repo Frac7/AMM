@@ -44,21 +44,32 @@
                 <p class="dati" <c:if test="${nome == true}">id = "new" </c:if>><strong>Nome:</strong> ${user.getNome()}</p>
                 <p class="dati" <c:if test="${cognome == true}">id = "new" </c:if>><strong>Cognome:</strong> ${user.getCognome()}</p>
                 <p class="dati" <c:if test="${compleanno == true}">id = "new" </c:if>><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
-                <p class="dati" <c:if test="${foto == true}">id = "new" </c:if>><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="proPic,utente" id="profilo" alt="Profilo" src="${user.getUrlProPic()}"></p>
+                <p class="dati" <c:if test="${foto == true}">id = "new" </c:if>><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="utente" alt="Profilo" src="${user.getUrlProPic()}"></p>
                 <p class="dati" <c:if test="${stato == true}">id = "new" </c:if>><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
             </div>
         </div>
         </c:if>
         <c:if test="${erroredati == true}">
             <div id="conferma">
-                <div><h2>Errore nell'inserimento dei dati</h2>
+                <div><h2 class="errore">Errore nell'inserimento dei dati</h2>
                 <p>Le due password inserite non corrispondono.</p></div>
             </div>
         </c:if>
-        <c:if test="${erroredati == null}">
+        <c:if test="${chiedi == 1}">
+            <div id="conferma">
+            <form action="" method="post">
+                <h1>Conferma cancellazione</h1>
+                <p class="confermacancella">Vuoi davvero cancellare il tuo profilo NerdBook?</p>
+                <div>
+                    <button id="canc" type="submit" name="davvero" value="1">Conferma</button>
+                </div>
+            </form>
+        </div>
+        </c:if>
+        <c:if test="${erroredati == null && chiedi == null}">
         <div id="info">
             <div>
-                <img src="${user.getUrlProPic()}" alt="utente" id="utente" class="proPic">
+                <img src="${user.getUrlProPic()}" alt="utente" class="utente">
             </div>
             <form action="" method="post">
                 <div>
@@ -74,7 +85,7 @@
                     <label for="stato">Frase di presentazione</label> <textarea name="stato" rows="1" id="stato" placeholder="A cosa stai pensando?"></textarea>
                 </div>
                 <div>
-                    <label for="compleanno">Data di nascita</label> <input type='date' name="compleanno" id="compleanno">
+                    <label for="compleanno">Data di nascita</label> <input type='text' name="compleanno" id="compleanno" placeholder="Compleanno">
                 </div>
                 <div>
                     <label for="password">Password</label> <input type='password' name="password" id ="password" placeholder="Inserire la nuova password">
@@ -93,8 +104,8 @@
         </c:if>
         </c:if>
         <c:if test="${negato == true}">
-            <h1>Accesso negato</h1>
-            <p>Non si disponde delle autorizzazioni necessarie per accedere alla
+            <h1 class="negato">Accesso negato</h1>
+            <p class="negato">Non si disponde delle autorizzazioni necessarie per accedere alla
                 pagina.</p>
         </c:if>
     </body>

@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package amm.nb.servlet;
 
-import entita.Gruppi;
-import factory.PostFactory;
-import entita.Post;
-import factory.UtentiRegistratiFactory;
-import entita.UtentiRegistrati;
-import factory.GruppiFactory;
+import amm.nb.entita.Gruppi;
+import amm.nb.factory.PostFactory;
+import amm.nb.entita.Post;
+import amm.nb.factory.UtentiRegistratiFactory;
+import amm.nb.entita.UtentiRegistrati;
+import amm.nb.factory.GruppiFactory;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
