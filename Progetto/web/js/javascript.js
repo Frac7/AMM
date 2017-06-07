@@ -38,7 +38,7 @@ $(document).ready(function(){
             $(".ricerca_bottone").click(function(){
                         var a = $(".ricerca_testo")[0].value;
                         $.ajax({
-                                    url: "Filter",
+                                    url: "filter.js",
                                     data:{
                                         cmd: "search",
                                         q: a

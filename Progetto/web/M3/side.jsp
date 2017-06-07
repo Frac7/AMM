@@ -8,9 +8,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id='barraL'>
                 <div id="ricerca">
-                    <h1>Ricerca</h1>
-                    <input type="text" class="ricerca_testo" name="q" placeholder="Cerca Amici Nerd..."/>
-                    <button class="ricerca_bottone">Cerca</button>
+                    <div id="search">
+                        <h1>Ricerca</h1>
+                        <input type="text" class="ricerca_testo" name="q" placeholder="Cerca Amici Nerd..." onkeyup=dinamic()/>
+                        <button class="ricerca_bottone">Cerca</button>
+                    </div>
                 </div>
                 <div id="persone">
                     <h1>Persone</h1>

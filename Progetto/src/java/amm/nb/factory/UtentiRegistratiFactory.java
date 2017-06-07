@@ -161,10 +161,10 @@ public class UtentiRegistratiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "select * from utenti where utenti.nome like '%?%'";
+            String query = "select * from utenti where utenti.nome like ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
-            ps.setString(1, nome);
+            ps.setString(1, "%" + nome + "%");
             //esecuzione query
             ResultSet rs = ps.executeQuery();
             //ciclare sui risultati
