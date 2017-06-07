@@ -39,8 +39,6 @@ public class Filter extends HttpServlet {
             {
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList(request.getParameter("q"));
                 request.setAttribute("utenti",l);
-                if(l == null)
-                    request.setAttribute("vuoto",1);
                 response.setContentType("application/json");
                 response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
                 response.setHeader("Cache-Control", "no-store, no-cache, "

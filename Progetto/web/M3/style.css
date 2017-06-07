@@ -54,6 +54,9 @@ img#nb{
     margin-left: 1%;
     margin-right: 1%;
 }
+.lista{
+    color: white;
+}
 div#dati{
     width: 50%;
     background-color: rgb(37, 43, 55);
@@ -254,7 +257,7 @@ p.negato{
         margin-top: 1%;
         margin-bottom: 1%;
     }
-    div#persone h1, div#gruppi h1{
+    div#barraL h1{
         text-align: left;
         margin: 1%;
     }
@@ -302,7 +305,7 @@ p.negato{
 }
 /* le immagini inserite come pseudo elementi sono immagini puramente decorative
 senza alcun valore semantico. sono state inserite delle immagini decorative
-a fianco al titolo login, lista di persone, lista di gruppi, titolo nella nav.
+per l'inserimento dei post e per i campi login.
 le altre immagini, come ad esempio la foto del profilo,
 inserita nel documento html con tag img, hanno valore semantico legato alla bacheca
 del social network */

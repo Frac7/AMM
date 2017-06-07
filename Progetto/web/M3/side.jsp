@@ -8,24 +8,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id='barraL'>
                 <div id="ricerca">
+                    <h1>Ricerca</h1>
                     <div id="search">
-                        <h1>Ricerca</h1>
-                        <input type="text" class="ricerca_testo" name="q" placeholder="Cerca Amici Nerd..." onkeyup=dinamic()/>
+                        <input type="text" class="ricerca_testo" placeholder="Cerca Amici Nerd..." onkeyup=cerca()>
                         <button class="ricerca_bottone">Cerca</button>
                     </div>
                 </div>
+                <h1>Persone</h1>
                 <div id="persone">
-                    <h1>Persone</h1>
                     <div>
                         <ul>
-                            <c:if test="${vuoto == 1}">
-                                <li>Nessun risultato</li>
-                            </c:if>
-                            <c:if test="${vuoto == null}">
                                 <c:forEach var="el_utenti" items="${utenti}">
                                 <li><img src="${el_utenti.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.getId()}">${el_utenti.getNome()} ${el_utenti.getCognome()}</a></li>
                                 </c:forEach>
-                            </c:if>
                         </ul>
                     </div>
                 </div>

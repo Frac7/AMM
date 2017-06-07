@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
-        <url-pattern>/M3/filter.js</url-pattern>
+        <url-pattern>/M3/filter.json</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

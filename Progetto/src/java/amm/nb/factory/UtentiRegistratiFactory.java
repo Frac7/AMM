@@ -161,10 +161,11 @@ public class UtentiRegistratiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "select * from utenti where utenti.nome like ?";
+            String query = "select * from utenti where utenti.nome like ? or utenti.cognome like ?";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             ps.setString(1, "%" + nome + "%");
+            ps.setString(2, "%" + nome + "%");
             //esecuzione query
             ResultSet rs = ps.executeQuery();
             //ciclare sui risultati
@@ -235,6 +236,7 @@ public class UtentiRegistratiFactory {
     {
         try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c.setAutoCommit(false);
             String query = 
                       " delete from utenti_gruppi "
                     + "where utenti_gruppi.id_u = ? ";
@@ -297,7 +299,6 @@ public class UtentiRegistratiFactory {
             Connection c = null;
             try {
                 c = DriverManager.getConnection(connectionString, "Frac7", "amm");
-                c.setAutoCommit(false);
                 String query = 
                           " delete from utenti "
                         + "where utenti.id = ? ";
