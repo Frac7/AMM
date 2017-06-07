@@ -34,7 +34,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
-        <url-pattern>/js/filter.json</url-pattern>
+        <url-pattern>/Filter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Filter</servlet-name>
+        <url-pattern>/filter.json</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

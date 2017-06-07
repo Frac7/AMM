@@ -55,18 +55,7 @@
                 <p>Le due password inserite non corrispondono.</p></div>
             </div>
         </c:if>
-        <c:if test="${chiedi == 1}">
-            <div id="conferma">
-            <form action="" method="post">
-                <h1>Conferma cancellazione</h1>
-                <p class="confermacancella">Vuoi davvero cancellare il tuo profilo NerdBook?</p>
-                <div>
-                    <button id="canc" type="submit" name="davvero" value="1">Conferma</button>
-                </div>
-            </form>
-        </div>
-        </c:if>
-        <c:if test="${erroredati == null && chiedi == null}">
+        <c:if test="${erroredati == null}">
         <div id="info">
             <div>
                 <img src="${user.getUrlProPic()}" alt="utente" class="utente">

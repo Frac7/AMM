@@ -66,7 +66,6 @@ div#dati form{
 }
 div#dati label, div#dati input{
     width: 90%;
-    height: 25px;
     margin-top: 1%;
     margin-bottom: 1%;
     margin-left: 4%;
@@ -191,15 +190,6 @@ div#info button{
 div#info button{
     width: 48%;
 }
-button.iscriviti{
-    width: 40%;
-    float: left;
-    margin: auto;
-    display: inline-block;
-}
-button.aggiungi{
-    width: 100%;
-}
 div#insPost button.cpost{
     width: 100%;
     margin: auto;
@@ -225,17 +215,6 @@ button.post[type="submit"]{
 p.negato{
     text-align: center;
 }
-button#no{
-    float: left;
-    display: inline-block;
-}
-button#canc{
-   width: 50%;
-   margin-left: 25%;
-   margin-right: 25%;
-   margin-top: 1%;
-   margin-bottom: 1%;
-}
 .confermacancella{
     text-align: center;
 }
@@ -259,6 +238,9 @@ button#canc{
     }
     a#nb{
         float: left;
+    }
+    button.aggiungi{
+        width: 40%;
     }
 }
 @media only screen and (min-width: 480px) and (max-width: 1024px)
@@ -288,7 +270,6 @@ button#canc{
     }
     button.iscriviti, button.cancella, button.aggiungi{
         width: 50%;
-        float: right;
     }
 }
 @media only screen and (max-width: 480px){

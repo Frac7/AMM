@@ -294,19 +294,29 @@ public class UtentiRegistratiFactory {
     {
         if(delete(u) == true)
         {
+            Connection c = null;
             try {
-                Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+                c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+                c.setAutoCommit(false);
                 String query = 
                           " delete from utenti "
                         + "where utenti.id = ? ";
                 PreparedStatement ps = c.prepareStatement(query);
                 ps.setInt(1, u.getId());
                 ps.executeUpdate();
+                c.commit();
+                c.setAutoCommit(true);
                 ps.close();
                 c.close();
             }
             catch(SQLException e){
                 e.printStackTrace();
+                try{
+                    c.rollback();
+                }
+                catch(SQLException s){
+                    s.printStackTrace();
+                }
             }
             return true;
         }

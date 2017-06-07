@@ -45,7 +45,7 @@ public class Filter extends HttpServlet {
                 response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
                 response.setHeader("Cache-Control", "no-store, no-cache, "
                         + "must-revalidate");
-                request.getRequestDispatcher("listaJson.jsp").
+                request.getRequestDispatcher("M3/listaJson.jsp").
                         forward(request, response);
             }
         }
