@@ -16,46 +16,38 @@ function crea(utente) {
     var li = $("<li>")
             .append(proPic)
             .append(nome);
-    var ul = $("<ol>")
-            .append(li);
-    var div = $("<div>")
-            .append(ul);
-    return div;
+    return li;
 }
 
 function stateSuccess(data) {
-    var lista = $("#persone");
-    $(lista).empty();
-    var fin = 0;
+    var lista = $("#js");
+    $(lista).empty(); //svuotare la lista (li dentro ol)
+    var fin = 0; //variabile di lavoro a cui si da un valore per testare poi la sua modifica
     for (var instance in data) {
         var fin = $(lista).append(crea(data[instance]));
     }
-    if(fin === 0)
+    if(fin === 0) //se non è avvenuta alcuna modifica significa che nessun utente corrisponde ai criteri di ricerca
     {
             var li = $("<li>")
                     .html("Nessun risultato...")
                     .attr("class","lista");
-            var ul = $("<ol>")
-                    .append(li);
-            var div = $("<div>")
-                    .append(ul);
-            $(lista).append(div);
+            $(lista).append(li);
     }
 }
 function stateFailure(state) {
     console.log(state);
 }
-
+//solo quando il documento è pronto
 $(document).ready(function () {
-    $(".ricerca_bottone").click(function () {
-        var a = $(".ricerca_testo")[0].value;
+    $(".ricerca_bottone").click(function () { //funzione al click del bottone
+        var a = $(".ricerca_testo")[0].value; //valore in inputbox
         $.ajax({
-            url: "filter.json",
+            url: "filter.json", //url fittizia
             data: {
-                cmd: "search",
-                q: a
+                cmd: "search", //comando
+                q: a //stringa
             },
-            dataType: "json",
+            dataType: "json", //tipo di dato atteso
             success: function (data) {
                 stateSuccess(data);
             },
@@ -66,17 +58,17 @@ $(document).ready(function () {
     });
 });
 
-function cerca()
+function cerca() //funzione onkeyup
 {
- var a = $(".ricerca_testo")[0].value;
+ var a = $(".ricerca_testo")[0].value; //valore input
 
     $.ajax({
-        url: "filter.json",
+        url: "filter.json", //ind fittizio
         data: {
-            cmd: "search",
-            q: a
+            cmd: "search", //comando
+            q: a //stringa
         },
-        dataType: "json",
+        dataType: "json", //dato atteso
         success: function (data) {
             stateSuccess(data);
         },

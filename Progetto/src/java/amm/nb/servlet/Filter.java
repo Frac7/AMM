@@ -37,12 +37,16 @@ public class Filter extends HttpServlet {
         if(c != null)
             if(c.equals("search"))
             {
+                //ricerca per stringa inserita
                 List<UtentiRegistrati> l = UtentiRegistratiFactory.getInstance().getUserList(request.getParameter("q"));
+                //lista ricevuta
                 request.setAttribute("utenti",l);
+                //json
                 response.setContentType("application/json");
                 response.setHeader("Expires", "Sat, 6 May 1995 12:00:00 GMT");
                 response.setHeader("Cache-Control", "no-store, no-cache, "
                         + "must-revalidate");
+                //jsp che "elabora" json
                 request.getRequestDispatcher("listaJson.jsp").
                         forward(request, response);
             }

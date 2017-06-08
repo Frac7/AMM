@@ -159,7 +159,7 @@ public class Bacheca extends HttpServlet {
                         //è andata a buon fine
                         request.setAttribute("ok_cancella_p",1);
                         List<Post> p = null;
-                        if(request.getAttribute("f").equals(true))
+                        if(request.getParameter("visualizza_gruppo") == null)
                             p = PostFactory.getInstance().getPostByDest((UtentiRegistrati)request.getAttribute("x"));
                         else
                             p = PostFactory.getInstance().getPostByGroup((Gruppi)request.getAttribute("x"));

@@ -14,13 +14,15 @@
                         <button class="ricerca_bottone">Cerca</button>
                     </div>
                 </div>
-                <h1>Persone</h1>
                 <div id="persone">
-                    <div>
+                    <h1>Persone</h1>
+                    <div id="utenti">
                         <ul>
+                            <div id="js">
                                 <c:forEach var="el_utenti" items="${utenti}">
                                 <li><img src="${el_utenti.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_bacheca=${el_utenti.getId()}">${el_utenti.getNome()} ${el_utenti.getCognome()}</a></li>
                                 </c:forEach>
+                            </div>
                         </ul>
                     </div>
                 </div>

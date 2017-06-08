@@ -7,6 +7,7 @@
 <%@ page contentType="application/json" pageEncoding="UTF-8"%>
 <%@ taglib prefix="json" uri="http://www.atg.com/taglibs/json" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- oggetto json --%>
 <json:array>
     <c:forEach var="el_utenti" items="${utenti}">
         <json:object>
