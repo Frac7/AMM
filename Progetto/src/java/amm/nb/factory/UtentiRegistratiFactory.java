@@ -259,8 +259,9 @@ public class UtentiRegistratiFactory {
     }
     private boolean delete(UtentiRegistrati u)
     {
+        Connection c = null;
         try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             c.setAutoCommit(false);
             String query = 
                       " delete from utenti_gruppi "
@@ -268,40 +269,71 @@ public class UtentiRegistratiFactory {
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
+            c.commit();
+            c.setAutoCommit(true);
             ps.close();
             c.close();
+            
         }
         catch(SQLException e){
             e.printStackTrace();
+            try{
+                    if(c != null)
+                        c.rollback();
+                }
+                catch(SQLException s){
+                    s.printStackTrace();
+                }
         }
         try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c.setAutoCommit(false);
             String query = " DELETE FROM utenti_gruppi WHERE utenti_gruppi.id_g IN (SELECT gruppi.id FROM gruppi where founder = ?) ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
+            c.commit();
+            c.setAutoCommit(true);
             ps.close();
             c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
+            try{
+                    if(c != null)
+                        c.rollback();
+                }
+                catch(SQLException s){
+                    s.printStackTrace();
+                }
         }
         try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c.setAutoCommit(false);
             String query = 
                       " delete from gruppi "
                     + "where gruppi.founder = ? ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, u.getId());
             ps.executeUpdate();
+            c.commit();
+            c.setAutoCommit(true);
             ps.close();
             c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
+            try{
+                    if(c != null)
+                        c.rollback();
+                }
+                catch(SQLException s){
+                    s.printStackTrace();
+                }
         }
         try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c.setAutoCommit(false);
             String query = 
                       " delete from utenti_utenti "
                     + "where utenti_utenti.id_ua = ? or utenti_utenti.id_ub = ? ";
@@ -309,11 +341,20 @@ public class UtentiRegistratiFactory {
             ps.setInt(1, u.getId());
             ps.setInt(2, u.getId());
             ps.executeUpdate();
+            c.commit();
+            c.setAutoCommit(true);
             ps.close();
             c.close();
         }
         catch(SQLException e){
             e.printStackTrace();
+            try{
+                    if(c != null)
+                        c.rollback();
+                }
+                catch(SQLException s){
+                    s.printStackTrace();
+                }
         }
         return true;
     }
@@ -324,6 +365,7 @@ public class UtentiRegistratiFactory {
             Connection c = null;
             try {
                 c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+                c.setAutoCommit(false);
                 String query = 
                           " delete from utenti "
                         + "where utenti.id = ? ";
@@ -338,7 +380,8 @@ public class UtentiRegistratiFactory {
             catch(SQLException e){
                 e.printStackTrace();
                 try{
-                    c.rollback();
+                    if(c != null)
+                        c.rollback();
                 }
                 catch(SQLException s){
                     s.printStackTrace();
