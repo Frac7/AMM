@@ -65,7 +65,7 @@ public class GruppiFactory {
     public boolean cancella(int id)
     {
         //cancellazione post
-        try {
+        /*try {
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             String query = 
                       " delete from post "
@@ -93,15 +93,31 @@ public class GruppiFactory {
         }
         catch(SQLException e){
                     e.printStackTrace();
-                }
+                }*/
+        Connection c = null;
         try {
-            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            c.setAutoCommit(false);
             String query = 
-                          " delete from gruppi "
-                        + "where gruppi.id = ? ";
+                      " delete from post "
+                    + "where post.gruppo = ? ";
             PreparedStatement ps = c.prepareStatement(query);
             ps.setInt(1, id);
             ps.executeUpdate();
+            query = 
+                      " delete from utenti_gruppi "
+                    + "where utenti_gruppi.id_g = ? ";
+            ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            query = 
+                          " delete from gruppi "
+                        + "where gruppi.id = ? ";
+            ps = c.prepareStatement(query);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            c.commit();
+            c.setAutoCommit(true);
             ps.close();
             c.close();
         }

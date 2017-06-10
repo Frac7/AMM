@@ -55,7 +55,7 @@ public class Profilo extends HttpServlet {
                 //accesso consenti, raccolta della lista degli utenti e dei gruppi presenti nel sistema
                 request.setAttribute("negato",false);
                 if(request.getParameter("cancella") != null)
-                    if(PostFactory.getInstance().deleteAllByUser(u) == true)
+                    //if(PostFactory.getInstance().deleteAllByUser(u) == true)
                         if(UtentiRegistratiFactory.getInstance().deleteUser(u) == true)
                         {
                             session.invalidate();
