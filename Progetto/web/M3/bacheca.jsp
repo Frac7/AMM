@@ -19,8 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Francesca Cella">
         <meta name="keywords" content="nerbook social bacheca notizie">
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-        <link rel="icon" href="img/favicon.png" type="image/png" />
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">   
         <script src="../js/jquery-3.2.1.min.js"></script>
         <script src="../js/javascript.js"></script>
     </head>
@@ -45,9 +44,14 @@
                     <p>${x.getFraseBio()}</p>
                 </div>
                 <%-- aggiungere la condizione per già iscritto--%>
-                <c:if test="${user.getId() != x.getId()}">
+                <c:if test="${amico == false}">
                 <div class="gr">
+                    <c:if test="${ok_aggiungi == false}">
+                        <h1>Errore</h1>
+                        <p>Amico non aggiunto</p>
+                    </c:if>
                     <form action="" method="get">
+                        <input type="hidden" name = "visualizza_bacheca" value="${x.getId()}" />
                         <button class = "aggiungi" type ='submit' name="aggiungi" value=1>Aggiungi amico...</button>
                     </form>
                 </div>
@@ -70,9 +74,14 @@
                         </form>
                     </div>
                     </c:if> <%-- aggiungere la condizione per già iscritto--%>
-                    <c:if test="${user.getId() != x.getId()}">
+                    <c:if test="${iscritto == false}">
                     <div class="gr">
                         <form action="" method="get">
+                            <c:if test="${ok_iscriviti == false}">
+                                <h1>Errore</h1>
+                                <p>L'iscrizione non è andata a buon fine</p>
+                            </c:if>
+                            <input type="hidden" name = "visualizza_gruppo" value="${x.getId()}" />
                             <button class = "iscriviti" type ='submit' name="iscriviti" value=1>Iscriviti a questo gruppo...</button>
                         </form>
                     </div>
@@ -80,6 +89,7 @@
                 </div>
             </div>
             </c:if>
+            <c:if test="${amico == true || iscritto == true}">
             <div id="insPost">
             <form action="" method="get">
                 <div>
@@ -162,17 +172,17 @@
                     </label>
                 </div>
                 <c:if test="${el_post.getTipologia() == 'TEXT'}">
-                <div>
+                <div  class="post">
                     <p>${el_post.getContenuto()}</p>
                 </div>
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'IMAGE'}">
-                <div>
+                <div  class="post">
                     <p>${el_post.getContenuto()}</p><img alt="Immagine" src="${el_post.getAllegato()}" class="postpic">
                 </div>
                 </c:if>
                 <c:if test="${el_post.getTipologia() == 'URL'}">
-                <div>
+                <div class="post">
                     <a alt="URL" href="${el_post.getAllegato()}">${el_post.getAllegato()}</a><p>${el_post.getContenuto()}</p>
                 </div>
                 </c:if>
@@ -193,11 +203,16 @@
             </c:forEach>
         </div>
         </c:if>
+        </c:if>
         <c:if test="${negato == true}">
             <h1 class="negato">Accesso negato</h1>
             <p class="negato">Non si disponde delle autorizzazioni necessarie per accedere alla
                 pagina.</p>
         </c:if>
+            <c:if test="${ok_cancella_g == false || ok_cancella_p == false}">
+                        <h1>Errore</h1>
+                        <p>La cancellazione non è andata a buon fine</p>
+                    </c:if>
     </body>
 </html>
 

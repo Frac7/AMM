@@ -35,13 +35,38 @@ public class UtentiRegistratiFactory {
     {
         
     }
+    public boolean amici(int id1, int id2)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      " select * from utenti_utenti "
+                    + "where utenti_utenti.id_ua = ? and utenti_utenti.id_ub = ? or utenti_utenti.id_ua = ? and utenti_utenti.id_ub = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, id1);
+            ps.setInt(2, id2);
+            ps.setInt(3, id2);
+            ps.setInt(4, id1);
+            ResultSet rs = ps.executeQuery();
+            boolean flag = false;
+            if(rs.next())
+                flag = true;
+            ps.close();
+            c.close();
+            return flag;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
     public boolean aggiungi(int id1, int id2)
     {
         try {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "INSERT INTO utenti_utenti(id, id_ua, id_ub) VALUES (default, ?, ?);";
+            String query = "INSERT INTO utenti_utenti(id, id_ua, id_ub) VALUES (default, ?, ?)";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)

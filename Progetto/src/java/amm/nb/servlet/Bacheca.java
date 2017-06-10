@@ -14,6 +14,7 @@ import amm.nb.entita.UtentiRegistrati;
 import java.util.List;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -72,13 +73,13 @@ public class Bacheca extends HttpServlet {
                             if(GruppiFactory.getInstance().cancella(id) == true)
                             //è andata a buon fine
                             {
-                                request.setAttribute("ok_cancella_g",1);
+                                request.setAttribute("ok_cancella_g",true);
                                 List<Gruppi> lg = GruppiFactory.getInstance().getGroupList();
                                 session.setAttribute("gruppi", lg);
                                 vg = vb = null;
                             }
                             else
-                                request.setAttribute("ok_cancella_g",0);
+                                request.setAttribute("ok_cancella_g",false);
                             }
                     }
                     else
@@ -89,10 +90,26 @@ public class Bacheca extends HttpServlet {
                         if(g != null)
                         {
                             request.setAttribute("x", g);
-                            //mi serve nel jsp per mostrare i post del gruppo
-                            List<Post> p = PostFactory.getInstance().getPostByGroup(g);
-                            if(p != null)
-                                request.setAttribute("post", p);
+                            if(((UtentiRegistrati)in).getId() == g.getFounder().getId())
+                            {
+                                request.setAttribute("iscritto",true);
+                                List<Post> p = PostFactory.getInstance().getPostByGroup(g);
+                                if(p != null)
+                                    request.setAttribute("post", p);
+                            }
+                            else if(GruppiFactory.getInstance().iscritto((UtentiRegistrati)in,g))
+                            {
+                                request.setAttribute("iscritto",true);
+                                //mi serve nel jsp per mostrare i post del gruppo
+                                List<Post> p = PostFactory.getInstance().getPostByGroup(g);
+                                if(p != null)
+                                    request.setAttribute("post", p);
+                            }
+                            else
+                            {
+                                List<Post> p = new ArrayList<>();
+                                request.setAttribute("iscritto",false);
+                            }
                         }
                     }
                 } //se visualizza bacheca è presente nella query string
@@ -103,9 +120,25 @@ public class Bacheca extends HttpServlet {
                     int n = Integer.parseInt(vb.toString());
                     u = UtentiRegistratiFactory.getInstance().getUserById(n);
                     request.setAttribute("x", u); //mi serve nel jsp per decidere chi è l'autore dei post
-                    List<Post> p = PostFactory.getInstance().getPostByDest(u);
-                    if(p != null)
-                        request.setAttribute("post", p);
+                    if(((UtentiRegistrati)in).getId() == u.getId())
+                    {
+                        request.setAttribute("amico",true);
+                        List<Post> p = PostFactory.getInstance().getPostByDest(u);
+                        if(p != null)
+                            request.setAttribute("post",p);
+                    }
+                    else if(UtentiRegistratiFactory.getInstance().amici(((UtentiRegistrati)in).getId(),u.getId()))
+                    {
+                        request.setAttribute("amico",true);
+                        List<Post> p = PostFactory.getInstance().getPostByDest(u);
+                        if(p != null)
+                            request.setAttribute("post",p);
+                    }
+                    else
+                    {
+                        List<Post> p = new ArrayList<>();
+                        request.setAttribute("amico",false);
+                    }
                 }
                 if( vb == null && vg == null)
                 //visualizzare la bacheca dell'utente corrente
@@ -116,6 +149,7 @@ public class Bacheca extends HttpServlet {
                     List<Post> p = PostFactory.getInstance().getPostByDest(u);
                     if(p != null)
                         request.setAttribute("post", p);
+                    request.setAttribute("amico",true);
                 }
                 
                 
@@ -124,11 +158,14 @@ public class Bacheca extends HttpServlet {
                 {
                     if(request.getParameter("aggiungi").equals("1"))
                     {
-                        if(UtentiRegistratiFactory.getInstance().aggiungi(((UtentiRegistrati)request.getAttribute("x")).getId(),((UtentiRegistrati)request.getAttribute("user")).getId()) == true)
+                        if(UtentiRegistratiFactory.getInstance().aggiungi(((UtentiRegistrati)request.getAttribute("x")).getId(),((UtentiRegistrati)session.getAttribute("user")).getId()) == true)
                             //è andata a buon fine
-                            request.setAttribute("ok_aggiungi",1);
+                        {
+                            request.setAttribute("ok_aggiungi",true);
+                            request.setAttribute("amico",true);
+                        }
                         else
-                            request.setAttribute("ok_aggiungi",0);
+                            request.setAttribute("ok_aggiungi",false);
                     }
                 }
                 
@@ -137,11 +174,16 @@ public class Bacheca extends HttpServlet {
                 {
                     if(request.getParameter("iscriviti").equals("1"))
                     {
-                        if(GruppiFactory.getInstance().iscrivi(((UtentiRegistrati)request.getAttribute("user")).getId(),((Gruppi)request.getAttribute("x")).getId()) == true)
+                        int id1 = ((UtentiRegistrati)session.getAttribute("user")).getId();
+                        int id2 = ((Gruppi)request.getAttribute("x")).getId();
+                        if(GruppiFactory.getInstance().iscrivi(id1, id2) == true)
                             //è andata a buon fine
-                            request.setAttribute("ok_iscriviti",1);
+                        {
+                            request.setAttribute("ok_iscriviti",true);
+                            request.setAttribute("iscritto",true);
+                        }
                         else
-                            request.setAttribute("ok_iscriviti",0);
+                            request.setAttribute("ok_iscriviti",false);
                     }
                 }
                 //cancellazione post
@@ -157,7 +199,7 @@ public class Bacheca extends HttpServlet {
                     if(PostFactory.getInstance().cancella(id) == true)
                     {
                         //è andata a buon fine
-                        request.setAttribute("ok_cancella_p",1);
+                        request.setAttribute("ok_cancella_p",true);
                         List<Post> p = null;
                         if(request.getParameter("visualizza_gruppo") == null)
                             p = PostFactory.getInstance().getPostByDest((UtentiRegistrati)request.getAttribute("x"));
@@ -167,7 +209,7 @@ public class Bacheca extends HttpServlet {
                             request.setAttribute("post", p);
                     }
                    else
-                        request.setAttribute("ok_cancella_p",0);
+                        request.setAttribute("ok_cancella_p",false);
                 }
                 
                 

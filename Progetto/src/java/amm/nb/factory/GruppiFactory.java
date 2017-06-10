@@ -5,6 +5,7 @@
  */
 package amm.nb.factory;
 import amm.nb.entita.Gruppi;
+import amm.nb.entita.UtentiRegistrati;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -37,6 +38,29 @@ public class GruppiFactory {
     private GruppiFactory()
     {
         
+    }
+    public boolean iscritto(UtentiRegistrati u, Gruppi g)
+    {
+        try {
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            String query = 
+                      " select * from utenti_gruppi "
+                    + "where utenti_gruppi.id_u = ? and utenti_gruppi.id_g = ?";
+            PreparedStatement ps = c.prepareStatement(query);
+            ps.setInt(1, u.getId());
+            ps.setInt(2, g.getId());
+            ResultSet rs = ps.executeQuery();
+            boolean flag = false;
+            if(rs.next())
+                flag = true;
+            ps.close();
+            c.close();
+            return flag;
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+        return false;
     }
     public boolean cancella(int id)
     {
@@ -92,7 +116,7 @@ public class GruppiFactory {
             //connessione al db
             Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
             //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
-            String query = "INSERT INTO utenti_gruppi(id, id_u, id_ug) VALUES (default, ?, ?);";
+            String query = "INSERT INTO utenti_gruppi(id, id_u, id_g) VALUES (default, ?, ?)";
             //prepared statement (validare sintassi sql con caratteri speciali)
             PreparedStatement ps = c.prepareStatement(query);
             //associazione carattere speciale con id (ricerca post per id)

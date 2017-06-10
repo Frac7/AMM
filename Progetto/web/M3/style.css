@@ -203,6 +203,9 @@ div#insPost{
 .errore{
     color: orange;
 }
+div.post p{
+    color: white;
+}
 button#canc{
     float: right;
     display: inline-block;
@@ -299,7 +302,7 @@ p.negato{
     div#insPost form{
         padding: 5%;
     }
-    button.cancella, button.iscriviti{
+    button.cancella, button.iscriviti, button.aggiungi{
         width: 100%;
     }
 }
