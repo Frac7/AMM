@@ -20,7 +20,6 @@
         <meta name="author" content="Francesca Cella">
 	<meta name="keywords" content="profilo nerdbook nerd amici social">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-        <link rel="icon" href="img/favicon.png" type="image/png" />
         <script src="../js/jquery-3.2.1.min.js"></script>
         <script src="../js/javascript.js"></script>
     </head>

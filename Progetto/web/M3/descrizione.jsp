@@ -15,7 +15,6 @@
         <meta name="author" content="Francesca Cella">
 	<meta name="keywords" content="cos'è nerdbook nerd amici social">
         <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-        <link rel="icon" href="img/favicon.png" type="image/png" />
     </head>
     <body>
         <header>
