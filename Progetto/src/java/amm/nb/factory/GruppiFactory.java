@@ -175,7 +175,10 @@ public class GruppiFactory {
                 g.setNome(rs.getString("nome"));
                 g.setDescrizione(rs.getString("descrizione"));
                 g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
-                g.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    g.setUrlProPic("img/g.png");
+                else
+                    g.setUrlProPic(rs.getString("urlProPic"));
                 ps.close();
                 c.close();
                 return g;
@@ -210,7 +213,10 @@ public class GruppiFactory {
                 g.setNome(rs.getString("nome"));
                 g.setDescrizione(rs.getString("descrizione"));
                 g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
-                g.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    g.setUrlProPic("img/g.png");
+                else
+                    g.setUrlProPic(rs.getString("urlProPic"));
                 ps.close();
                 c.close();
                 return g;
@@ -243,7 +249,10 @@ public class GruppiFactory {
                 g.setNome(rs.getString("nome"));
                 g.setDescrizione(rs.getString("descrizione"));
                 g.setFounder(UtentiRegistratiFactory.getInstance().getUserById(rs.getInt("founder")));
-                g.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    g.setUrlProPic("img/g.png");
+                else
+                    g.setUrlProPic(rs.getString("urlProPic"));
                 l.add(g);
             }
 
@@ -266,6 +275,8 @@ public class GruppiFactory {
             //esecuzione query
             ps.setString(1, g.getNome());
             ps.setString(2, g.getDescrizione());
+            if(g.getUrlProPic() == null)
+                g.setUrlProPic("img/g.png");
             ps.setString(3, g.getUrlProPic());
             ps.setInt(4, g.getFounder().getId());
             boolean flag = false;

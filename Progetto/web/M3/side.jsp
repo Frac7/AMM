@@ -30,7 +30,7 @@
                     <h1>Gruppi</h1>
                     <div>
                         <ul>
-                            <li><a href="gruppo.html">Crea un nuovo gruppo...</a></li>
+                            <li><a href="gruppo.html">Crea un nuovo gruppo</a></li>
                             <c:forEach var="el_gruppi" items="${gruppi}">
                                 <li><img src="${el_gruppi.getUrlProPic()}" alt="Utente" class="mini"><a href="bacheca.html?visualizza_gruppo=${el_gruppi.getId()}">${el_gruppi.getNome()}</a></li>
                             </c:forEach>

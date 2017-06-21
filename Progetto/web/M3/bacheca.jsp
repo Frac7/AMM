@@ -37,10 +37,7 @@
             <c:if test="${f == true}">
             <div class="gr">
                 <div class="gr">
-                    <c:if test="${x.getUrlProPic() != null}">
-                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente"></c:if>
-                    <c:if test="${x.getUrlProPic() == null}">
-                        <img src="img/mok" alt="${x.getNome()}" class="utente" class="proPic" id="utente"></c:if>
+                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="utente">
                     <label for="utente">${x.getNome()} ${x.getCognome()}: Frase personale</label>
                 </div>
                 <div class="gr">
@@ -64,10 +61,7 @@
             <c:if test="${f != true}">
             <div class="gr">
                 <div class="gr">
-                    <c:if test="${x.getUrlProPic() != null}">
-                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo"></c:if>
-                    <c:if test="${x.getUrlProPic() == null}">
-                        <img src="img/mg" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo"></c:if>
+                        <img src="${x.getUrlProPic()}" alt="${x.getNome()}" class="utente" class="proPic" id="gruppo">
                     <label for="gruppo">${x.getNome()}: Descrizione</label>
                 </div>
                 <div class="gr">
@@ -169,10 +163,7 @@
             <c:forEach var="el_post" items="${post}">
             <div>
                 <div>
-                        <c:if test="${el_post.getAutore().getUrlProPic() != null}">
-                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${el_post.getAutore().getNome()}" class="utente" class="proPic" id="utente"></c:if>
-                    <c:if test="${el_post.getAutore().getUrlProPic() == null}">
-                        <img src="img/mok" alt="${x.getNome()}" class="utente" class="proPic" id="utente"></c:if>
+                        <img src="${el_post.getAutore().getUrlProPic()}" alt="${el_post.getAutore().getNome()}" class="utente" class="proPic" id="utente">
                     <label for="utente">
                         <c:if test="${f == true && el_post.getDestinatario() == null && el_post.getGruppo() == null}">${x.getNome()} ${x.getCognome()}</c:if>
                         <c:if test="${f == true && el_post.getDestinatario() != null}">${el_post.getAutore().getNome()} ${el_post.getAutore().getCognome()}: ${el_post.getDestinatario().getNome()} ${el_post.getDestinatario().getCognome()}</c:if>

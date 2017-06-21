@@ -163,6 +163,7 @@ public class Bacheca extends HttpServlet {
                         {
                             request.setAttribute("ok_aggiungi",true);
                             request.setAttribute("amico",true);
+                            request.setAttribute("post",PostFactory.getInstance().getPostByDest(UtentiRegistratiFactory.getInstance().getUserById(((UtentiRegistrati)request.getAttribute("x")).getId())));
                         }
                         else
                             request.setAttribute("ok_aggiungi",false);
@@ -181,6 +182,7 @@ public class Bacheca extends HttpServlet {
                         {
                             request.setAttribute("ok_iscriviti",true);
                             request.setAttribute("iscritto",true);
+                            request.setAttribute("post",PostFactory.getInstance().getPostByGroup(GruppiFactory.getInstance().getGroupById(id2)));
                         }
                         else
                             request.setAttribute("ok_iscriviti",false);

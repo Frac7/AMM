@@ -44,7 +44,7 @@
                 <p class="dati" <c:if test="${nome == true}">id = "new" </c:if>><strong>Nome:</strong> ${user.getNome()}</p>
                 <p class="dati" <c:if test="${cognome == true}">id = "new" </c:if>><strong>Cognome:</strong> ${user.getCognome()}</p>
                 <p class="dati" <c:if test="${compleanno == true}">id = "new" </c:if>><strong>Data di nascita:</strong> ${user.getDataNascita()}</p>
-                <p class="dati" <c:if test="${foto == true}">id = "new" </c:if>><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="utente" alt="Profilo" src="${user.getUrlProPic()}"></p>
+                <p class="dati" <c:if test="${foto == true}">id = "new" </c:if>><strong>Immagine del profilo:</strong> ${user.getUrlProPic()}<img class="utente" alt="Foto del profilo" src="${user.getUrlProPic()}"></p>
                 <p class="dati" <c:if test="${stato == true}">id = "new" </c:if>><strong>Frase di presentazione:</strong> ${user.getFraseBio()}</p>
             </div>
         </div>
@@ -57,12 +57,9 @@
         </c:if>
         <c:if test="${erroredati == null}">
         <div id="info">
-            <c:if test="${user.getUrlProPic() != null}"><div>
-                <img src="${user.getUrlProPic()}" alt="utente" class="utente">
-                </div></c:if>
-            <c:if test="${user.getUrlProPic() == null}"><div>
-                <img src="img/ok" alt="utente" class="utente">
-                </div></c:if>
+            <div>
+                <img src="${user.getUrlProPic()}" alt="Foto del profilo" class="utente">
+                </div>
             <form action="" method="post">
                 <div>
                     <label for="nome">Nome</label> <input type='text' name="nome" id="nome" placeholder="Inserire il nome">

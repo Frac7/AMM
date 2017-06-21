@@ -139,11 +139,11 @@ public class Profilo extends HttpServlet {
                 }
                 else if (cpassword != null) //le psw non corrispondono
                     request.setAttribute("erroredati", true);
-                request.getRequestDispatcher("profilo.jsp").forward(request, response);
             }
             if(request.getAttribute("erroredati") != null)
                 if(request.getAttribute("erroredati").equals(false))
                     session.setAttribute("utenti",UtentiRegistratiFactory.getInstance().getUserList());
+            request.getRequestDispatcher("profilo.jsp").forward(request, response);
         }
         else
         {

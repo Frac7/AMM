@@ -109,7 +109,10 @@ public class UtentiRegistratiFactory {
                 u.setNome(rs.getString("nome"));
                 u.setCognome(rs.getString("cognome"));
                 u.setPassword(rs.getString("password"));
-                u.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    u.setUrlProPic("img/ok.png");
+                else
+                    u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
                 u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
@@ -163,7 +166,10 @@ public class UtentiRegistratiFactory {
                 u.setNome(rs.getString("nome"));
                 u.setCognome(rs.getString("cognome"));
                 u.setPassword(rs.getString("password"));
-                u.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    u.setUrlProPic("img/ok.png");
+                else
+                    u.setUrlProPic(rs.getString("urlProPic"));
                 u.setDataNascita(rs.getString("dataNascita"));
                 u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
                 u.setFraseBio(rs.getString("fraseBio"));
@@ -203,7 +209,10 @@ public class UtentiRegistratiFactory {
                 if(rs.getString("cognome") != null)
                     u.setCognome(rs.getString("cognome"));
                 u.setPassword(rs.getString("password"));
-                u.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    u.setUrlProPic("img/ok.png");
+                else
+                    u.setUrlProPic(rs.getString("urlProPic"));
                 if(rs.getString("dataNascita") != null)
                     u.setDataNascita(rs.getString("dataNascita"));
                 u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
@@ -241,7 +250,10 @@ public class UtentiRegistratiFactory {
                 if(rs.getString("cognome") != null)
                     u.setCognome(rs.getString("cognome"));
                 u.setPassword(rs.getString("password"));
-                u.setUrlProPic(rs.getString("urlProPic"));
+                if(rs.getString("urlProPic") == null || rs.getString("urlProPic").equals(""))
+                    u.setUrlProPic("img/ok.png");
+                else
+                    u.setUrlProPic(rs.getString("urlProPic"));
                 if(rs.getString("dataNascita") != null)
                     u.setDataNascita(rs.getString("dataNascita"));
                 u.setTipUtente(utentiTypeFromString(rs.getInt("tipo")));
