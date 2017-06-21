@@ -57,9 +57,12 @@
         </c:if>
         <c:if test="${erroredati == null}">
         <div id="info">
-            <div>
+            <c:if test="${user.getUrlProPic() != null}"><div>
                 <img src="${user.getUrlProPic()}" alt="utente" class="utente">
-            </div>
+                </div></c:if>
+            <c:if test="${user.getUrlProPic() == null}"><div>
+                <img src="img/ok" alt="utente" class="utente">
+                </div></c:if>
             <form action="" method="post">
                 <div>
                     <label for="nome">Nome</label> <input type='text' name="nome" id="nome" placeholder="Inserire il nome">
