@@ -210,6 +210,9 @@ button#canc{
     float: right;
     display: inline-block;
 }
+button#crea{
+    width: 100%;
+}
 button#agg{
     float: left;
     display: inline-block;

@@ -20,6 +20,10 @@
         <servlet-name>Filter</servlet-name>
         <servlet-class>amm.nb.servlet.Filter</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Gruppo</servlet-name>
+        <servlet-class>amm.nb.servlet.Gruppo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/M3/login.html</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>Filter</servlet-name>
         <url-pattern>/M3/filter.json</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Gruppo</servlet-name>
+        <url-pattern>/M3/gruppo.html</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

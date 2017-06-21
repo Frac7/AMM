@@ -254,5 +254,31 @@ public class GruppiFactory {
         }
         return l;
     }
+    public boolean creaGruppo(Gruppi g)
+    {
+        try {
+            //connessione al db
+            Connection c = DriverManager.getConnection(connectionString, "Frac7", "amm");
+            //tutti le colonne di post, unisci la tabella post e tipologia post, selezione le righe con un certo post id
+            String query = "insert into gruppi(id, nome, descrizione, urlProPic, founder) values (default, ?, ?, ?, ?)";
+            //prepared statement (validare sintassi sql con caratteri speciali)
+            PreparedStatement ps = c.prepareStatement(query);
+            //esecuzione query
+            ps.setString(1, g.getNome());
+            ps.setString(2, g.getDescrizione());
+            ps.setString(3, g.getUrlProPic());
+            ps.setInt(4, g.getFounder().getId());
+            boolean flag = false;
+            if(ps.executeUpdate() == 1)
+                flag = true;
+            //ciclare sui risultati
+            ps.close();
+            c.close();
+            return flag;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
 
